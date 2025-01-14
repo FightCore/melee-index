@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Models", "1 Models", "{BB27C53E-5FFC-4167-A80D-D4443C708AB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.Models", "MeleeIndex.Models\MeleeIndex.Models.csproj", "{FFD37535-7639-47A3-A558-17089694D529}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Data", "2 Data", "{21CEFFE0-5F9F-4FD8-80B6-612207ABEBB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.DAL", "MeleeIndex.DAL\MeleeIndex.DAL.csproj", "{9C650360-B2CF-464D-AEAD-5C971B533232}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 API", "4 API", "{1E4B8D6A-973F-4A73-A6A2-8BACB28839F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.Contracts", "MeleeIndex.Contracts\MeleeIndex.Contracts.csproj", "{43F43C3A-0E6C-4EFD-9816-B996F3C52CF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.GraphQL", "MeleeIndex-GraphQL\MeleeIndex.GraphQL.csproj", "{18C1C776-77BD-492D-9982-69D3DEC24407}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFD37535-7639-47A3-A558-17089694D529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD37535-7639-47A3-A558-17089694D529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD37535-7639-47A3-A558-17089694D529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD37535-7639-47A3-A558-17089694D529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C650360-B2CF-464D-AEAD-5C971B533232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C650360-B2CF-464D-AEAD-5C971B533232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C650360-B2CF-464D-AEAD-5C971B533232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C650360-B2CF-464D-AEAD-5C971B533232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43F43C3A-0E6C-4EFD-9816-B996F3C52CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43F43C3A-0E6C-4EFD-9816-B996F3C52CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43F43C3A-0E6C-4EFD-9816-B996F3C52CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43F43C3A-0E6C-4EFD-9816-B996F3C52CF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18C1C776-77BD-492D-9982-69D3DEC24407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18C1C776-77BD-492D-9982-69D3DEC24407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18C1C776-77BD-492D-9982-69D3DEC24407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18C1C776-77BD-492D-9982-69D3DEC24407}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FFD37535-7639-47A3-A558-17089694D529} = {BB27C53E-5FFC-4167-A80D-D4443C708AB5}
+		{9C650360-B2CF-464D-AEAD-5C971B533232} = {21CEFFE0-5F9F-4FD8-80B6-612207ABEBB6}
+		{43F43C3A-0E6C-4EFD-9816-B996F3C52CF1} = {1E4B8D6A-973F-4A73-A6A2-8BACB28839F1}
+		{18C1C776-77BD-492D-9982-69D3DEC24407} = {1E4B8D6A-973F-4A73-A6A2-8BACB28839F1}
+	EndGlobalSection
+EndGlobal

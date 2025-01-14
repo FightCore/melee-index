@@ -1,0 +1,36 @@
+<p-card [style]="{ width: '100%', overflow: 'hidden' }">
+  <ng-template #title> {{ post().title }} </ng-template>
+  <ng-template #subtitle> By {{ post().author.name }} </ng-template>
+  <div class="pb-2">
+    <p>
+      {{ post().summary }}
+    </p>
+  </div>
+  <div class="text-sm text-slate-400">
+    Last updated {{ post().updatedAt | date }}
+  </div>
+  <div class="card flex items-center gap-2 flex-wrap pt-2">
+    @for (tag of post().tags; track tag) {
+    <p-chip>
+      <span class="text-sm text-primary-600"> #{{ tag }} </span>
+    </p-chip>
+    }
+  </div>
+
+  <ng-template #footer>
+    <div class="flex gap-4 w-full mt-1">
+      <a
+        [href]="post().url"
+        target="_blank"
+        pButton
+        class="w-full p-button"
+        severity="primary"
+        icon="pi pi-external-link"
+      >
+        Read
+      </a>
+      <p-button pButtonIcon icon="pi pi-bookmark" severity="secondary" />
+      <p-button pButtonIcon icon="pi pi-share-alt" severity="secondary" />
+    </div>
+  </ng-template>
+</p-card>

@@ -1,0 +1,6 @@
+@MeleeIndex.API_HostAddress = http://localhost:5279
+
+GET {{MeleeIndex.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
