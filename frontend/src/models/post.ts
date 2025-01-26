@@ -1,4 +1,5 @@
 import { Author } from './author';
+import { Source } from './source';
 
 export interface Post {
   id: string;
@@ -9,4 +10,5 @@ export interface Post {
   url: string;
   tags: string[];
   author: Author;
+  source: Source;
 }

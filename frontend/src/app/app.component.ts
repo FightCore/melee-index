@@ -1,22 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import { Post } from '../models/post';
-import { posts } from '../data/post';
 import { PostsOverviewComponent } from './components/posts/posts-overview/posts-overview.component';
+import { Apollo } from 'apollo-angular';
+import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
+import { SearchBarService } from './services/search-bar/search-bar.service';
+import { MessageModule } from 'primeng/message';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MenubarModule, PostsOverviewComponent],
+  imports: [
+    RouterOutlet,
+    MenubarModule,
+    SearchBarComponent,
+    PostsOverviewComponent,
+    SearchBarComponent,
+    MessageModule,
+    ButtonModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   items: MenuItem[] | undefined;
-  posts: Post[] = posts;
+  filter: any = {};
 
-  ngOnInit() {
+  constructor(
+    private readonly apollo: Apollo,
+    private searchBarService: SearchBarService
+  ) {
     this.items = [
       {
         label: 'Home',
@@ -31,5 +45,13 @@ export class AppComponent implements OnInit {
         icon: 'pi pi-envelope',
       },
     ];
+    effect(() => {
+      this.filter = this.searchBarService.filters$().filters;
+    });
+  }
+
+  toggleDarkMode(): void {
+    const element = document.querySelector('html');
+    element?.classList.toggle('dark');
   }
 }

@@ -1,5 +1,4 @@
 export interface Author {
   name: string;
-  url: string;
-  image: string;
+  image?: string;
 }

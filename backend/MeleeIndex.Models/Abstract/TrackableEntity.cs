@@ -1,6 +1,6 @@
 ﻿namespace MeleeIndex.Models.Abstract
 {
-    public class TrackableEntity : IEntity
+    public abstract class TrackableEntity : IEntity
     {
         public Guid Id { get; set; }
 

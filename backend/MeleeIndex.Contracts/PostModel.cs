@@ -14,6 +14,10 @@
 
         public required Uri Url { get; set; }
 
-        public required List<string> Tags { get; set; }
+        public required IEnumerable<string> Tags { get; set; }
+
+        public required AuthorModel Author { get; set; }
+
+        public required SourceModel Source { get; set; }
     }
 }

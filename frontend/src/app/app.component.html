@@ -3,8 +3,23 @@
     <ng-template #start>
       <img src="https://i.fightcore.gg/clients/fightcore.png" width="30" />
     </ng-template>
+    <ng-template #end>
+      <p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()" />
+    </ng-template>
   </p-menubar>
 </div>
 
 <router-outlet />
-<app-posts-overview [posts]="posts"></app-posts-overview>
+<p-message severity="warn"
+  >This website is a work in progress! All content showcased is added without
+  permissions, people's and websites likenesses are used as examples
+  only!</p-message
+>
+
+<div class="p-4">
+  <app-search-bar></app-search-bar>
+</div>
+
+<app-posts-overview [filter]="filter"></app-posts-overview>
+
+<ng-template #noValue> </ng-template>
