@@ -1,0 +1,115 @@
+<div class="p-2">
+  <div class="p-2 bg-white rounded-md">
+    <h1 class="font-bold text-xl mb-2">Create a new post</h1>
+    <form [formGroup]="formGroup" (ngSubmit)="create()">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div id="create_post">
+          <div class="flex flex-row flex-wrap gap-2">
+            <h2 class="text-lg">Post</h2>
+            <p-inputgroup>
+              <p-inputgroup-addon
+                ><i class="pi pi-pencil"></i
+              ></p-inputgroup-addon>
+              <p-floatlabel variant="on">
+                <input
+                  pInputText
+                  id="title"
+                  autocomplete="off"
+                  formControlName="title"
+                />
+                <label for="title">Post title</label>
+              </p-floatlabel>
+            </p-inputgroup>
+            <p-inputgroup>
+              <p-inputgroup-addon
+                ><i class="pi pi-link"></i
+              ></p-inputgroup-addon>
+              <p-floatlabel variant="on">
+                <input
+                  pInputText
+                  id="url"
+                  autocomplete="off"
+                  formControlName="url"
+                />
+                <label for="url">URL</label>
+              </p-floatlabel>
+            </p-inputgroup>
+            <p-inputgroup>
+              <p-inputgroup-addon
+                ><i class="pi pi-align-left"></i
+              ></p-inputgroup-addon>
+              <p-floatlabel variant="on">
+                <textarea
+                  pTextarea
+                  id="summary"
+                  style="resize: none"
+                  class="h-full w-full"
+                  formControlName="summary"
+                ></textarea>
+                <label for="summary">Summary</label>
+              </p-floatlabel>
+            </p-inputgroup>
+            <p-floatlabel variant="on">
+              <p-datepicker
+                inputId="created_at"
+                [showTime]="true"
+                hourFormat="24"
+                formControlName="created"
+              />
+              <label for="created_at">Created at</label>
+            </p-floatlabel>
+            <p-floatlabel variant="on">
+              <p-datepicker
+                inputId="last_updated"
+                [showTime]="true"
+                hourFormat="24"
+                formControlName="modified"
+              />
+              <label for="last_updated">Last updated</label>
+            </p-floatlabel>
+          </div>
+        </div>
+        <div>
+          <div id="create_author">
+            <h2 class="text-lg">Author</h2>
+            <p-select
+              [options]="authors"
+              placeholder="Select an author"
+              class="w-full"
+              formControlName="author"
+            />
+          </div>
+          <div id="create_category">
+            <h2 class="text-lg">Category</h2>
+            <p-select
+              [options]="categories"
+              placeholder="Select a category"
+              class="w-full"
+              formControlName="category"
+            />
+          </div>
+        </div>
+        <div>
+          <h2 class="text-lg">Source</h2>
+          <p-select
+            [options]="sources"
+            formControlName="source"
+            placeholder="Select an source"
+            class="w-full"
+          />
+          <h2 class="text-lg">Tags</h2>
+          <p-multiselect
+            [options]="tags"
+            formControlName="tags"
+            placeholder="Select tags"
+            display="chip"
+            class="w-full"
+          />
+        </div>
+      </div>
+      <div class="mt-4">
+        <p-button type="submit" label="Create" class="mr-1" />
+      </div>
+    </form>
+  </div>
+</div>

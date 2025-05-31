@@ -1,0 +1,18 @@
+<form [formGroup]="sourceForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col gap-2">
+    <div class="p-2">
+      <p-floatlabel>
+        <label for="name">Name</label>
+        <input id="name" type="text" pInputText formControlName="name" />
+      </p-floatlabel>
+    </div>
+    <div class="p-field">
+      <button
+        pButton
+        type="submit"
+        label="Create tag"
+        [disabled]="sourceForm.invalid"
+      ></button>
+    </div>
+  </div>
+</form>

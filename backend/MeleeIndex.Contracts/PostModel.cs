@@ -19,5 +19,7 @@
         public required AuthorModel Author { get; set; }
 
         public required SourceModel Source { get; set; }
+
+        public required CategoryModel Category { get; set; }
     }
 }

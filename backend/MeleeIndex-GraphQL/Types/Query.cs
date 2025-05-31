@@ -29,6 +29,11 @@ namespace MeleeIndex.GraphQL.Types
                         Name = post.Author.Name,
                         Image = post.Author.Image == null ? null : post.Author.Image.Url.ToString()
                     },
+                    Category = new CategoryModel()
+                    {
+                        Name = post.Category.Name,
+                        Color = post.Category.Color
+                    },
                     Source = new SourceModel
                     {
                         Id = post.Source.Id,
@@ -43,6 +48,38 @@ namespace MeleeIndex.GraphQL.Types
         public List<string> GetTags(IndexDbContext dbContext)
         {
             return dbContext.Tags.Select(tags => tags.Name).ToList();
+        }
+
+        public List<SourceModel> GetSources(IndexDbContext dbContext)
+        {
+            return dbContext.Sources.Select(source => new SourceModel()
+            {
+                Description = source.Description,
+                Name = source.Name,
+                Url = source.Url,
+                Id = source.Id
+
+            }).ToList();
+        }
+
+        public List<AuthorModel> GetAuthors(IndexDbContext dbContext)
+        {
+            return dbContext.Authors.Select(author => new AuthorModel()
+            {
+                Id = author.Id,
+                Image = author.Image.Url.ToString(),
+                Name = author.Name
+            }).ToList();
+        }
+
+        public List<CategoryModel> GetCategories(IndexDbContext dbContext)
+        {
+            return dbContext.Categories.Select(category => new CategoryModel()
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Color = category.Color,
+            }).ToList();
         }
     }
 }

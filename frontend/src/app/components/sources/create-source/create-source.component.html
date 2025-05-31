@@ -1,0 +1,40 @@
+<form [formGroup]="sourceForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col gap-2">
+    <div class="p-2">
+      <p-floatlabel>
+        <label for="name">Name</label>
+        <input id="name" type="text" pInputText formControlName="name" />
+      </p-floatlabel>
+    </div>
+    <div class="p-2">
+      <p-floatlabel>
+        <label for="description">Description</label>
+        <input
+          id="description"
+          type="text"
+          pInputText
+          formControlName="description"
+        />
+      </p-floatlabel>
+    </div>
+    <div class="p-2">
+      <p-floatlabel>
+        <label for="url">URL</label>
+        <input
+          id="url"
+          type="text"
+          pInputText
+          formControlName="url"
+        />
+      </p-floatlabel>
+    </div>
+    <div class="p-field">
+      <button
+        pButton
+        type="submit"
+        label="Create Source"
+        [disabled]="sourceForm.invalid"
+      ></button>
+    </div>
+  </div>
+</form>

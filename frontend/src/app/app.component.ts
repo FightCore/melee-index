@@ -1,53 +1,53 @@
-import { Component, effect } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import { PostsOverviewComponent } from './components/posts/posts-overview/posts-overview.component';
-import { Apollo } from 'apollo-angular';
-import { SearchBarComponent } from './components/search/search-bar/search-bar.component';
-import { SearchBarService } from './services/search-bar/search-bar.service';
-import { MessageModule } from 'primeng/message';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    MenubarModule,
-    SearchBarComponent,
-    PostsOverviewComponent,
-    SearchBarComponent,
-    MessageModule,
-    ButtonModule,
-  ],
+  imports: [RouterOutlet, MenubarModule, ButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   items: MenuItem[] | undefined;
-  filter: any = {};
-
-  constructor(
-    private readonly apollo: Apollo,
-    private searchBarService: SearchBarService
-  ) {
+  constructor() {
     this.items = [
       {
         label: 'Home',
         icon: 'pi pi-home',
+        routerLink: '/',
       },
       {
         label: 'Collections',
         icon: 'pi pi-star',
       },
       {
+        label: 'Authors',
+        icon: 'pi pi-users',
+        routerLink: '/authors',
+      },
+      {
+        label: 'Sources',
+        icon: 'pi pi-users',
+        routerLink: '/sources',
+      },
+      {
+        label: 'Tags',
+        icon: 'pi pi-users',
+        routerLink: '/tags',
+      },
+      {
+        label: 'Categories',
+        icon: 'pi pi-users',
+        routerLink: '/categories',
+      },
+      {
         label: 'Contact',
         icon: 'pi pi-envelope',
       },
     ];
-    effect(() => {
-      this.filter = this.searchBarService.filters$().filters;
-    });
   }
 
   toggleDarkMode(): void {

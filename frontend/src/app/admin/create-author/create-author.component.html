@@ -1,0 +1,29 @@
+<form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col gap-2">
+    <div class="p-2">
+      <p-floatlabel>
+        <label for="name">Name</label>
+        <input id="name" type="text" pInputText formControlName="name" />
+      </p-floatlabel>
+    </div>
+    <div class="p-2">
+      <p-floatlabel>
+        <label for="imageUrl">Image URL</label>
+        <input
+          id="imageUrl"
+          type="text"
+          pInputText
+          formControlName="imageUrl"
+        />
+      </p-floatlabel>
+    </div>
+    <div class="p-field">
+      <button
+        pButton
+        type="submit"
+        label="Create Author"
+        [disabled]="authorForm.invalid"
+      ></button>
+    </div>
+  </div>
+</form>

@@ -21,10 +21,8 @@ namespace MeleeIndex.DAL
 
         public DbSet<Tag> Tags { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public IndexDbContext(DbContextOptions<IndexDbContext> options) : base(options)
         {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseNpgsql();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

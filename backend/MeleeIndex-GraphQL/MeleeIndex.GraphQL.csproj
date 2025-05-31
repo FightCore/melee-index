@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
+    <UserSecretsId>fc758247-0913-4308-9f41-874be3073931</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +35,12 @@
 
   <ItemGroup>
     <Using Include="MeleeIndex.GraphQL" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

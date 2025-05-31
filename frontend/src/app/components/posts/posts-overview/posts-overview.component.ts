@@ -25,6 +25,10 @@ const GET_POSTS = gql`
           name
           image
         }
+        category {
+          name
+          color
+        }
         source {
           name
           url
@@ -45,19 +49,16 @@ export class PostsOverviewComponent {
   readonly filter = input.required<any>();
 
   constructor(private apollo: Apollo) {
-    effect(
-      () => {
-        let filter = {};
-        if (this.filter()) {
-          filter = this.filter();
-        }
+    effect(() => {
+      let filter = {};
+      if (this.filter()) {
+        filter = this.filter();
+      }
 
-        this.queryPosts(filter).subscribe((posts) => {
-          this.posts.set(posts);
-        });
-      },
-      { allowSignalWrites: true }
-    );
+      this.queryPosts(filter).subscribe((posts) => {
+        this.posts.set(posts);
+      });
+    });
   }
 
   private queryPosts(filter: any): Observable<Post[]> {

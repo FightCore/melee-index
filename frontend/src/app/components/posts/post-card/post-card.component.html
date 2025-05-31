@@ -10,6 +10,12 @@
         <p class="font-semibold">{{ post().title }}</p>
         <p class="dark:text-slate-300">By {{ post().author.name }}</p>
       </div>
+      <div
+        [style]="{ 'background-color': post().category.color }"
+        class="category-badge"
+      >
+        <span class="">{{ post().category.name }}</span>
+      </div>
     </div>
   </ng-template>
   <div class="pb-2">

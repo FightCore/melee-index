@@ -1,4 +1,5 @@
 import { Author } from './author';
+import { Category } from './category';
 import { Source } from './source';
 
 export interface Post {
@@ -11,4 +12,5 @@ export interface Post {
   tags: string[];
   author: Author;
   source: Source;
+  category: Category;
 }

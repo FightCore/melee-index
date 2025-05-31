@@ -18,6 +18,8 @@ namespace MeleeIndex.Models
 
         public required Source Source { get; set; }
 
+        public Guid SourceId { get; set; }
+
         public required List<Tag> Tags { get; set; }
 
         public Image? Image { get; set; }

@@ -1,9 +1,13 @@
+using System.Reflection;
 using MeleeIndex.DAL;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddUserSecrets(Assembly.GetExecutingAssembly());
 
-builder.Services.AddDbContextFactory<IndexDbContext>(options => options.UseNpgsql());
+builder.Services.AddPooledDbContextFactory<IndexDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.AddGraphQL().RegisterDbContextFactory<IndexDbContext>().AddProjections().AddFiltering().AddSorting().AddTypes()
         .ModifyCostOptions(options =>
         {
