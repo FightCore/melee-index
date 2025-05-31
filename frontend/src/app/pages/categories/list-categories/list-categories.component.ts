@@ -35,11 +35,18 @@ export class ListCategoriesComponent {
     this.ref = this.dialogService.open(CreateCategoryComponent, {
       header: 'Create a category',
       width: '50vw',
-      modal: true,
+      closable: true,
       breakpoints: {
         '960px': '75vw',
         '640px': '90vw',
       },
+      style: {
+        'min-height': '400px',
+        'max-height': '90vh',
+      },
+      contentStyle: {
+        "height": "100%",
+      }
     });
 
     this.subscription = this.ref.onClose.subscribe((author: Category) => {
