@@ -5,10 +5,12 @@ import { ListAuthorsComponent } from './pages/authors/list-authors/list-authors.
 import { ListSourcesComponent } from './pages/sources/list-sources/list-sources.component';
 import { ListTagsComponent } from './pages/tags/list-tags/list-tags.component';
 import { ListCategoriesComponent } from './pages/categories/list-categories/list-categories.component';
+import { PostsComponent } from './pages/posts/posts.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/posts', pathMatch: 'full' },
-  { path: 'posts', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'posts', component: PostsComponent },
   {
     path: 'admin',
     children: [

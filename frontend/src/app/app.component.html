@@ -4,7 +4,11 @@
       <img src="https://i.fightcore.gg/clients/fightcore.png" width="30" />
     </ng-template>
     <ng-template #end>
-      <p-button label="Toggle Dark Mode" (onClick)="toggleDarkMode()" />
+      <p-button
+        [icon]="'pi ' + (isLightMode ? 'pi-moon' : 'pi-sun')"
+        variant="text"
+        (onClick)="toggleDarkMode()"
+      />
     </ng-template>
   </p-menubar>
 </div>

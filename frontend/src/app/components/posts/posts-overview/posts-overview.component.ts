@@ -48,7 +48,7 @@ export class PostsOverviewComponent {
   posts: WritableSignal<Post[] | undefined> = signal([]);
   readonly filter = input.required<any>();
 
-  constructor(private apollo: Apollo) {
+  constructor(private readonly apollo: Apollo) {
     effect(() => {
       let filter = {};
       if (this.filter()) {

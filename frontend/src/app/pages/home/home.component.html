@@ -1,11 +1,29 @@
-<p-message severity="warn"
-  >This website is a work in progress! All content showcased is added without
-  permissions, people's and websites likenesses are used as examples
-  only!</p-message
->
+<div class="home-container p-6">
+  <header class="home-header mb-8 text-center">
+    <h1 class="text-4xl font-bold mb-2">Melee Index</h1>
+    <p class="text-lg text-gray-600">
+      Your ultimate resource for Super Smash Bros. Melee information.
+    </p>
+  </header>
 
-<div class="p-4">
-  <app-search-bar></app-search-bar>
+  <section class="get-started text-center mb-10">
+    <a routerLink="/posts" class="p-button p-button-primary mr-4"
+      >Start reading</a
+    >
+    <a routerLink="/collections" class="p-button p-button-secondary"
+      >Browse Collections</a
+    >
+  </section>
+
+  <section class="mb-10">
+    <h2 class="text-2xl font-semibold mb-4">Featured Collections</h2>
+    <div class="mx-14">
+      <app-featured-collections></app-featured-collections>
+    </div>
+  </section>
+
+  <section class="mb-10">
+    <h2 class="text-2xl font-semibold mb-4">Featured Posts</h2>
+    <app-featured-post-carousel></app-featured-post-carousel>
+  </section>
 </div>
-
-<app-posts-overview [filter]="filter"></app-posts-overview>

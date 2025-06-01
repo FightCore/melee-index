@@ -12,40 +12,48 @@ import { ButtonModule } from 'primeng/button';
 })
 export class AppComponent {
   items: MenuItem[] | undefined;
+  isLightMode: boolean = true;
   constructor() {
     this.items = [
       {
         label: 'Home',
         icon: 'pi pi-home',
-        routerLink: '/',
+        routerLink: '/home',
+      },
+      {
+        'label': 'Posts',
+        'icon': 'pi pi-file',
+        routerLink: '/posts',
       },
       {
         label: 'Collections',
         icon: 'pi pi-star',
       },
       {
-        label: 'Authors',
-        icon: 'pi pi-users',
-        routerLink: '/authors',
-      },
-      {
-        label: 'Sources',
-        icon: 'pi pi-users',
-        routerLink: '/sources',
-      },
-      {
-        label: 'Tags',
-        icon: 'pi pi-users',
-        routerLink: '/tags',
-      },
-      {
-        label: 'Categories',
-        icon: 'pi pi-users',
-        routerLink: '/categories',
-      },
-      {
-        label: 'Contact',
-        icon: 'pi pi-envelope',
+        label: 'Admin',
+        icon: 'pi pi-cog',
+        items: [
+          {
+            label: 'Authors',
+            icon: 'pi pi-users',
+            routerLink: '/authors',
+          },
+          {
+            label: 'Categories',
+            icon: 'pi pi-folder',
+            routerLink: '/categories',
+          },
+          {
+            label: 'Sources',
+            icon: 'pi pi-sitemap',
+            routerLink: '/sources',
+          },
+          {
+            label: 'Tags',
+            icon: 'pi pi-hashtag',
+            routerLink: '/tags',
+          },
+        ],
       },
     ];
   }
@@ -53,5 +61,6 @@ export class AppComponent {
   toggleDarkMode(): void {
     const element = document.querySelector('html');
     element?.classList.toggle('dark');
+    this.isLightMode = !this.isLightMode;
   }
 }
