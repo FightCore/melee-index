@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MeleeIndex.Contracts\MeleeIndex.Contracts.csproj" />
+      <ProjectReference Include="..\MeleeIndex.DAL\MeleeIndex.DAL.csproj" />
+      <ProjectReference Include="..\MeleeIndex.Models\MeleeIndex.Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,51 @@
+﻿using FluentValidation;
+using MeleeIndex.Contracts.Authors;
+using MeleeIndex.Services.Authors;
+using MeleeIndex.Services.Exceptions;
+using MeleeIndex.Services.Sources;
+using Microsoft.AspNetCore.Mvc;
+
+namespace MeleeIndex.Api.Controllers
+{
+    [Route("authors")]
+    [ApiController]
+    public class AuthorsController : ControllerBase
+    {
+        private readonly IValidator<CreateAuthorModel> _createAuthorValidator;
+        private readonly IAuthorService _authorService;
+
+        public AuthorsController(IValidator<CreateAuthorModel> createAuthorValidator, IAuthorService authorService)
+        {
+            _createAuthorValidator = createAuthorValidator;
+            _authorService = authorService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorModel author)
+        {
+            var result = await _createAuthorValidator.ValidateAsync(author);
+            if (!result.IsValid)
+            {
+                return BadRequest(result.ToDictionary());
+            }
+
+            var createdAuthor = await _authorService.Create(author);
+
+            return Ok(createdAuthor);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSource([FromRoute] Guid id)
+        {
+            try
+            {
+                await _authorService.Delete(id);
+                return NoContent();
+            }
+            catch (AuthorIsInUseException exception)
+            {
+                return BadRequest();
+            }
+        }
+    }
+}

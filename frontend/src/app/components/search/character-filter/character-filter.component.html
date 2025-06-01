@@ -1,0 +1,34 @@
+<p-floatlabel class="w-full md:w-80" variant="on">
+  <p-multiSelect
+    [formControl]="formControl"
+    [options]="characters"
+    [group]="true"
+    display="chip"
+    styleClass="w-full md:w-80"
+  >
+    <ng-template let-character #item>
+      <div class="flex items-center gap-2">
+        @if (character.imageName) {
+        <img
+          [src]="
+            'https://i.fightcore.gg/melee/stocks/' +
+            character.imageName +
+            '.png'
+          "
+          style="width: 18px"
+        />
+        } @else {
+        <img
+          [src]="
+            'https://i.fightcore.gg/melee/stocks/' + character.label + '.png'
+          "
+          style="width: 18px"
+        />
+        }
+
+        <div>{{ character.label }}</div>
+      </div>
+    </ng-template></p-multiSelect
+  >
+  <label for="on_label">Characters</label>
+</p-floatlabel>

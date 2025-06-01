@@ -1,0 +1,12 @@
+<p-toolbar>
+  <ng-template #start>
+    <app-character-filter class="mr-2"></app-character-filter>
+    <app-tag-filter class="mr-2"></app-tag-filter>
+  </ng-template>
+  <ng-template #end>
+    <p-iconfield>
+      <p-inputicon styleClass="pi pi-search" />
+      <input type="text" pInputText placeholder="Search" />
+    </p-iconfield>
+  </ng-template>
+</p-toolbar>

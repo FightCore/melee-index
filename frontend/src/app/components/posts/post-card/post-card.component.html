@@ -1,0 +1,65 @@
+<p-card [style]="{ width: '100%', overflow: 'hidden' }">
+  <ng-template #header>
+    <div class="px-4 pt-4 -mb-4 flex">
+      <div class="pr-3 shrink">
+        @if (post().author.image) {
+        <p-avatar [image]="post().author.image" size="large" />
+        }
+      </div>
+      <div class="grow">
+        <p class="font-semibold">{{ post().title }}</p>
+        <p class="dark:text-slate-300">By {{ post().author.name }}</p>
+      </div>
+      <div
+        [class]="post().category.color"
+        class="category-badge"
+      >
+        <span class="">{{ post().category.name }}</span>
+      </div>
+    </div>
+  </ng-template>
+  <div class="pb-2">
+    <p>
+      {{ post().summary }}
+    </p>
+  </div>
+  <!-- <div class="text-sm text-slate-400">
+    Last updated {{ post().updatedAt | date }}
+  </div> -->
+  <div class="card flex items-center gap-2 flex-wrap pt-2">
+    @for (tag of post().tags; track tag) {
+    <p-chip>
+      <span class="text-sm text-primary-600"> #{{ tag }} </span>
+    </p-chip>
+    }
+  </div>
+
+  <ng-template #footer>
+    <div class="flex gap-4 w-full mt-1">
+      <a
+        [href]="post().url"
+        target="_blank"
+        pButton
+        class="w-full p-button"
+        severity="primary"
+        icon="pi pi-external-link"
+      >
+        Read
+      </a>
+      <p-button pButtonIcon icon="pi pi-bookmark" severity="secondary" />
+      <p-button pButtonIcon icon="pi pi-share-alt" severity="secondary" />
+    </div>
+    <div class="italic text-sm text-slate-600 flex">
+      <div class="grow">
+        Hosted on
+        <a class="underline" [href]="post().source.url">{{
+          post().source.name
+        }}</a>
+      </div>
+
+      <span class="italic text-sm text-slate-600 text-right">
+        Created {{ post().createdAt | date }}
+      </span>
+    </div>
+  </ng-template>
+</p-card>
