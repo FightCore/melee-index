@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MeleeIndex.Api.Errors;
 using MeleeIndex.Contracts.Sources;
 using MeleeIndex.Services.Exceptions;
 using MeleeIndex.Services.Sources;
@@ -25,7 +26,7 @@ namespace MeleeIndex.Api.Controllers
             var result = await _createSourceValidator.ValidateAsync(source);
             if (!result.IsValid)
             {
-                return BadRequest(result.ToDictionary());
+                return BadRequest(ValidatorApiError.Create(result));
             }
 
             var createdSource = await _sourceService.Create(source);

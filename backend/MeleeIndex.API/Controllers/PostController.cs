@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MeleeIndex.Api.Errors;
 using MeleeIndex.Contracts.Posts;
 using MeleeIndex.Services.Posts;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ public class PostController : ControllerBase
         var result = await _createPostValidator.ValidateAsync(post);
         if (!result.IsValid)
         {
-            return BadRequest(result.ToDictionary());
+            return BadRequest(ValidatorApiError.Create(result));
         }
         
         var createdPost = await _postService.Create(post);

@@ -3,41 +3,51 @@
     <div class="flex flex-col h-full">
       <div class="flex items-center gap-4 mb-4">
         <label for="name" class="font-semibold w-24">Name</label>
-        <input
-          pInputText
-          id="name"
-          class="flex-auto"
-          formControlName="name"
-          autocomplete="off"
-        />
+        <div class="flex-auto flex flex-col">
+          <input
+            pInputText
+            id="name"
+            class="flex-auto"
+            formControlName="name"
+            autocomplete="off"
+          />
+          <app-form-validation-error
+            [control]="categoryForm.controls['name']"
+          ></app-form-validation-error>
+        </div>
       </div>
       <div class="flex items-center gap-4 mb-4">
         <label for="color" class="font-semibold w-24">Color</label>
-        <p-select
-          id="color"
-          class="flex-auto"
-          [options]="colorOptions"
-          optionLabel="name"
-          [filter]="true"
-          [showClear]="true"
-          placeholder="Select a Tailwind color"
-          scrollHeight="150px"
-          formControlName="color"
-          required="true"
-        >
-          <ng-template let-color #item>
-            <div class="flex items-center gap-2">
-              <div [class]="'w-5 h-5 rounded ' + color.value"></div>
-              <span>{{ color.label }}</span>
-            </div>
-          </ng-template>
-          <ng-template let-color #selectedItem>
-            <div class="flex items-center gap-2">
-              <div [class]="'w-5 h-5 rounded ' + color.value"></div>
-              <span>{{ color.label }}</span>
-            </div>
-          </ng-template>
-        </p-select>
+        <div class="flex-auto flex flex-col">
+          <p-select
+            id="color"
+            class="flex-auto"
+            [options]="colorOptions"
+            optionLabel="name"
+            [filter]="true"
+            [showClear]="true"
+            placeholder="Select a Tailwind color"
+            scrollHeight="150px"
+            formControlName="color"
+            required="true"
+          >
+            <ng-template let-color #item>
+              <div class="flex items-center gap-2">
+                <div [class]="'w-5 h-5 rounded ' + color.value"></div>
+                <span>{{ color.label }}</span>
+              </div>
+            </ng-template>
+            <ng-template let-color #selectedItem>
+              <div class="flex items-center gap-2">
+                <div [class]="'w-5 h-5 rounded ' + color.value"></div>
+                <span>{{ color.label }}</span>
+              </div>
+            </ng-template>
+          </p-select>
+          <app-form-validation-error
+            [control]="categoryForm.controls['name']"
+          ></app-form-validation-error>
+        </div>
       </div>
       <div class="flex-grow flex-1"></div>
       <div class="flex justify-end gap-2">

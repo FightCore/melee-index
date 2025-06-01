@@ -14,7 +14,8 @@ namespace MeleeIndex.Api.Validators
                 .NotEmpty()
                 .WithMessage("URL is required.")
                 .Must(HttpsUrlValidator.IsValidHttpsUrl)
-                .WithMessage("URL is not valid.");
+                .WithMessage("URL is not valid.")
+                .WithErrorCode("invalid_url");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MeleeIndex.Api.Errors;
 using MeleeIndex.Contracts.Authors;
 using MeleeIndex.Services.Authors;
 using MeleeIndex.Services.Exceptions;
@@ -26,7 +27,7 @@ namespace MeleeIndex.Api.Controllers
             var result = await _createAuthorValidator.ValidateAsync(author);
             if (!result.IsValid)
             {
-                return BadRequest(result.ToDictionary());
+                return BadRequest(ValidatorApiError.Create(result));
             }
 
             var createdAuthor = await _authorService.Create(author);

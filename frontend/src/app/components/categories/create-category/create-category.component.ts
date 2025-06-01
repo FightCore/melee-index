@@ -14,6 +14,9 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
 import { CreationDialog } from '../../abstract/CreationDialog';
+import { ErrorHandlerService } from '../../../services/errors/error-handler.service';
+import { MessageService } from 'primeng/api';
+import { FormValidationErrorComponent } from '../../forms/form-validation-error/form-validation-error.component';
 
 @Component({
   selector: 'app-create-category',
@@ -24,11 +27,13 @@ import { CreationDialog } from '../../abstract/CreationDialog';
     ButtonModule,
     ColorPickerModule,
     SelectModule,
-    DialogModule
+    DialogModule,
+    FormValidationErrorComponent,
   ],
   templateUrl: './create-category.component.html',
   styleUrl: './create-category.component.scss',
   standalone: true,
+  providers: [CategoryService, ErrorHandlerService, MessageService],
 })
 export class CreateCategoryComponent extends CreationDialog {
   categoryForm: FormGroup;
@@ -68,15 +73,21 @@ export class CreateCategoryComponent extends CreationDialog {
 
 
   constructor(
-    private readonly formBuilder: FormBuilder,
+    formBuilder: FormBuilder,
     private readonly categoryService: CategoryService,
-    ref: DynamicDialogRef
+    ref: DynamicDialogRef,
+    errorHandlerService: ErrorHandlerService
   ) {
-    super(ref);
-    this.categoryForm = this.formBuilder.group({
+    const categoryForm = formBuilder.group({
       name: ['', Validators.required],
       color: ['', Validators.required],
     });
+
+    const propertyMap = new Map<string, string>();
+    propertyMap.set('Name', 'name');
+    propertyMap.set('Color', 'color');
+    super(ref, propertyMap, errorHandlerService, categoryForm);
+    this.categoryForm = categoryForm;
   }
 
   onSubmit(): void {
@@ -87,7 +98,7 @@ export class CreateCategoryComponent extends CreationDialog {
           next: (response) => {
             this.ref.close(response);
           },
-          error: (err) => console.error('Error creating category', err),
+          error: (err) => this.handleHttpError(err),
         });
     }
   }

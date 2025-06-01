@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MeleeIndex.Api.Errors;
 using MeleeIndex.Contracts.Categories;
 using MeleeIndex.Services.Categories;
 using MeleeIndex.Services.Exceptions;
@@ -25,7 +26,7 @@ namespace MeleeIndex.Api.Controllers
             var result = await _createCategoryValidator.ValidateAsync(category);
             if (!result.IsValid)
             {
-                return BadRequest(result.ToDictionary());
+                return BadRequest(ValidatorApiError.Create(result));
             }
             var createdCategory = await _categoryService.Create(category);
             return Ok(createdCategory);

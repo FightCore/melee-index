@@ -9,7 +9,7 @@ namespace MeleeIndex.Api.Validators
         {
             RuleFor(author => author.Name).NotEmpty();
             RuleFor(author => author.ImageUrl).NotEmpty();
-            RuleFor(author => author.ImageUrl).Must(HttpsUrlValidator.IsValidHttpsUrl).WithMessage("Invalid URL");
+            RuleFor(author => author.ImageUrl).Must(HttpsUrlValidator.IsValidHttpsUrl).WithErrorCode("invalid_url").WithMessage("Invalid URL");
         }
     }
 }

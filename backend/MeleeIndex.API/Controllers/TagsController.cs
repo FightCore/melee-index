@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MeleeIndex.Api.Errors;
 using MeleeIndex.Api.Validators;
 using MeleeIndex.Contracts.Tags;
 using MeleeIndex.Models;
@@ -28,7 +29,7 @@ namespace MeleeIndex.Api.Controllers
             var result = await _createTagValidator.ValidateAsync(createTagModel);
             if (!result.IsValid)
             {
-                return BadRequest(result.ToDictionary());
+                return BadRequest(ValidatorApiError.Create(result));
             }
 
             var tag = await _tagService.Create(createTagModel.Name);

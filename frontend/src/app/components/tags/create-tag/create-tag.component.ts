@@ -1,26 +1,32 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TagsService } from '../../../services/tags/tags.service';
 import { CreationDialog } from '../../abstract/CreationDialog';
+import { ErrorHandlerService } from '../../../services/errors/error-handler.service';
+import { MessageService } from 'primeng/api';
+import { FormValidationErrorComponent } from '../../forms/form-validation-error/form-validation-error.component';
 
 @Component({
   selector: 'app-create-tag',
-  imports: [ReactiveFormsModule, FormsModule, InputTextModule, ButtonModule, FloatLabel],
+  imports: [ReactiveFormsModule, FormsModule, InputTextModule, ButtonModule, FormValidationErrorComponent],
   templateUrl: './create-tag.component.html',
-  styleUrl: './create-tag.component.scss'
+  styleUrl: './create-tag.component.scss',
+  providers: [TagsService, ErrorHandlerService, MessageService],
 })
 export class CreateTagComponent extends CreationDialog {
   sourceForm: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly tagsService: TagsService, ref: DynamicDialogRef) {
-    super(ref);
-    this.sourceForm = this.formBuilder.group({
+  constructor(formBuilder: FormBuilder, private readonly tagsService: TagsService, ref: DynamicDialogRef, errorHandlerService: ErrorHandlerService) {
+    const propertyMap = new Map<string, string>();
+    propertyMap.set('Name', 'name');
+    const sourceForm = formBuilder.group({
       name: ['', Validators.required],
     });
+    super(ref, propertyMap, errorHandlerService, sourceForm);
+    this.sourceForm = sourceForm;
   }
 
   onSubmit(): void {
@@ -30,7 +36,7 @@ export class CreateTagComponent extends CreationDialog {
           next: (response) => {
             this.ref.close(response);
           },
-          error: (err) => console.error('Error creating tag', err)
+          error: (err) => this.handleHttpError(err),
       });
     }
   }

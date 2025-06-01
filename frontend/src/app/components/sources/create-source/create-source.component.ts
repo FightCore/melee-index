@@ -1,39 +1,81 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormsModule,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { SourceService } from '../../../services/source/source.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CreationDialog } from '../../abstract/CreationDialog';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorHandlerService } from '../../../services/errors/error-handler.service';
+import { setErrorsOnFormGroup } from '../../../../utils/form-group-errors';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { FormValidationErrorComponent } from '../../forms/form-validation-error/form-validation-error.component';
 
 @Component({
   selector: 'app-create-source',
-  imports: [ReactiveFormsModule, FormsModule, InputTextModule, ButtonModule, FloatLabel],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    ToastModule,
+    FormValidationErrorComponent,
+  ],
   templateUrl: './create-source.component.html',
-  styleUrl: './create-source.component.scss'
+  styleUrl: './create-source.component.scss',
+  providers: [
+    ErrorHandlerService,
+    MessageService,
+    FormValidationErrorComponent,
+  ],
 })
 export class CreateSourceComponent extends CreationDialog {
   sourceForm: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly sourceService: SourceService, ref: DynamicDialogRef) {
-    super(ref);
-    this.sourceForm = this.formBuilder.group({
+  constructor(
+    formBuilder: FormBuilder,
+    private readonly sourceService: SourceService,
+    errorHandlerService: ErrorHandlerService,
+    ref: DynamicDialogRef
+  ) {
+    const propertyMap = new Map<string, string>();
+    propertyMap.set('Name', 'name');
+    propertyMap.set('Description', 'description');
+    propertyMap.set('Url', 'url');
+
+    const formGroup = formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       url: ['', Validators.required],
     });
+
+    super(ref, propertyMap, errorHandlerService, formGroup);
+    this.sourceForm = formGroup;
   }
 
   onSubmit(): void {
     if (this.sourceForm.valid) {
-      this.sourceService.create(this.sourceForm.value.name, this.sourceForm.value.description, this.sourceForm.value.url)
+      this.sourceService
+        .create(
+          this.sourceForm.value.name,
+          this.sourceForm.value.description,
+          this.sourceForm.value.url
+        )
         .subscribe({
           next: (response) => {
             this.ref.close(response);
           },
-          error: (err) => console.error('Error creating author', err)
-      });
+          error: (err: HttpErrorResponse) => {
+            this.handleHttpError(err);
+          },
+        });
     }
   }
 }
