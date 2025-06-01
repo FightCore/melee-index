@@ -36,6 +36,8 @@ export class ListCategoriesComponent {
       header: 'Create a category',
       width: '50vw',
       closable: true,
+      modal: true,
+      dismissableMask: true,
       breakpoints: {
         '960px': '75vw',
         '640px': '90vw',
@@ -51,7 +53,7 @@ export class ListCategoriesComponent {
 
     this.subscription = this.ref.onClose.subscribe((author: Category) => {
       if (author) {
-        // Refresh the overview's sources
+        // Refresh the overview's categories
         this.categoryOverviewComponent()?.refreshCategories();
       }
     });

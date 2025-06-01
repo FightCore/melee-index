@@ -34,7 +34,9 @@ export class ListSourcesComponent {
     this.ref = this.dialogService.open(CreateSourceComponent, {
       header: 'Create a source',
       width: '50vw',
-      modal:true,
+      modal: true,
+      closable: true,
+      dismissableMask: true,
       breakpoints: {
           '960px': '75vw',
           '640px': '90vw'

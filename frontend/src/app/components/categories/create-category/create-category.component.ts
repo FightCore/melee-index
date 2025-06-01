@@ -7,13 +7,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ButtonModule } from 'primeng/button';
-import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
+import { CreationDialog } from '../../abstract/CreationDialog';
 
 @Component({
   selector: 'app-create-category',
@@ -22,7 +22,6 @@ import { DialogModule } from 'primeng/dialog';
     FormsModule,
     InputTextModule,
     ButtonModule,
-    FloatLabel,
     ColorPickerModule,
     SelectModule,
     DialogModule
@@ -31,7 +30,7 @@ import { DialogModule } from 'primeng/dialog';
   styleUrl: './create-category.component.scss',
   standalone: true,
 })
-export class CreateCategoryComponent {
+export class CreateCategoryComponent extends CreationDialog {
   categoryForm: FormGroup;
 
   colorOptions = [
@@ -71,8 +70,9 @@ export class CreateCategoryComponent {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly categoryService: CategoryService,
-    private readonly ref: DynamicDialogRef
+    ref: DynamicDialogRef
   ) {
+    super(ref);
     this.categoryForm = this.formBuilder.group({
       name: ['', Validators.required],
       color: ['', Validators.required],
@@ -90,10 +90,6 @@ export class CreateCategoryComponent {
           error: (err) => console.error('Error creating category', err),
         });
     }
-  }
-
-  close(): void {
-    this.ref.close();
   }
 
   selectedColor: string | null = null;

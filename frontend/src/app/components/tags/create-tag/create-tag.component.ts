@@ -5,6 +5,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TagsService } from '../../../services/tags/tags.service';
+import { CreationDialog } from '../../abstract/CreationDialog';
 
 @Component({
   selector: 'app-create-tag',
@@ -12,10 +13,11 @@ import { TagsService } from '../../../services/tags/tags.service';
   templateUrl: './create-tag.component.html',
   styleUrl: './create-tag.component.scss'
 })
-export class CreateTagComponent {
+export class CreateTagComponent extends CreationDialog {
   sourceForm: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly tagsService: TagsService, private readonly ref: DynamicDialogRef) {
+  constructor(private readonly formBuilder: FormBuilder, private readonly tagsService: TagsService, ref: DynamicDialogRef) {
+    super(ref);
     this.sourceForm = this.formBuilder.group({
       name: ['', Validators.required],
     });

@@ -1,40 +1,48 @@
 <form [formGroup]="sourceForm" (ngSubmit)="onSubmit()">
   <div class="flex flex-col gap-2">
-    <div class="p-2">
-      <p-floatlabel>
-        <label for="name">Name</label>
-        <input id="name" type="text" pInputText formControlName="name" />
-      </p-floatlabel>
+    <div class="flex items-center gap-4 mb-4">
+      <label for="name" class="font-semibold w-24">Name</label>
+      <input
+        pInputText
+        id="name"
+        class="flex-auto"
+        formControlName="name"
+        autocomplete="off"
+      />
     </div>
-    <div class="p-2">
-      <p-floatlabel>
-        <label for="description">Description</label>
-        <input
-          id="description"
-          type="text"
-          pInputText
-          formControlName="description"
-        />
-      </p-floatlabel>
+    <div class="flex items-center gap-4 mb-4">
+      <label for="description" class="font-semibold w-24">Description</label>
+      <input
+        pInputText
+        id="description"
+        class="flex-auto"
+        formControlName="description"
+        autocomplete="off"
+      />
     </div>
-    <div class="p-2">
-      <p-floatlabel>
-        <label for="url">URL</label>
-        <input
-          id="url"
-          type="text"
-          pInputText
-          formControlName="url"
-        />
-      </p-floatlabel>
+    <div class="flex items-center gap-4 mb-4">
+      <label for="description" class="font-semibold w-24">URL</label>
+      <input
+        pInputText
+        id="url"
+        class="flex-auto"
+        formControlName="url"
+        autocomplete="off"
+      />
     </div>
-    <div class="p-field">
-      <button
-        pButton
+
+    <div class="flex justify-end gap-2">
+      <p-button
+        label="Cancel"
+        severity="secondary"
+        type="button"
+        (onClick)="close()"
+      />
+      <p-button
         type="submit"
         label="Create Source"
         [disabled]="sourceForm.invalid"
-      ></button>
+      />
     </div>
   </div>
 </form>

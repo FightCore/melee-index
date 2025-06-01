@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorService } from '../../services/author/author.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CreationDialog } from '../../components/abstract/CreationDialog';
 
 @Component({
   selector: 'app-create-author',
@@ -14,10 +15,11 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
   standalone: true,
   styleUrl: './create-author.component.scss'
 })
-export class CreateAuthorComponent {
+export class CreateAuthorComponent extends CreationDialog {
   authorForm: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly authorService: AuthorService,  private readonly ref: DynamicDialogRef) {
+  constructor(private readonly formBuilder: FormBuilder, private readonly authorService: AuthorService, ref: DynamicDialogRef) {
+    super(ref);
     this.authorForm = this.formBuilder.group({
       name: ['', Validators.required],
       imageUrl: ['', Validators.required]

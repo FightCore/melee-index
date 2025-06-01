@@ -5,6 +5,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { SourceService } from '../../../services/source/source.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CreationDialog } from '../../abstract/CreationDialog';
 
 @Component({
   selector: 'app-create-source',
@@ -12,10 +13,11 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
   templateUrl: './create-source.component.html',
   styleUrl: './create-source.component.scss'
 })
-export class CreateSourceComponent {
+export class CreateSourceComponent extends CreationDialog {
   sourceForm: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly sourceService: SourceService, private readonly ref: DynamicDialogRef) {
+  constructor(private readonly formBuilder: FormBuilder, private readonly sourceService: SourceService, ref: DynamicDialogRef) {
+    super(ref);
     this.sourceForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],

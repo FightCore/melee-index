@@ -33,9 +33,11 @@ export class ListAuthorsComponent {
 
   showCreateDialog() {
     this.ref = this.dialogService.open(CreateAuthorComponent, {
-      header: 'Create a source',
+      header: 'Create an author',
       width: '50vw',
-      modal:true,
+      closable: true,
+      modal: true,
+      dismissableMask: true,
       breakpoints: {
           '960px': '75vw',
           '640px': '90vw'
@@ -44,7 +46,7 @@ export class ListAuthorsComponent {
 
     this.subscription = this.ref.onClose.subscribe((author: Author) => {
       if (author) {
-        // Refresh the overview's sources
+        // Refresh the overview's authors
         this.authorOverviewComponent()?.refreshAuthors();
       }
     });

@@ -1,8 +1,6 @@
 import { Component, viewChild } from '@angular/core';
-import { SourceOverviewComponent } from '../../../components/sources/source-overview/source-overview.component';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { CreateSourceComponent } from "../../../components/sources/create-source/create-source.component";
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
 import { TagsOverviewComponent } from '../../../components/tags/tags-overview/tags-overview.component';
@@ -33,9 +31,11 @@ export class ListTagsComponent {
 
   showCreateDialog() {
     this.ref = this.dialogService.open(CreateTagComponent, {
-      header: 'Create a source',
+      header: 'Create a tag',
       width: '50vw',
-      modal:true,
+      modal: true,
+      closable: true,
+      dismissableMask: true,
       breakpoints: {
           '960px': '75vw',
           '640px': '90vw'
@@ -44,7 +44,7 @@ export class ListTagsComponent {
 
     this.subscription = this.ref.onClose.subscribe((tag: string) => {
       if (tag) {
-        // Refresh the overview's sources
+        // Refresh the overview's tags
         this.tagsOverviewComponent()?.refreshTags();
       }
     });
