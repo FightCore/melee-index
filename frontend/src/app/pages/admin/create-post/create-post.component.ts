@@ -22,6 +22,9 @@ import { SourceService } from '../../../services/source/source.service';
 import { PostService } from '../../../services/post/post.service';
 import { CreatePost } from '../../../../models/admin/create-post';
 import { CategoryService } from '../../../services/categories/category.service';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-create-post',
@@ -38,9 +41,11 @@ import { CategoryService } from '../../../services/categories/category.service';
     InputGroupAddonModule,
     ButtonModule,
     ReactiveFormsModule,
+    ToastModule,
   ],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.scss',
+  providers: [MessageService],
 })
 export class CreatePostComponent {
   formGroup = new FormGroup({
@@ -65,7 +70,9 @@ export class CreatePostComponent {
     private readonly authorService: AuthorService,
     private readonly sourceService: SourceService,
     private readonly categoryService: CategoryService,
-    private readonly postService: PostService
+    private readonly postService: PostService,
+    private readonly router: Router,
+    private readonly messageService: MessageService,
   ) {}
 
   ngOnInit() {
@@ -88,7 +95,23 @@ export class CreatePostComponent {
       return;
     }
     const post = this.formGroup.value as CreatePost;
-    console.log(post);
-    this.postService.create(post).subscribe(console.log);
+    this.postService.create(post).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Post created successfully',
+        });
+        this.router.navigate(['/admin/posts']);
+      },
+      error: (err) => {
+        console.error('Error creating post', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to create post - ' + err.message,
+        });
+      },
+    })
   }
 }

@@ -44,6 +44,11 @@ export class AppComponent {
             routerLink: '/categories',
           },
           {
+            label: 'Posts',
+            icon: 'pi pi-pencil',
+            routerLink: '/admin/posts',
+          },
+          {
             label: 'Sources',
             icon: 'pi pi-sitemap',
             routerLink: '/sources',

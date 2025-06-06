@@ -31,4 +31,11 @@ public class PostController : ControllerBase
         
         return Ok(createdPost);
     }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeletePost([FromRoute] Guid id)
+    {
+        await _postService.Delete(id);
+        return Ok();
+    }
 }

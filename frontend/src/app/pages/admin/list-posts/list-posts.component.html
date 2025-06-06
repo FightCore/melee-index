@@ -1,0 +1,43 @@
+<div class="p-4">
+  <div class="w-full py-2">
+    <a class="p-button" icon="pi pi-plus" routerLink="/admin/create-post">Create Post</a>
+  </div>
+
+  <p-table
+    [value]="posts"
+    [paginator]="true"
+    [rows]="10"
+    [responsiveLayout]="'scroll'"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Title</th>
+        <th>Url</th>
+        <th>Summary</th>
+        <th>Created At</th>
+        <th>Last Updated</th>
+        <th>Tags</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-post>
+      <tr>
+        <td>{{ post.title }}</td>
+        <td>{{ post.url }}</td>
+        <td>{{post.summary}}</td>
+        <td>{{post.createdAt | date }}</td>
+        <td>{{post.updatedAt | date }}</td>
+        <td>{{post.tags}}</td>
+        <td>
+          <p-button
+            label="Delete"
+            icon="pi pi-trash"
+            variant="outlined"
+            severity="danger"
+            (onClick)="deletePost(post.id)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

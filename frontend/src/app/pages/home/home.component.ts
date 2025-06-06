@@ -15,7 +15,6 @@ import { FeaturedCollectionsComponent } from "../../components/collections/featu
     MessageModule,
     ListboxModule,
     FeaturedPostCarouselComponent,
-    LatestPostCarouselComponent,
     FeaturedCollectionsComponent
 ],
   templateUrl: './home.component.html',

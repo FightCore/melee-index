@@ -1,13 +1,16 @@
 ﻿using MeleeIndex.Contracts.Posts;
 using MeleeIndex.DAL;
 using MeleeIndex.Models;
+using MeleeIndex.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeleeIndex.Services.Posts;
 
 public interface IPostService
 {
-    public Task<Post> Create(CreatePostModel model);
+    Task<Post> Create(CreatePostModel model);
+
+    Task Delete(Guid id);
 }
 
 internal class PostService : IPostService
@@ -41,6 +44,11 @@ internal class PostService : IPostService
         await _dbContext.SaveChangesAsync();
         
         return post;
+    }
+
+    public async Task Delete(Guid id)
+    {
+       await _dbContext.Posts.Where(author => author.Id == id).ExecuteDeleteAsync();
     }
 
     private async Task<Author> GetOrCreateAuthor(string authorName)
@@ -89,7 +97,17 @@ internal class PostService : IPostService
     {
         if (string.IsNullOrWhiteSpace(submitterName))
         {
-            return await _dbContext.Submitters.FirstOrDefaultAsync();
+            var firstSubmitter = await _dbContext.Submitters.FirstOrDefaultAsync();
+            if (firstSubmitter == null)
+            {
+                var tempSubmitter = new Submitter()
+                {
+                    Name = "Temporary"
+                };
+                _dbContext.Add(tempSubmitter);
+                await _dbContext.SaveChangesAsync();
+                return tempSubmitter;
+            }
         }
 
         var submitter = await _dbContext.Submitters.FirstOrDefaultAsync(submitter => submitter.Name == submitterName);

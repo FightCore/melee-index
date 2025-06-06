@@ -6,6 +6,7 @@ import { ListSourcesComponent } from './pages/sources/list-sources/list-sources.
 import { ListTagsComponent } from './pages/tags/list-tags/list-tags.component';
 import { ListCategoriesComponent } from './pages/categories/list-categories/list-categories.component';
 import { PostsComponent } from './pages/posts/posts.component';
+import { ListPostsComponent } from './pages/admin/list-posts/list-posts.component';
 
 export const routes: Routes = [
   { path: '',  component: HomeComponent},
@@ -14,9 +15,13 @@ export const routes: Routes = [
     path: 'admin',
     children: [
       {
-        path: 'create',
+        path: 'create-post',
         component: CreatePostComponent,
       },
+      {
+        path: 'posts',
+        component: ListPostsComponent
+      }
     ],
   },
   { path: 'authors', component: ListAuthorsComponent },
