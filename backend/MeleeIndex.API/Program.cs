@@ -18,6 +18,8 @@ builder.Services.AddDbContext<IndexDbContext>(options => options.UseNpgsql(build
 
 builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 builder.Services.AddPostServices();
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
 var app = builder.Build();
 

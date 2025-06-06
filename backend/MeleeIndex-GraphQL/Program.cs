@@ -9,6 +9,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
     .AddEnvironmentVariables();
 
 builder.Services.AddPooledDbContextFactory<IndexDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 builder.AddGraphQL().RegisterDbContextFactory<IndexDbContext>().AddProjections().AddFiltering().AddSorting().AddTypes()
         .ModifyCostOptions(options =>
         {
