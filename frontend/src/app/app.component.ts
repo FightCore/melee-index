@@ -18,7 +18,7 @@ export class AppComponent {
       {
         label: 'Home',
         icon: 'pi pi-home',
-        routerLink: '/home',
+        routerLink: '/',
       },
       {
         'label': 'Posts',
