@@ -3,6 +3,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import { Source } from '../../../models/source';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -34,13 +35,13 @@ export class SourceService {
   }
 
     create(name: string, description: string, url: string): Observable<Source> {
-      return this.httpClient.post<Source>('https://localhost:5002/sources', {
+      return this.httpClient.post<Source>(`${environment.apiUrl}/sources`, {
         name,
         description,
         url});
     }
 
     delete(id: string): Observable<void> {
-      return this.httpClient.delete<void>(`https://localhost:5002/sources/${id}`);
+      return this.httpClient.delete<void>(`${environment.apiUrl}/sources/${id}`);
     }
   }

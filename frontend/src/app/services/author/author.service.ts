@@ -3,6 +3,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import { Author } from '../../../models/author';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -32,12 +33,12 @@ export class AuthorService {
   }
 
   create(name: string, imageUrl: string): Observable<Author> {
-    return this.httpClient.post<Author>('https://localhost:5002/authors', {
+    return this.httpClient.post<Author>(`${environment.apiUrl}/authors`, {
       name,
       imageUrl});
   }
 
   delete(id: string): Observable<void> {
-    return this.httpClient.delete<void>(`https://localhost:5002/authors/${id}`);
+    return this.httpClient.delete<void>(`${environment.apiUrl}/authors/${id}`);
   }
 }

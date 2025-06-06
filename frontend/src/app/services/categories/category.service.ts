@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Category } from '../../../models/category';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +35,13 @@ export class CategoryService {
   }
 
   create(name: string, color: string): Observable<Category> {
-    return this.httpClient.post<Category>('https://localhost:5002/categories', {
+    return this.httpClient.post<Category>(`${environment.apiUrl}/categories`, {
       name,
       color
     });
   }
 
   delete(id: string): Observable<void> {
-    return this.httpClient.delete<void>(`https://localhost:5002/categories/${id}`);
+    return this.httpClient.delete<void>(`${environment.apiUrl}/categories/${id}`);
   }
 }

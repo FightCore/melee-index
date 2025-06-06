@@ -9,6 +9,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
+import { environment } from '../environments/environment';
 
 const indexPreset = definePreset(Aura, {
     semantic: {
@@ -46,7 +47,7 @@ export const appConfig: ApplicationConfig = {
 
       return {
         link: httpLink.create({
-          uri: 'http://localhost:5001/graphql',
+          uri: environment.graphUrl,
         }),
         cache: new InMemoryCache(),
       };

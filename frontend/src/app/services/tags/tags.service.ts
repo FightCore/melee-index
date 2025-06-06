@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -30,12 +31,12 @@ export class TagsService {
   }
 
   create(name: string): Observable<string> {
-    return this.httpClient.post('https://localhost:5002/tags', {name}, {
+    return this.httpClient.post(`${environment.apiUrl}/tags`, {name}, {
       responseType: 'text',
     });
   }
 
   delete(name: string): Observable<void> {
-    return this.httpClient.delete<void>(`https://localhost:5002/tags/${name}`);
+    return this.httpClient.delete<void>(`${environment.apiUrl}/tags/${name}`);
   }
 }
