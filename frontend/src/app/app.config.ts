@@ -47,7 +47,7 @@ export const appConfig: ApplicationConfig = {
 
       return {
         link: httpLink.create({
-          uri: environment.graphUrl,
+          uri: `${environment.graphUrl}/graphql`,
         }),
         cache: new InMemoryCache(),
       };
