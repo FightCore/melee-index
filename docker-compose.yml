@@ -8,9 +8,45 @@ services:
     shm_size: 128mb
     environment:
       POSTGRES_PASSWORD: localcontainer
+    volumes:
+      - ./db-data:/var/lib/postgresql/data 
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 4200:4200
+    volumes:
+      - ./inline-htpasswd:/etc/nginx/conf.d/inline-htpasswd
+
+  api:
+    build:
+      dockerfile: MeleeIndex.Api/Dockerfile
+      context: ./backend
+    restart: always
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=meleeindex;Username=postgres;Password=localcontainer
+    depends_on:
+      - db
+
+  graphql:
+    build:
+      dockerfile: MeleeIndex-GraphQL/Dockerfile
+      context: ./backend
+    restart: always
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=meleeindex;Username=postgres;Password=localcontainer
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+    driver: local

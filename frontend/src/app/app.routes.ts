@@ -8,8 +8,7 @@ import { ListCategoriesComponent } from './pages/categories/list-categories/list
 import { PostsComponent } from './pages/posts/posts.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '',  component: HomeComponent},
   { path: 'posts', component: PostsComponent },
   {
     path: 'admin',

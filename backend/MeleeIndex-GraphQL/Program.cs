@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
-    .AddUserSecrets(Assembly.GetExecutingAssembly());
+    .AddUserSecrets(Assembly.GetExecutingAssembly())
+    .AddEnvironmentVariables();
 
 builder.Services.AddPooledDbContextFactory<IndexDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.AddGraphQL().RegisterDbContextFactory<IndexDbContext>().AddProjections().AddFiltering().AddSorting().AddTypes()
