@@ -1,0 +1,7 @@
+@if(user) {
+  {{ user.name}}
+  <p-button (onClick)="signout()">Sign out</p-button>
+}
+@else {
+  <a routerLink="/login" class="font-bold">Login</a>
+}

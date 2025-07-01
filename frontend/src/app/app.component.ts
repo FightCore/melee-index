@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
+import { UserComponent } from "./components/layout/user/user.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MenubarModule, ButtonModule],
+  imports: [RouterOutlet, MenubarModule, ButtonModule, UserComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

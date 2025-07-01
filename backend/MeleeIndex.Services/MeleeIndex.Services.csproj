@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MeleeIndex.Configurations\MeleeIndex.Configurations.csproj" />
       <ProjectReference Include="..\MeleeIndex.Contracts\MeleeIndex.Contracts.csproj" />
       <ProjectReference Include="..\MeleeIndex.DAL\MeleeIndex.DAL.csproj" />
       <ProjectReference Include="..\MeleeIndex.Models\MeleeIndex.Models.csproj" />
@@ -14,6 +15,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.1" />
     </ItemGroup>
 
 </Project>

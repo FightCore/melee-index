@@ -1,0 +1,53 @@
+<div class="flex">
+  <div class="w-full md:w-1/2">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <p-card class="w-full max-w-md shadow-lg">
+        <ng-template #title>
+          <h2 class="text-2xl text-bold">
+            Welcome To Melee Index
+          </h2></ng-template
+        >
+        <ng-template #content>
+          <p>
+            Your central hub for everything Super Smash Bros. Melee. Log in to
+            access the most comprehensive database of community-driven content,
+            featuring blog posts, videos, useful websites and much more. Stay
+            informed and connect with a network of players and organizers who
+            share your passion for Melee.
+          </p>
+          <div class="flex flex-col items-center gap-4 mt-6">
+            <a
+              pButton
+              pRipple
+              type="button"
+              class="p-button-rounded p-button px-5 text-base w-full bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+              [href]="'https://localhost:5002/discord/login'"
+            >
+              <i class="pi pi-discord mr-2"></i> Login with Discord
+            </a>
+            <a
+              pButton
+              pRipple
+              type="button"
+              class="p-button-rounded p-button px-5 text-base w-full bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+              [href]="'https://localhost:5002/google/login'"
+            >
+              <i class="pi pi-google mr-2"></i> Login with Google
+            </a>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  <div class="hidden md:inline-block md:w-1/2 p-4">
+    <div class="flex items-center justify-center min-h-screen p-4 bg-red-400">
+      <span>
+        <h1 class="text-4xl font-bold">Graphic design is my passion</h1>
+        <h2 class="text-2xl font-semibold">
+          Some cool melee graphic should go here but I have no creativity and
+          refuse to AI generate images
+        </h2>
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using MeleeIndex.Services.Authors;
+﻿using MeleeIndex.Services.Authentication;
+using MeleeIndex.Services.Authors;
 using MeleeIndex.Services.Categories;
 using MeleeIndex.Services.Posts;
 using MeleeIndex.Services.Sources;
@@ -16,6 +17,7 @@ public static class DependencyExtensions
             .AddScoped<IAuthorService, AuthorService>()
             .AddScoped<ISourceService, SourceService>()
             .AddScoped<ICategoryService, CategoryService>()
-            .AddScoped<ITagService, TagService>();
+            .AddScoped<ITagService, TagService>()
+            .AddScoped<IJwtService, JwtService>();
     }
 }
