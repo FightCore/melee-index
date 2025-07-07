@@ -1,6 +1,7 @@
 ﻿using MeleeIndex.DAL.Configuration;
 using MeleeIndex.Models;
 using MeleeIndex.Models.Abstract;
+using MeleeIndex.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeleeIndex.DAL
@@ -20,6 +21,8 @@ namespace MeleeIndex.DAL
         public DbSet<Submitter> Submitters { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         public IndexDbContext(DbContextOptions<IndexDbContext> options) : base(options)
         {

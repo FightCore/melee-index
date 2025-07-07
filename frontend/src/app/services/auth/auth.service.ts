@@ -8,9 +8,6 @@ import { clearUser, setUser } from '../../state/users/user.actions';
 export class AuthService {
   private readonly tokenKey = 'jwt';
 
-  /**
-   *
-   */
   constructor(private readonly store: Store) { }
 
   validateLogin(): void {
@@ -19,7 +16,6 @@ export class AuthService {
       return;
     }
     const user: TokenUser = jwtDecode(token);
-    console.log(user);
     this.store.dispatch(setUser(user));
   }
 

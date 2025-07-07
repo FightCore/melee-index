@@ -37,10 +37,12 @@ namespace MeleeIndex.Services.Authentication
         {
             var claims = new List<Claim>
             {
-                new (JwtRegisteredClaimNames.Sub, user.Email),
+                new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new (JwtRegisteredClaimNames.Name, user.Username),
                 new (CustomClaims.Provider, user.Provider),
-                new (CustomClaims.ProviderId, user.ProviderId)
+                new (CustomClaims.ProviderId, user.ProviderId),
+                new (CustomClaims.Admin, user.Admin.ToString().ToLower(), ClaimValueTypes.Boolean),
+
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));

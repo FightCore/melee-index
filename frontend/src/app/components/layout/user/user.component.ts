@@ -1,9 +1,8 @@
 import { afterNextRender, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectUserState, userFeature, UserState } from '../../../state/users/user.reducer';
+import { userFeature, UserState } from '../../../state/users/user.reducer';
 import { TokenUser } from '../../../../models/auth/token-user';
 import { AuthService } from '../../../services/auth/auth.service';
-import { tap } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 
@@ -23,7 +22,7 @@ export class UserComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.store.select(userFeature.selectUser).pipe(tap(console.log)).subscribe(user => this.user = user);
+    this.store.select(userFeature.selectUser).subscribe(user => this.user = user);
   }
   signout(): void {
     this.authService.logout();

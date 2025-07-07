@@ -1,12 +1,10 @@
-﻿namespace MeleeIndex.Services.Authentication
+﻿using MeleeIndex.Models.Abstract;
+
+namespace MeleeIndex.Models.Users
 {
-    public class OAuthUser
+    public class User : IEntity
     {
         public required Guid Id { get; set; }
-
-        public required string Email { get; set; }
-
-        public required string Username { get; set; }
 
         public required string Provider { get; set; }
 

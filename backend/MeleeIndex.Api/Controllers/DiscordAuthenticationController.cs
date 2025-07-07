@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using MeleeIndex.Services.Users;
 
 namespace MeleeIndex.Api.Controllers
 {
@@ -17,11 +18,13 @@ namespace MeleeIndex.Api.Controllers
     public class DiscordAuthenticationController : ControllerBase
     {
         private readonly IJwtService _jwtService;
+        private readonly IUserService _userService;
         private readonly OAuthConfiguration _oauthConfiguration;
 
-        public DiscordAuthenticationController(IJwtService jwtService, IOptions<OAuthConfiguration> oauthConfiguration)
+        public DiscordAuthenticationController(IJwtService jwtService, IOptions<OAuthConfiguration> oauthConfiguration, IUserService userService)
         {
             _jwtService = jwtService;
+            _userService = userService;
             _oauthConfiguration = oauthConfiguration.Value;
         }
 
@@ -49,17 +52,32 @@ namespace MeleeIndex.Api.Controllers
             }
 
             var claims = result.Principal.Claims.ToList();
-            var oauthUser = new OAuthUser()
+            var createUser = new CreateUserDto()
             {
-                Email = GetClaimValue(claims, ClaimTypes.Email),
                 Provider = "discord",
                 ProviderId = GetClaimValue(claims, ClaimTypes.NameIdentifier),
-                Username = GetClaimValue(claims, DiscordClaimConstants.GlobalName)
             };
 
+            var user = await _userService.GetForProvider(createUser.Provider, createUser.ProviderId);
+            if (user == null)
+            {
+                // Create a new user if they don't exist
+                user = await _userService.Create(createUser);
+            }
+
+            var oauthUser = new OAuthUser
+            {
+                Id = user.Id,
+                Email = GetClaimValue(claims, ClaimTypes.Email),
+                Username = GetClaimValue(claims, DiscordClaimConstants.GlobalName),
+                Provider = user.Provider,
+                ProviderId = user.ProviderId,
+                Admin = user.Admin
+            };
 
             // Create JWT token
             var tokenString = _jwtService.CreateToken(oauthUser);
+
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect($"{_oauthConfiguration.FrontendCallback}{tokenString}");
         }
