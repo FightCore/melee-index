@@ -1,9 +1,9 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { SearchBarService } from '../../services/search-bar/search-bar.service';
+import { SearchBarService } from '@/app/services/search-bar/search-bar.service';
 import { MessageModule } from 'primeng/message';
-import { PostsOverviewComponent } from '../../components/posts/posts-overview/posts-overview.component';
-import { SearchBarComponent } from '../../components/search/search-bar/search-bar.component';
+import { PostsOverviewComponent } from '@/app/components/posts/posts-overview/posts-overview.component';
+import { SearchBarComponent } from '@/app/components/search/search-bar/search-bar.component';
 
 @Component({
   selector: 'app-posts',
@@ -17,10 +17,10 @@ import { SearchBarComponent } from '../../components/search/search-bar/search-ba
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent {
+  private readonly searchBarService = inject(SearchBarService);
+
   filter: any = {};
-  constructor(
-    private readonly searchBarService: SearchBarService
-  ) {
+  constructor() {
     effect(() => {
       this.filter = this.searchBarService.filters$().filters;
     });

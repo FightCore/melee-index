@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { PanelModule } from 'primeng/panel';
-import { TagFilterComponent } from '../tag-filter/tag-filter.component';
+import { TagFilterComponent } from '@/app/components/search/tag-filter/tag-filter.component';
 import { ToolbarModule } from 'primeng/toolbar';
-import { CharacterFilterComponent } from '../character-filter/character-filter.component';
+import { CharacterFilterComponent } from '@/app/components/search/character-filter/character-filter.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';

@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import { Source } from '../../../models/source';
+import { Source } from '@/models/source';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '@/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SourceService {
-  constructor(private readonly apollo: Apollo, private readonly httpClient: HttpClient) {}
+  private readonly apollo = inject(Apollo);
+  private readonly httpClient = inject(HttpClient);
+
 
   getAll(useCache = true): Observable<Source[]> {
     return this.apollo

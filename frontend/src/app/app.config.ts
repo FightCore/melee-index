@@ -9,7 +9,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { environment } from '../environments/environment';
+import { environment } from '@/environments/environment';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';

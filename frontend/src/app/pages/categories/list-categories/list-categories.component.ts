@@ -1,9 +1,9 @@
-import { Component, viewChild } from '@angular/core';
+import { Component, viewChild, inject, OnDestroy } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { CategoryOverviewComponent } from '../../../components/categories/category-overview/category-overview.component';
-import { CreateCategoryComponent } from '../../../components/categories/create-category/create-category.component';
-import { Category } from '../../../../models/category';
+import { CategoryOverviewComponent } from '@/app/components/categories/category-overview/category-overview.component';
+import { CreateCategoryComponent } from '@/app/components/categories/create-category/create-category.component';
+import { Category } from '@/models/category';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 
@@ -15,12 +15,12 @@ import { DialogModule } from 'primeng/dialog';
   standalone: true,
   providers: [DialogService],
 })
-export class ListCategoriesComponent {
+export class ListCategoriesComponent implements OnDestroy {
+  private readonly dialogService = inject(DialogService);
+
   private ref: DynamicDialogRef | undefined;
   private subscription: Subscription | undefined;
   categoryOverviewComponent = viewChild(CategoryOverviewComponent);
-
-  constructor(private readonly dialogService: DialogService) {}
 
   ngOnDestroy(): void {
     if (this.ref) {

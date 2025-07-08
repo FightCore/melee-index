@@ -1,9 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnDestroy, viewChild } from '@angular/core';
+import { Component, viewChild, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Table, TableModule } from 'primeng/table';
-import { Source } from '../../../../models/source';
-import { SourceService } from '../../../services/source/source.service';
+import { Source } from '@/models/source';
+import { SourceService } from '@/app/services/source/source.service';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @Component({
@@ -14,10 +14,12 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
   standalone: true,
 })
 export class SourceOverviewComponent {
+  private readonly sourceService = inject(SourceService);
+
   sources: Source[] = [];
   table = viewChild(Table);
 
-  constructor(private readonly sourceService: SourceService) {
+  constructor() {
     this.refreshSources();
   }
 

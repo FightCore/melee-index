@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { clearUser, setUser } from './user.actions';
-import { TokenUser } from '../../../models/auth/token-user';
+import { TokenUser } from '@/models/auth/token-user';
 
 export interface UserState {
   user: TokenUser | null;

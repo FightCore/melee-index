@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Post } from '../../../../models/post';
+import { Post } from '@/models/post';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';

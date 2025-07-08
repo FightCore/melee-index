@@ -1,16 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ValidatorError } from '../../../models/errors/validator-error';
-import { ApiError } from '../../../models/errors/api-error';
-import { ValidatorApiError } from '../../../models/errors/validator-api-error';
+import { Injectable, inject } from '@angular/core';
+import { ValidatorError } from '@/models/errors/validator-error';
+import { ApiError } from '@/models/errors/api-error';
+import { ValidatorApiError } from '@/models/errors/validator-api-error';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
+  private readonly messageService = inject(MessageService);
 
-  constructor(private readonly messageService: MessageService) { }
 
   getOrHandleValidatorError(err: HttpErrorResponse): ValidatorError[] | null {
     if (!err.error) {

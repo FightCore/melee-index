@@ -1,12 +1,6 @@
-import {
-  Component,
-  effect,
-  input,
-  signal,
-  WritableSignal,
-} from '@angular/core';
-import { Post } from '../../../../models/post';
-import { PostCardComponent } from '../post-card/post-card.component';
+import { Component, effect, input, signal, WritableSignal, inject } from '@angular/core';
+import { Post } from '@/models/post';
+import { PostCardComponent } from '@/app/components/posts/post-card/post-card.component';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 
@@ -45,10 +39,12 @@ const GET_POSTS = gql`
   styleUrl: './posts-overview.component.scss',
 })
 export class PostsOverviewComponent {
+  private readonly apollo = inject(Apollo);
+
   posts: WritableSignal<Post[] | undefined> = signal([]);
   readonly filter = input.required<any>();
 
-  constructor(private readonly apollo: Apollo) {
+  constructor() {
     effect(() => {
       let filter = {};
       if (this.filter()) {

@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { CreatePost } from '../../../models/admin/create-post';
+import { Injectable, inject } from '@angular/core';
+import { CreatePost } from '@/models/admin/create-post';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { Post } from '../../../models/post';
+import { environment } from '@/environments/environment';
+import { Post } from '@/models/post';
 import { Apollo } from 'apollo-angular';
-import { GET_POSTS } from '../../queries/post-query';
+import { GET_POSTS } from '@/app/queries/post-query';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
-  constructor(private readonly httpClient: HttpClient, private readonly apollo: Apollo) {}
+  private readonly httpClient = inject(HttpClient);
+  private readonly apollo = inject(Apollo);
+
 
   getAll(useCache = true): Observable<Post[]> {
     return this.apollo

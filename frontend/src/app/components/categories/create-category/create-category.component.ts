@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CategoryService } from '../../../services/categories/category.service';
+import { Component, inject } from '@angular/core';
+import { CategoryService } from '@/app/services/categories/category.service';
 import {
   FormBuilder,
   FormGroup,
@@ -13,10 +13,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { SelectModule } from 'primeng/select';
 import { DialogModule } from 'primeng/dialog';
-import { CreationDialog } from '../../abstract/CreationDialog';
-import { ErrorHandlerService } from '../../../services/errors/error-handler.service';
+import { CreationDialog } from '@/app/components/abstract/CreationDialog';
+import { ErrorHandlerService } from '@/app/services/errors/error-handler.service';
 import { MessageService } from 'primeng/api';
-import { FormValidationErrorComponent } from '../../forms/form-validation-error/form-validation-error.component';
+import { FormValidationErrorComponent } from '@/app/components/forms/form-validation-error/form-validation-error.component';
 
 @Component({
   selector: 'app-create-category',
@@ -36,6 +36,8 @@ import { FormValidationErrorComponent } from '../../forms/form-validation-error/
   providers: [CategoryService, ErrorHandlerService, MessageService],
 })
 export class CreateCategoryComponent extends CreationDialog {
+  private readonly categoryService = inject(CategoryService);
+
   categoryForm: FormGroup;
 
   colorOptions = [
@@ -72,12 +74,11 @@ export class CreateCategoryComponent extends CreationDialog {
 ];
 
 
-  constructor(
-    formBuilder: FormBuilder,
-    private readonly categoryService: CategoryService,
-    ref: DynamicDialogRef,
-    errorHandlerService: ErrorHandlerService
-  ) {
+  constructor() {
+    const formBuilder = inject(FormBuilder);
+    const ref = inject(DynamicDialogRef);
+    const errorHandlerService = inject(ErrorHandlerService);
+
     const categoryForm = formBuilder.group({
       name: ['', Validators.required],
       color: ['', Validators.required],

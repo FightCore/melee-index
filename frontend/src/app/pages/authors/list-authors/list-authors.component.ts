@@ -1,11 +1,11 @@
-import { Component, viewChild } from '@angular/core';
-import { AuthorOverviewComponent } from "../../../components/authors/author-overview/author-overview.component";
-import { CreateAuthorComponent } from "../../../admin/create-author/create-author.component";
+import { Component, viewChild, inject, OnDestroy } from '@angular/core';
+import { AuthorOverviewComponent } from "@/app/components/authors/author-overview/author-overview.component";
+import { CreateAuthorComponent } from "@/app/admin/create-author/create-author.component";
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Subscription } from 'rxjs';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Author } from '../../../../models/author';
+import { Author } from '@/models/author';
 
 @Component({
   selector: 'app-list-authors',
@@ -15,12 +15,12 @@ import { Author } from '../../../../models/author';
   styleUrl: './list-authors.component.scss',
   providers: [DialogService],
 })
-export class ListAuthorsComponent {
+export class ListAuthorsComponent implements OnDestroy {
+  private readonly dialogService = inject(DialogService);
+
   private ref: DynamicDialogRef | undefined;
   private subscription: Subscription | undefined;
   authorOverviewComponent = viewChild(AuthorOverviewComponent);
-
-  constructor(private readonly dialogService: DialogService) {}
 
   ngOnDestroy(): void {
     if (this.ref) {

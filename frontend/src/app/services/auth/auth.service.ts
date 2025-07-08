@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { TokenUser } from '../../../models/auth/token-user';
+import { Injectable, inject } from '@angular/core';
+import { TokenUser } from '@/models/auth/token-user';
 import { Store } from '@ngrx/store';
 import { jwtDecode } from "jwt-decode";
-import { clearUser, setUser } from '../../state/users/user.actions';
+import { clearUser, setUser } from '@/app/state/users/user.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly tokenKey = 'jwt';
+  private readonly store = inject(Store);
 
-  constructor(private readonly store: Store) { }
+  private readonly tokenKey = 'jwt';
 
   validateLogin(): void {
     const token = this.getToken();

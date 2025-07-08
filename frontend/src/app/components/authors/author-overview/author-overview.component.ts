@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { AuthorService } from '../../../services/author/author.service';
-import { Author } from '../../../../models/author';
+import { AuthorService } from '@/app/services/author/author.service';
+import { Author } from '@/models/author';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -11,9 +11,11 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './author-overview.component.scss'
 })
 export class AuthorOverviewComponent {
+  private readonly authorService = inject(AuthorService);
+
   authors: Author[] = [];
 
-  constructor(private readonly authorService: AuthorService) {
+  constructor() {
     this.refreshAuthors();
   }
 

@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { Category } from '../../../models/category';
+import { Category } from '@/models/category';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '@/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
+  private readonly apollo = inject(Apollo);
+  private readonly httpClient = inject(HttpClient);
 
-  constructor(private readonly apollo: Apollo, private readonly httpClient: HttpClient) { }
 
   getAll(useCache = true): Observable<Category[]> {
     return this.apollo

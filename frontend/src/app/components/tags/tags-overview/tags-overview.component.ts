@@ -1,9 +1,8 @@
-import { AsyncPipe } from '@angular/common';
-import { Component, viewChild } from '@angular/core';
+import { Component, viewChild, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Table, TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { TagsService } from '../../../services/tags/tags.service';
+import { TagsService } from '@/app/services/tags/tags.service';
 
 @Component({
   selector: 'app-tags-overview',
@@ -13,10 +12,12 @@ import { TagsService } from '../../../services/tags/tags.service';
   standalone: true,
 })
 export class TagsOverviewComponent {
+  private readonly tagService = inject(TagsService);
+
   tags: string[] = [];
   table = viewChild(Table);
 
-  constructor(private readonly tagService: TagsService) {
+  constructor() {
     this.refreshTags();
   }
 

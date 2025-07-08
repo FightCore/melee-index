@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { TagsService } from '../../../services/tags/tags.service';
-import { CreationDialog } from '../../abstract/CreationDialog';
-import { ErrorHandlerService } from '../../../services/errors/error-handler.service';
+import { TagsService } from '@/app/services/tags/tags.service';
+import { CreationDialog } from '@/app/components/abstract/CreationDialog';
+import { ErrorHandlerService } from '@/app/services/errors/error-handler.service';
 import { MessageService } from 'primeng/api';
-import { FormValidationErrorComponent } from '../../forms/form-validation-error/form-validation-error.component';
+import { FormValidationErrorComponent } from '@/app/components/forms/form-validation-error/form-validation-error.component';
 
 @Component({
   selector: 'app-create-tag',
@@ -17,9 +17,15 @@ import { FormValidationErrorComponent } from '../../forms/form-validation-error/
   providers: [TagsService, ErrorHandlerService, MessageService],
 })
 export class CreateTagComponent extends CreationDialog {
+  private readonly tagsService = inject(TagsService);
+
   sourceForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder, private readonly tagsService: TagsService, ref: DynamicDialogRef, errorHandlerService: ErrorHandlerService) {
+  constructor() {
+    const formBuilder = inject(FormBuilder);
+    const ref = inject(DynamicDialogRef);
+    const errorHandlerService = inject(ErrorHandlerService);
+
     const propertyMap = new Map<string, string>();
     propertyMap.set('Name', 'name');
     const sourceForm = formBuilder.group({

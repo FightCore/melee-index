@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// This file is written to support dynamic filters and because of that heavily uses `any` types.
+// This is done to allow for flexibility in the filters used across different components.
 import { Injectable, Signal, signal } from '@angular/core';
 
 @Injectable({
@@ -6,8 +9,8 @@ import { Injectable, Signal, signal } from '@angular/core';
 export class SearchBarService {
   // Stateful service to handle the different filters from the search bar.
   // Saves for each component what their filter is and merges it together for the main table.
-  private filterMap: Map<string, any> = new Map<string, any>();
-  private filters = signal<{ filters: { and: any[] } }>({
+  private readonly filterMap: Map<string, any> = new Map<string, any>();
+  private readonly filters = signal<{ filters: { and: any[] } }>({
     filters: { and: [] },
   });
 
@@ -16,7 +19,7 @@ export class SearchBarService {
     return this.filters.asReadonly();
   }
 
-  setFilter(owner: string, filter: any | null): void {
+  setFilter(owner: string, filter: any): void {
     if (filter === null) {
       this.filterMap.delete(owner);
     } else {

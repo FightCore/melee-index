@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthorService } from '../../services/author/author.service';
+import { FormsModule, ReactiveFormsModule , FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AuthorService } from '@/app/services/author/author.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CreationDialog } from '../../components/abstract/CreationDialog';
-import { ErrorHandlerService } from '../../services/errors/error-handler.service';
+import { CreationDialog } from '@/app/components/abstract/CreationDialog';
+import { ErrorHandlerService } from '@/app/services/errors/error-handler.service';
 import { MessageService } from 'primeng/api';
-import { FormValidationErrorComponent } from '../../components/forms/form-validation-error/form-validation-error.component';
+import { FormValidationErrorComponent } from '@/app/components/forms/form-validation-error/form-validation-error.component';
 
 @Component({
   selector: 'app-create-author',
@@ -19,9 +19,15 @@ import { FormValidationErrorComponent } from '../../components/forms/form-valida
   providers: [MessageService, AuthorService, ErrorHandlerService]
 })
 export class CreateAuthorComponent extends CreationDialog {
+  private readonly authorService = inject(AuthorService);
+
   authorForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder, private readonly authorService: AuthorService, ref: DynamicDialogRef, errorHandlerService: ErrorHandlerService) {
+  constructor() {
+    const formBuilder = inject(FormBuilder);
+    const ref = inject(DynamicDialogRef);
+    const errorHandlerService = inject(ErrorHandlerService);
+
     const propertyMap = new Map<string, string>();
     propertyMap.set('Name', 'name');
     propertyMap.set('ImageUrl', 'imageUrl');

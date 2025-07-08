@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ErrorHandlerService } from '../../services/errors/error-handler.service';
+import { ErrorHandlerService } from '@/app/services/errors/error-handler.service';
 import { FormGroup } from '@angular/forms';
-import { setErrorsOnFormGroup } from '../../../utils/form-group-errors';
+import { setErrorsOnFormGroup } from '@/utils/form-group-errors';
 
 export abstract class CreationDialog {
   constructor(

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable, map } from 'rxjs';
-import { Post } from '../../../../models/post';
-import { GET_POSTS } from '../../../queries/post-query';
-import { PostCardComponent } from "../post-card/post-card.component";
+import { Post } from '@/models/post';
+import { GET_POSTS } from '@/app/queries/post-query';
+import { PostCardComponent } from "@/app/components/posts/post-card/post-card.component";
 import { CarouselModule } from 'primeng/carousel';
 
 @Component({
@@ -13,9 +13,11 @@ import { CarouselModule } from 'primeng/carousel';
   styleUrl: './latest-post-carousel.component.scss'
 })
 export class LatestPostCarouselComponent {
+  private readonly apollo = inject(Apollo);
+
   latestPosts: Post[] = [];
 
-  constructor(private readonly apollo: Apollo) {
+  constructor() {
     this.getLatestPosts().subscribe((posts) => {
       this.latestPosts = posts;
     });

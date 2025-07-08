@@ -1,6 +1,6 @@
-import { afterNextRender, Component, OnInit } from '@angular/core';
+import { afterNextRender, Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '@/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-auth-callback',
@@ -9,11 +9,11 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './auth-callback.component.scss'
 })
 export class AuthCallbackComponent {
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly auth: AuthService,
-    private readonly router: Router
-  ) {
+  private readonly route = inject(ActivatedRoute);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+
+  constructor() {
     afterNextRender(() => {
     const token = this.route.snapshot.queryParamMap.get('token');
     if (token) {

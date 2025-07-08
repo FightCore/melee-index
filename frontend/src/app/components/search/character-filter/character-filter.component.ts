@@ -1,13 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FloatLabel } from 'primeng/floatlabel';
-import { SearchBarService } from '../../../services/search-bar/search-bar.service';
+import { SearchBarService } from '@/app/services/search-bar/search-bar.service';
 
 @Component({
   selector: 'app-character-filter',
@@ -16,6 +11,8 @@ import { SearchBarService } from '../../../services/search-bar/search-bar.servic
   styleUrl: './character-filter.component.scss',
 })
 export class CharacterFilterComponent implements OnInit {
+  private readonly searchBarService = inject(SearchBarService);
+
   characters = [
     {
       label: 'Characters',
@@ -96,8 +93,6 @@ export class CharacterFilterComponent implements OnInit {
     },
   ];
   formControl = new FormControl<string[] | null>([]);
-
-  constructor(private searchBarService: SearchBarService) {}
 
   ngOnInit(): void {
     this.formControl.valueChanges.subscribe((newValue) => {

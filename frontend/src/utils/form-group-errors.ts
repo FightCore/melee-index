@@ -1,5 +1,5 @@
 import { FormGroup, ValidationErrors } from "@angular/forms";
-import { ValidatorError } from "../models/errors/validator-error";
+import { ValidatorError } from "@/models/errors/validator-error";
 
 export function setErrorsOnFormGroup(
   formGroup: FormGroup,

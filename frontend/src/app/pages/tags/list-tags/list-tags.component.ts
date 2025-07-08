@@ -1,10 +1,10 @@
-import { Component, viewChild } from '@angular/core';
+import { Component, viewChild, inject, OnDestroy } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subscription } from 'rxjs';
-import { TagsOverviewComponent } from '../../../components/tags/tags-overview/tags-overview.component';
-import { CreateTagComponent } from '../../../components/tags/create-tag/create-tag.component';
+import { TagsOverviewComponent } from '@/app/components/tags/tags-overview/tags-overview.component';
+import { CreateTagComponent } from '@/app/components/tags/create-tag/create-tag.component';
 
 @Component({
   selector: 'app-list-tags',
@@ -13,12 +13,12 @@ import { CreateTagComponent } from '../../../components/tags/create-tag/create-t
   styleUrl: './list-tags.component.scss',
   providers: [DialogService],
 })
-export class ListTagsComponent {
+export class ListTagsComponent implements OnDestroy {
+  private readonly dialogService = inject(DialogService);
+
   private ref: DynamicDialogRef | undefined;
   private subscription: Subscription | undefined;
   tagsOverviewComponent = viewChild(TagsOverviewComponent);
-
-  constructor(private readonly dialogService: DialogService) {}
 
   ngOnDestroy(): void {
     if (this.ref) {

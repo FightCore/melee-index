@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { PostService } from '../../../services/post/post.service';
-import { Post } from '../../../../models/post';
+import { PostService } from '@/app/services/post/post.service';
+import { Post } from '@/models/post';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
@@ -13,9 +13,11 @@ import { DatePipe } from '@angular/common';
   styleUrl: './list-posts.component.scss'
 })
 export class ListPostsComponent {
+  private readonly postService = inject(PostService);
+
   posts: Post[] = [];
 
-  constructor(private readonly postService: PostService) {
+  constructor() {
     this.refreshPosts();
   }
 

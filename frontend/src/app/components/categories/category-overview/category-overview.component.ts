@@ -1,7 +1,7 @@
-import { Component, viewChild } from '@angular/core';
-import { Category } from '../../../../models/category';
+import { Component, viewChild, inject } from '@angular/core';
+import { Category } from '@/models/category';
 import { Table, TableModule } from 'primeng/table';
-import { CategoryService } from '../../../services/categories/category.service';
+import { CategoryService } from '@/app/services/categories/category.service';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -15,10 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   standalone: true,
 })
 export class CategoryOverviewComponent {
+  private readonly categoryService = inject(CategoryService);
+
   categories: Category[] = [];
   table = viewChild(Table);
 
-  constructor(private readonly categoryService: CategoryService) {
+  constructor() {
     this.refreshCategories();
   }
 

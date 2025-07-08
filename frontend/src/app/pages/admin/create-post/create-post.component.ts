@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -16,12 +16,12 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
-import { TagsService } from '../../../services/tags/tags.service';
-import { AuthorService } from '../../../services/author/author.service';
-import { SourceService } from '../../../services/source/source.service';
-import { PostService } from '../../../services/post/post.service';
-import { CreatePost } from '../../../../models/admin/create-post';
-import { CategoryService } from '../../../services/categories/category.service';
+import { TagsService } from '@/app/services/tags/tags.service';
+import { AuthorService } from '@/app/services/author/author.service';
+import { SourceService } from '@/app/services/source/source.service';
+import { PostService } from '@/app/services/post/post.service';
+import { CreatePost } from '@/models/admin/create-post';
+import { CategoryService } from '@/app/services/categories/category.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -47,7 +47,15 @@ import { ToastModule } from 'primeng/toast';
   styleUrl: './create-post.component.scss',
   providers: [MessageService],
 })
-export class CreatePostComponent {
+export class CreatePostComponent implements OnInit {
+  private readonly tagService = inject(TagsService);
+  private readonly authorService = inject(AuthorService);
+  private readonly sourceService = inject(SourceService);
+  private readonly categoryService = inject(CategoryService);
+  private readonly postService = inject(PostService);
+  private readonly router = inject(Router);
+  private readonly messageService = inject(MessageService);
+
   formGroup = new FormGroup({
     title: new FormControl('', Validators.required),
     url: new FormControl('', Validators.required),
@@ -64,16 +72,6 @@ export class CreatePostComponent {
   tags: string[] = [];
   sources: string[] = [];
   categories: string[] = [];
-
-  constructor(
-    private readonly tagService: TagsService,
-    private readonly authorService: AuthorService,
-    private readonly sourceService: SourceService,
-    private readonly categoryService: CategoryService,
-    private readonly postService: PostService,
-    private readonly router: Router,
-    private readonly messageService: MessageService,
-  ) {}
 
   ngOnInit() {
     this.tagService.getAll().subscribe((tags) => (this.tags = tags));
