@@ -11,5 +11,7 @@ namespace MeleeIndex.Models.Users
         public required string ProviderId { get; set; }
 
         public required bool Admin { get; set; }
+
+        public required string Username { get; set; }
     }
 }

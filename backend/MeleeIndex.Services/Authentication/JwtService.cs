@@ -41,9 +41,11 @@ namespace MeleeIndex.Services.Authentication
                 new (JwtRegisteredClaimNames.Name, user.Username),
                 new (CustomClaims.Provider, user.Provider),
                 new (CustomClaims.ProviderId, user.ProviderId),
-                new (CustomClaims.Admin, user.Admin.ToString().ToLower(), ClaimValueTypes.Boolean),
-
             };
+            if (user.Admin)
+            {
+                claims.Add(new Claim(CustomClaims.Admin, "true"));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

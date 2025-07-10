@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text;
 using FluentValidation;
 using MeleeIndex.Api.Configurations;
@@ -10,11 +9,10 @@ using MeleeIndex.Contracts.Posts;
 using MeleeIndex.Contracts.Sources;
 using MeleeIndex.Contracts.Tags;
 using MeleeIndex.DAL;
+using MeleeIndex.Services.Authentication;
 using MeleeIndex.Services.Configurations;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +32,6 @@ builder.Services.AddAuthentication(options =>
 .AddConfiguredDiscordAuthentication(builder.Configuration)
 .AddJwtBearer(options =>
 {
-    
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -45,7 +42,11 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = jwtConfiguration.Audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfiguration.Secret))
     };
-}); ;
+});
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ObjectCreation", policy => policy.RequireClaim(CustomClaims.Admin, "True", "true"));
+});
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -74,6 +75,7 @@ app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

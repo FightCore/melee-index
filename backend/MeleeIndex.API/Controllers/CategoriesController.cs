@@ -3,6 +3,7 @@ using MeleeIndex.Api.Errors;
 using MeleeIndex.Contracts.Categories;
 using MeleeIndex.Services.Categories;
 using MeleeIndex.Services.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeleeIndex.Api.Controllers
@@ -21,6 +22,7 @@ namespace MeleeIndex.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "ObjectCreation")]
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryModel category)
         {
             var result = await _createCategoryValidator.ValidateAsync(category);

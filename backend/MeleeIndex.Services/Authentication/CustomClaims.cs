@@ -1,6 +1,6 @@
 ﻿namespace MeleeIndex.Services.Authentication
 {
-    internal static class CustomClaims
+    public static class CustomClaims
     {
         public const string Provider = "provider";
 

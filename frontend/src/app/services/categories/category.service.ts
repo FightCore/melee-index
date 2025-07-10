@@ -6,22 +6,20 @@ import { map, Observable } from 'rxjs';
 import { environment } from '@/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
   private readonly apollo = inject(Apollo);
   private readonly httpClient = inject(HttpClient);
-
 
   getAll(useCache = true): Observable<Category[]> {
     return this.apollo
       .query({
         query: gql`
           {
-            data: categories
-            {
-              id,
-              name,
+            data: categories {
+              id
+              name
               color
             }
           }
@@ -38,7 +36,7 @@ export class CategoryService {
   create(name: string, color: string): Observable<Category> {
     return this.httpClient.post<Category>(`${environment.apiUrl}/categories`, {
       name,
-      color
+      color,
     });
   }
 

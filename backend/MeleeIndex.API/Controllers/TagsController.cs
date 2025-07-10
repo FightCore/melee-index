@@ -1,10 +1,8 @@
 ﻿using FluentValidation;
 using MeleeIndex.Api.Errors;
-using MeleeIndex.Api.Validators;
 using MeleeIndex.Contracts.Tags;
-using MeleeIndex.Models;
 using MeleeIndex.Services.Tags;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeleeIndex.Api.Controllers
@@ -23,6 +21,7 @@ namespace MeleeIndex.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "ObjectCreation")]
         [Produces("text/plain")]
         public async Task<IActionResult> CreateTag([FromBody] CreateTagModel createTagModel)
         {

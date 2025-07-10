@@ -56,6 +56,7 @@ namespace MeleeIndex.Api.Controllers
             {
                 Provider = "discord",
                 ProviderId = GetClaimValue(claims, ClaimTypes.NameIdentifier),
+                Username = GetClaimValue(claims, DiscordClaimConstants.GlobalName),
             };
 
             var user = await _userService.GetForProvider(createUser.Provider, createUser.ProviderId);
@@ -69,7 +70,7 @@ namespace MeleeIndex.Api.Controllers
             {
                 Id = user.Id,
                 Email = GetClaimValue(claims, ClaimTypes.Email),
-                Username = GetClaimValue(claims, DiscordClaimConstants.GlobalName),
+                Username = user.Username,
                 Provider = user.Provider,
                 ProviderId = user.ProviderId,
                 Admin = user.Admin

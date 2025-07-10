@@ -13,6 +13,7 @@ namespace MeleeIndex.Services.Mappers
                 Id = Guid.NewGuid(),
                 Provider = user.Provider,
                 ProviderId = user.ProviderId,
+                Username = user.Username,
                 Admin = false
             };
         }

@@ -4,6 +4,7 @@ using MeleeIndex.Contracts.Authors;
 using MeleeIndex.Services.Authors;
 using MeleeIndex.Services.Exceptions;
 using MeleeIndex.Services.Sources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeleeIndex.Api.Controllers
@@ -22,6 +23,7 @@ namespace MeleeIndex.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "ObjectCreation")]
         public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorModel author)
         {
             var result = await _createAuthorValidator.ValidateAsync(author);

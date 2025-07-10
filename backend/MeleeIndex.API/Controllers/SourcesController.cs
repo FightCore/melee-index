@@ -3,6 +3,7 @@ using MeleeIndex.Api.Errors;
 using MeleeIndex.Contracts.Sources;
 using MeleeIndex.Services.Exceptions;
 using MeleeIndex.Services.Sources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeleeIndex.Api.Controllers
@@ -21,6 +22,7 @@ namespace MeleeIndex.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "ObjectCreation")]
         public async Task<IActionResult> CreateSource([FromBody] CreateSourceModel source)
         {
             var result = await _createSourceValidator.ValidateAsync(source);
