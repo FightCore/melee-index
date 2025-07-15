@@ -1,6 +1,14 @@
 @if(user) {
-  {{ user.name}}
-  <p-button (onClick)="signout()">Sign out</p-button>
+  <p-button
+    type="button"
+    icon="pi pi-user"
+    (click)="toggleMenu($event)"
+    ariaControls="user_menu"
+    ariaHaspopup="true"
+    [rounded]="true"
+    [text]="true"
+  />
+  <p-menu #menu [model]="items" popup="true" />
 }
 @else {
   <a routerLink="/login" class="font-bold">Login</a>

@@ -8,6 +8,7 @@ import { ListCategoriesComponent } from './pages/categories/list-categories/list
 import { PostsComponent } from './pages/posts/posts.component';
 import { ListPostsComponent } from './pages/admin/list-posts/list-posts.component';
 import { AuthCallbackComponent } from './pages/auth-callback/auth-callback.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
@@ -31,5 +32,6 @@ export const routes: Routes = [
   { path: 'tags', component: ListTagsComponent },
   { path: 'categories', component: ListCategoriesComponent },
   { path: 'oauth-callback', component: AuthCallbackComponent},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'profile', component: ProfileComponent }
 ];

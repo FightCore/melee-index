@@ -1,4 +1,5 @@
-﻿using MeleeIndex.DAL;
+﻿using MeleeIndex.Contracts.Users;
+using MeleeIndex.DAL;
 using MeleeIndex.Models.Users;
 using MeleeIndex.Services.Authentication;
 using MeleeIndex.Services.Mappers;
@@ -13,6 +14,8 @@ namespace MeleeIndex.Services.Users
         Task<User?> Get(Guid id);
 
         Task<User> Create(CreateUserDto createUserDto);
+
+        Task<User> Update(Guid id, UpdateUserModel user);
     }
 
     internal class UserService : IUserService
@@ -38,6 +41,20 @@ namespace MeleeIndex.Services.Users
         {
             var user = UserMapper.FromCreateDto(createUserDto);
             _dbContext.Users.Add(user);
+            await _dbContext.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<User> Update(Guid id, UpdateUserModel userModel)
+        {
+            var user = await _dbContext.Users.FindAsync(id);
+            if (user == null)
+            {
+                // Todo, implement a better exception for this
+                throw new Exception("User not found");
+            }
+
+            user.Username = userModel.Username;
             await _dbContext.SaveChangesAsync();
             return user;
         }

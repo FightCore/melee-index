@@ -1,0 +1,65 @@
+<div class="text-center mb-5">
+  <h1 class="text-5xl font-bold text-900 mb-2">Your Profile Settings</h1>
+  <p class="text-lg text-600">
+    Manage your personal information and preferences.
+  </p>
+</div>
+<div class="flex flex-column align-items-center h-full w-full p-4">
+  <p-card class="w-full md:max-w-5xl shadow-2 p-6 mx-auto">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-fluid">
+      <div class="field mb-4">
+        <label for="username" class="block text-900 font-medium mb-2"
+          >Username</label
+        >
+        <input
+          id="username"
+          type="text"
+          pInputText
+          formControlName="username"
+          class="w-full"
+        />
+        <small id="username-help" class="block mt-1"
+          >Your public display name.</small
+        >
+      </div>
+
+      <div class="field mb-4">
+        <label for="pronouns" class="block text-900 font-medium mb-2"
+          >Pronouns (Placeholder)</label
+        >
+        <input
+          id="pronouns"
+          type="text"
+          pInputText
+          value="They/Them"
+          disabled
+          class="w-full"
+        />
+        <small id="pronouns-help" class="block mt-1"
+          >This field is a placeholder.</small
+        >
+      </div>
+
+      <div class="field mb-4">
+        <label for="socials" class="block text-900 font-medium mb-2"
+          >Socials (Placeholder)</label
+        >
+        <input
+          id="socials"
+          type="text"
+          pInputText
+          value="twitter.com/yourhandle"
+          disabled
+          class="w-full"
+        />
+        <small id="socials-help" class="block mt-1"
+          >This field is a placeholder.</small
+        >
+      </div>
+
+      <div class="flex justify-content-end">
+        <p-button label="Update Profile" type="submit" icon="pi pi-check" />
+      </div>
+    </form>
+  </p-card>
+</div>
