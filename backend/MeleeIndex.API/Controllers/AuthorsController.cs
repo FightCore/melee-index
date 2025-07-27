@@ -7,48 +7,41 @@ using MeleeIndex.Services.Sources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MeleeIndex.Api.Controllers
+namespace MeleeIndex.Api.Controllers;
+
+[Route("authors")]
+[ApiController]
+public class AuthorsController(IValidator<CreateAuthorModel> createAuthorValidator, IAuthorService authorService) : ControllerBase
 {
-    [Route("authors")]
-    [ApiController]
-    public class AuthorsController : ControllerBase
+    private readonly IValidator<CreateAuthorModel> _createAuthorValidator = createAuthorValidator;
+    private readonly IAuthorService _authorService = authorService;
+
+    [HttpPost]
+    [Authorize(Policy = "ObjectCreation")]
+    public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorModel author)
     {
-        private readonly IValidator<CreateAuthorModel> _createAuthorValidator;
-        private readonly IAuthorService _authorService;
-
-        public AuthorsController(IValidator<CreateAuthorModel> createAuthorValidator, IAuthorService authorService)
+        var result = await _createAuthorValidator.ValidateAsync(author);
+        if (!result.IsValid)
         {
-            _createAuthorValidator = createAuthorValidator;
-            _authorService = authorService;
+            return BadRequest(ValidatorApiError.Create(result));
         }
 
-        [HttpPost]
-        [Authorize(Policy = "ObjectCreation")]
-        public async Task<IActionResult> CreateAuthor([FromBody] CreateAuthorModel author)
+        var createdAuthor = await _authorService.Create(author);
+
+        return Ok(createdAuthor);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteSource([FromRoute] Guid id)
+    {
+        try
         {
-            var result = await _createAuthorValidator.ValidateAsync(author);
-            if (!result.IsValid)
-            {
-                return BadRequest(ValidatorApiError.Create(result));
-            }
-
-            var createdAuthor = await _authorService.Create(author);
-
-            return Ok(createdAuthor);
+            await _authorService.Delete(id);
+            return NoContent();
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSource([FromRoute] Guid id)
+        catch (AuthorIsInUseException)
         {
-            try
-            {
-                await _authorService.Delete(id);
-                return NoContent();
-            }
-            catch (AuthorIsInUseException exception)
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
     }
 }

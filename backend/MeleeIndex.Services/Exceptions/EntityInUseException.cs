@@ -1,6 +1,5 @@
-﻿namespace MeleeIndex.Services.Exceptions
+﻿namespace MeleeIndex.Services.Exceptions;
+
+public class EntityInUseException : Exception
 {
-    public class EntityInUseException : Exception
-    {
-    }
 }

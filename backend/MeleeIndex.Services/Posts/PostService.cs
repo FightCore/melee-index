@@ -13,15 +13,10 @@ public interface IPostService
     Task Delete(Guid id);
 }
 
-internal class PostService : IPostService
+internal class PostService(IndexDbContext dbContext) : IPostService
 {
     // TODO: Figure out if we want to use repositories rather than direct accessing the context.
-    private readonly IndexDbContext _dbContext;
-
-    public PostService(IndexDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+    private readonly IndexDbContext _dbContext = dbContext;
 
     public async Task<Post> Create(CreatePostModel model)
     {
@@ -39,38 +34,28 @@ internal class PostService : IPostService
             Tags = await GetOrCreateTags(model.Tags),
             Image = null
         };
-        
+
         _dbContext.Posts.Update(post);
         await _dbContext.SaveChangesAsync();
-        
+
         return post;
     }
 
     public async Task Delete(Guid id)
     {
-       await _dbContext.Posts.Where(author => author.Id == id).ExecuteDeleteAsync();
+        await _dbContext.Posts.Where(author => author.Id == id).ExecuteDeleteAsync();
     }
 
     private async Task<Author> GetOrCreateAuthor(string authorName)
     {
         var author = await _dbContext.Authors.FirstOrDefaultAsync(author =>
-            author.Name == authorName);
-        if (author == null)
-        {
-            throw new Exception();
-        }
-
+            author.Name == authorName) ?? throw new Exception();
         return author;
     }
 
     private async Task<Source> GetOrCreateSource(string sourceName)
     {
-        var source = await _dbContext.Sources.FirstOrDefaultAsync(source => source.Name == sourceName);
-        if (source == null)
-        {
-            throw new Exception();
-        }
-        
+        var source = await _dbContext.Sources.FirstOrDefaultAsync(source => source.Name == sourceName) ?? throw new Exception();
         return source;
     }
 
@@ -84,12 +69,7 @@ internal class PostService : IPostService
 
     private async Task<Category> GetOrCreateCategory(string categoryName)
     {
-        var category = await _dbContext.Categories.FirstOrDefaultAsync(category => category.Name == categoryName);
-        if (category == null)
-        {
-            throw new Exception();
-        }
-
+        var category = await _dbContext.Categories.FirstOrDefaultAsync(category => category.Name == categoryName) ?? throw new Exception();
         return category;
     }
 
@@ -110,12 +90,7 @@ internal class PostService : IPostService
             }
         }
 
-        var submitter = await _dbContext.Submitters.FirstOrDefaultAsync(submitter => submitter.Name == submitterName);
-        if (submitter == null)
-        {
-            throw new Exception();
-        }
-
+        var submitter = await _dbContext.Submitters.FirstOrDefaultAsync(submitter => submitter.Name == submitterName) ?? throw new Exception();
         return submitter;
     }
 }

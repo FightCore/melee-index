@@ -5,46 +5,39 @@ using MeleeIndex.Services.Tags;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MeleeIndex.Api.Controllers
+namespace MeleeIndex.Api.Controllers;
+
+[Route("tags")]
+[ApiController]
+public class TagsController(ITagService tagService, IValidator<CreateTagModel> createTagValidator) : ControllerBase
 {
-    [Route("tags")]
-    [ApiController]
-    public class TagsController : ControllerBase
+    private readonly ITagService _tagService = tagService;
+    private readonly IValidator<CreateTagModel> _createTagValidator = createTagValidator;
+
+    [HttpPost]
+    [Authorize(Policy = "ObjectCreation")]
+    [Produces("text/plain")]
+    public async Task<IActionResult> CreateTag([FromBody] CreateTagModel createTagModel)
     {
-        private readonly ITagService _tagService;
-        private readonly IValidator<CreateTagModel> _createTagValidator;
-
-        public TagsController(ITagService tagService, IValidator<CreateTagModel> createTagValidator)
+        var result = await _createTagValidator.ValidateAsync(createTagModel);
+        if (!result.IsValid)
         {
-            _tagService = tagService;
-            _createTagValidator = createTagValidator;
+            return BadRequest(ValidatorApiError.Create(result));
         }
 
-        [HttpPost]
-        [Authorize(Policy = "ObjectCreation")]
-        [Produces("text/plain")]
-        public async Task<IActionResult> CreateTag([FromBody] CreateTagModel createTagModel)
-        {
-            var result = await _createTagValidator.ValidateAsync(createTagModel);
-            if (!result.IsValid)
-            {
-                return BadRequest(ValidatorApiError.Create(result));
-            }
+        var tag = await _tagService.Create(createTagModel.Name);
+        return Content(tag.Name, "text/plain");
+    }
 
-            var tag = await _tagService.Create(createTagModel.Name);
-            return Content(tag.Name, "text/plain");
+    [HttpDelete("{tagName}")]
+    public async Task<IActionResult> DeleteTag(string tagName)
+    {
+        if (string.IsNullOrWhiteSpace(tagName))
+        {
+            return BadRequest("Tag name cannot be empty.");
         }
 
-        [HttpDelete("{tagName}")]
-        public async Task<IActionResult> DeleteTag(string tagName)
-        {
-            if (string.IsNullOrWhiteSpace(tagName))
-            {
-                return BadRequest("Tag name cannot be empty.");
-            }
-
-            await _tagService.Delete(tagName);
-            return Ok();
-        }
+        await _tagService.Delete(tagName);
+        return Ok();
     }
 }

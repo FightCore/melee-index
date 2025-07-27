@@ -1,9 +1,8 @@
-﻿namespace MeleeIndex.Contracts.Categories
-{
-    public class CreateCategoryModel
-    {
-        public required string Name { get; set; }
+﻿namespace MeleeIndex.Contracts.Categories;
 
-        public required string Color { get; set; }
-    }
+public class CreateCategoryModel
+{
+    public required string Name { get; set; }
+
+    public required string Color { get; set; }
 }

@@ -7,17 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace MeleeIndex.Api.Controllers;
 
 [Route("posts")]
-public class PostController : ControllerBase
+public class PostController(IValidator<CreatePostModel> createPostValidator, IPostService postService) : ControllerBase
 {
-    private readonly IValidator<CreatePostModel> _createPostValidator;
-    private readonly IPostService _postService;
-    
-    public PostController(IValidator<CreatePostModel> createPostValidator, IPostService postService)
-    {
-        _createPostValidator = createPostValidator;
-        _postService = postService;
-    }
-    
+    private readonly IValidator<CreatePostModel> _createPostValidator = createPostValidator;
+    private readonly IPostService _postService = postService;
+
     [HttpPost]
     public async Task<IActionResult> CreatePost([FromBody] CreatePostModel post)
     {
@@ -26,9 +20,9 @@ public class PostController : ControllerBase
         {
             return BadRequest(ValidatorApiError.Create(result));
         }
-        
+
         var createdPost = await _postService.Create(post);
-        
+
         return Ok(createdPost);
     }
 

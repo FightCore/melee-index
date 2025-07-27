@@ -1,13 +1,12 @@
 ﻿using MeleeIndex.Models.Abstract;
 
-namespace MeleeIndex.Models
+namespace MeleeIndex.Models;
+
+public class Category : IEntity
 {
-    public class Category : IEntity
-    {
-        public Guid Id { get; set; }
+    public Guid Id { get; set; }
 
-        public required string Name { get; set; }
+    public required string Name { get; set; }
 
-        public required string Color { get; set; }
-    }
+    public required string Color { get; set; }
 }

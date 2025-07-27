@@ -4,51 +4,45 @@ using MeleeIndex.Models;
 using MeleeIndex.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace MeleeIndex.Services.Categories
+namespace MeleeIndex.Services.Categories;
+
+public interface ICategoryService
 {
-    public interface ICategoryService
+    Task<Category> Create(CreateCategoryModel createCategory);
+
+    Task Delete(Guid id);
+
+}
+
+internal class CategoryService(IndexDbContext dbContext) : ICategoryService
+{
+    private readonly IndexDbContext _dbContext = dbContext;
+
+    public async Task<Category> Create(CreateCategoryModel createCategory)
     {
-        Task<Category> Create(CreateCategoryModel createCategory);
-
-        Task Delete(Guid id);
-
+        var category = Convert(createCategory);
+        _dbContext.Categories.Add(category);
+        await _dbContext.SaveChangesAsync();
+        return category;
     }
 
-    internal class CategoryService : ICategoryService
+    public async Task Delete(Guid id)
     {
-        private readonly IndexDbContext _dbContext;
-
-        public CategoryService(IndexDbContext dbContext)
+        var isCategoryInUse = await _dbContext.Posts.AnyAsync(p => p.Category.Id == id);
+        if (isCategoryInUse)
         {
-            _dbContext = dbContext;
+            throw new EntityInUseException();
         }
 
-        public async Task<Category> Create(CreateCategoryModel createCategory)
-        {
-            var category = Convert(createCategory);
-            _dbContext.Categories.Add(category);
-            await _dbContext.SaveChangesAsync();
-            return category;
-        }
+        await _dbContext.Categories.Where(category => category.Id == id).ExecuteDeleteAsync();
+    }
 
-        public async Task Delete(Guid id)
+    private static Category Convert(CreateCategoryModel createCategory)
+    {
+        return new Category
         {
-            var isCategoryInUse = await _dbContext.Posts.AnyAsync(p => p.Category.Id == id);
-            if (isCategoryInUse)
-            {
-                throw new EntityInUseException();
-            }
-
-            await _dbContext.Categories.Where(category => category.Id == id).ExecuteDeleteAsync();
-        }
-
-        private static Category Convert(CreateCategoryModel createCategory)
-        {
-            return new Category
-            {
-                Name = createCategory.Name,
-                Color = createCategory.Color,
-            };
-        }
+            Name = createCategory.Name,
+            Color = createCategory.Color,
+        };
     }
 }

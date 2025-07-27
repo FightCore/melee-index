@@ -1,8 +1,7 @@
-using System.Text;
 using FluentValidation;
-using MeleeIndex.Api.Configurations;
 using MeleeIndex.Api.Startup;
 using MeleeIndex.Api.Validators;
+using MeleeIndex.Configurations;
 using MeleeIndex.Contracts.Authors;
 using MeleeIndex.Contracts.Categories;
 using MeleeIndex.Contracts.Posts;
@@ -15,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
@@ -53,11 +53,11 @@ builder.Services.AddAuthorization(options =>
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddScoped<IValidator<CreatePostModel>,CreatePostValidator>();
-builder.Services.AddScoped<IValidator<CreateAuthorModel>,CreateAuthorValidator>();
-builder.Services.AddScoped<IValidator<CreateCategoryModel>,CreateCategoryValidator>();
-builder.Services.AddScoped<IValidator<CreateSourceModel>,CreateSourceValidator>();
-builder.Services.AddScoped<IValidator<CreateTagModel>,CreateTagValidator>();
+builder.Services.AddScoped<IValidator<CreatePostModel>, CreatePostValidator>();
+builder.Services.AddScoped<IValidator<CreateAuthorModel>, CreateAuthorValidator>();
+builder.Services.AddScoped<IValidator<CreateCategoryModel>, CreateCategoryValidator>();
+builder.Services.AddScoped<IValidator<CreateSourceModel>, CreateSourceValidator>();
+builder.Services.AddScoped<IValidator<CreateTagModel>, CreateTagValidator>();
 
 builder.Services.AddDbContext<IndexDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 

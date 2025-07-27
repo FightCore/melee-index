@@ -1,7 +1,6 @@
-﻿namespace MeleeIndex.Api.Authentication.Discord
+﻿namespace MeleeIndex.Api.Authentication.Discord;
+
+public static class DiscordClaimConstants
 {
-    public static class DiscordClaimConstants
-    {
-        public const string GlobalName = "urn:discord:global_name";
-    }
+    public const string GlobalName = "urn:discord:global_name";
 }

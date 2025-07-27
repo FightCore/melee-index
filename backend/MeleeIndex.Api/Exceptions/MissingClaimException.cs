@@ -1,9 +1,5 @@
-﻿namespace MeleeIndex.Api.Exceptions
+﻿namespace MeleeIndex.Api.Exceptions;
+
+public class MissingClaimException(string message) : Exception(message)
 {
-    public class MissingClaimException : Exception
-    {
-        public MissingClaimException(string message) : base(message)
-        {
-        }
-    }
 }

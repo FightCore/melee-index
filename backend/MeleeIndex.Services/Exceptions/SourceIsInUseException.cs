@@ -1,6 +1,5 @@
-﻿namespace MeleeIndex.Services.Exceptions
+﻿namespace MeleeIndex.Services.Exceptions;
+
+public class SourceIsInUseException : Exception
 {
-    public class SourceIsInUseException : Exception
-    {
-    }
 }

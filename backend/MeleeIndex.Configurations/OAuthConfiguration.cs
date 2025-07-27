@@ -1,9 +1,8 @@
-﻿namespace MeleeIndex.Api.Configurations
-{
-    public class OAuthConfiguration
-    {
-        public const string Key = "OAuth";
+﻿namespace MeleeIndex.Configurations;
 
-        public required string FrontendCallback { get; set; }
-    }
+public class OAuthConfiguration
+{
+    public const string Key = "OAuth";
+
+    public required string FrontendCallback { get; set; }
 }

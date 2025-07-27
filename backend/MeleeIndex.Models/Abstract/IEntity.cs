@@ -1,7 +1,6 @@
-﻿namespace MeleeIndex.Models.Abstract
+﻿namespace MeleeIndex.Models.Abstract;
+
+public interface IEntity
 {
-    public interface IEntity
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

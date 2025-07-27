@@ -4,56 +4,50 @@ using MeleeIndex.Models;
 using MeleeIndex.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace MeleeIndex.Services.Authors
-{
-    public interface IAuthorService
-    {
-        Task<Author> Create(CreateAuthorModel model);
+namespace MeleeIndex.Services.Authors;
 
-        Task Delete(Guid id);
+public interface IAuthorService
+{
+    Task<Author> Create(CreateAuthorModel model);
+
+    Task Delete(Guid id);
+}
+
+internal class AuthorService(IndexDbContext dbContext) : IAuthorService
+{
+    private readonly IndexDbContext _dbContext = dbContext;
+
+    public async Task<Author> Create(CreateAuthorModel model)
+    {
+        var post = Convert(model);
+        _dbContext.Authors.Add(post);
+        await _dbContext.SaveChangesAsync();
+        return post;
     }
 
-    internal class AuthorService : IAuthorService
+    public async Task Delete(Guid id)
     {
-        private readonly IndexDbContext _dbContext;
-
-        public AuthorService(IndexDbContext dbContext)
+        var isAuthorInUse = await _dbContext.Posts.AnyAsync(p => p.Author.Id == id);
+        if (isAuthorInUse)
         {
-            _dbContext = dbContext;
+            throw new AuthorIsInUseException();
         }
 
-        public async Task<Author> Create(CreateAuthorModel model)
-        {
-            var post = Convert(model);
-            _dbContext.Authors.Add(post);
-            await _dbContext.SaveChangesAsync();
-            return post;
-        }
+        await _dbContext.Authors.Where(author => author.Id == id).ExecuteDeleteAsync();
+    }
 
-        public async Task Delete(Guid id)
+    private static Author Convert(CreateAuthorModel model)
+    {
+        return new Author
         {
-            var isAuthorInUse = await _dbContext.Posts.AnyAsync(p => p.Author.Id == id);
-            if (isAuthorInUse)
+            Name = model.Name,
+            BlueSky = model.BlueSky,
+            Twitch = model.Twitch,
+            YouTube = model.YouTube,
+            Image = new Image
             {
-                throw new AuthorIsInUseException();
-            }
-
-            await _dbContext.Authors.Where(author => author.Id == id).ExecuteDeleteAsync();
-        }
-
-        private static Author Convert(CreateAuthorModel model)
-        {
-            return new Author
-            {
-                Name = model.Name,
-                BlueSky = model.BlueSky,
-                Twitch = model.Twitch,
-                YouTube = model.YouTube,
-                Image = new Image
-                {
-                    Url = new Uri(model.ImageUrl)
-                },
-            };
-        }
+                Url = new Uri(model.ImageUrl)
+            },
+        };
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace MeleeIndex.Contracts.Tags
+﻿namespace MeleeIndex.Contracts.Tags;
+
+public class CreateTagModel
 {
-    public class CreateTagModel
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

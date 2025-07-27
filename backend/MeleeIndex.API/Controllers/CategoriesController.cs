@@ -6,46 +6,39 @@ using MeleeIndex.Services.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MeleeIndex.Api.Controllers
+namespace MeleeIndex.Api.Controllers;
+
+[Route("categories")]
+[ApiController]
+public class CategoriesController(IValidator<CreateCategoryModel> createCategoryValidator, ICategoryService categoryService) : ControllerBase
 {
-    [Route("categories")]
-    [ApiController]
-    public class CategoriesController : ControllerBase
+    private readonly IValidator<CreateCategoryModel> _createCategoryValidator = createCategoryValidator;
+    private readonly ICategoryService _categoryService = categoryService;
+
+    [HttpPost]
+    [Authorize(Policy = "ObjectCreation")]
+    public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryModel category)
     {
-        private readonly IValidator<CreateCategoryModel> _createCategoryValidator;
-        private readonly ICategoryService _categoryService;
-
-        public CategoriesController(IValidator<CreateCategoryModel> createCategoryValidator, ICategoryService categoryService)
+        var result = await _createCategoryValidator.ValidateAsync(category);
+        if (!result.IsValid)
         {
-            _createCategoryValidator = createCategoryValidator;
-            _categoryService = categoryService;
+            return BadRequest(ValidatorApiError.Create(result));
         }
+        var createdCategory = await _categoryService.Create(category);
+        return Ok(createdCategory);
+    }
 
-        [HttpPost]
-        [Authorize(Policy = "ObjectCreation")]
-        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryModel category)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
+    {
+        try
         {
-            var result = await _createCategoryValidator.ValidateAsync(category);
-            if (!result.IsValid)
-            {
-                return BadRequest(ValidatorApiError.Create(result));
-            }
-            var createdCategory = await _categoryService.Create(category);
-            return Ok(createdCategory);
+            await _categoryService.Delete(id);
+            return NoContent();
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
+        catch (EntityInUseException)
         {
-            try
-            {
-                await _categoryService.Delete(id);
-                return NoContent();
-            }
-            catch (EntityInUseException exception)
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
     }
 }

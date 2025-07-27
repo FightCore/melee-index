@@ -1,17 +1,16 @@
 ﻿using MeleeIndex.Models.Abstract;
 
-namespace MeleeIndex.Models.Users
+namespace MeleeIndex.Models.Users;
+
+public class User : IEntity
 {
-    public class User : IEntity
-    {
-        public required Guid Id { get; set; }
+    public required Guid Id { get; set; }
 
-        public required string Provider { get; set; }
+    public required string Provider { get; set; }
 
-        public required string ProviderId { get; set; }
+    public required string ProviderId { get; set; }
 
-        public required bool Admin { get; set; }
+    public required bool Admin { get; set; }
 
-        public required string Username { get; set; }
-    }
+    public required string Username { get; set; }
 }

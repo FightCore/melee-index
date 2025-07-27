@@ -1,11 +1,10 @@
 ﻿using MeleeIndex.Models.Abstract;
 
-namespace MeleeIndex.Models
-{
-    public class Image : IEntity
-    {
-        public Guid Id { get; set; }
+namespace MeleeIndex.Models;
 
-        public required Uri Url { get; set; }
-    }
+public class Image : IEntity
+{
+    public Guid Id { get; set; }
+
+    public required Uri Url { get; set; }
 }

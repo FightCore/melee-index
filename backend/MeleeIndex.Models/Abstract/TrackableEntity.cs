@@ -1,11 +1,10 @@
-﻿namespace MeleeIndex.Models.Abstract
+﻿namespace MeleeIndex.Models.Abstract;
+
+public abstract class TrackableEntity : IEntity
 {
-    public abstract class TrackableEntity : IEntity
-    {
-        public Guid Id { get; set; }
+    public Guid Id { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
-    }
+    public DateTime UpdatedAt { get; set; }
 }

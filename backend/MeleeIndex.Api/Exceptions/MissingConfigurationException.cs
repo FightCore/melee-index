@@ -1,9 +1,5 @@
-﻿namespace MeleeIndex.Api.Exceptions
+﻿namespace MeleeIndex.Api.Exceptions;
+
+public class MissingConfigurationException(string message) : Exception(message)
 {
-    public class MissingConfigurationException : Exception
-    {
-        public MissingConfigurationException(string message) : base(message)
-        {
-        }
-    }
 }

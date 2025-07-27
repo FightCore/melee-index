@@ -1,6 +1,5 @@
-﻿namespace MeleeIndex.Services.Exceptions
+﻿namespace MeleeIndex.Services.Exceptions;
+
+public class AuthorIsInUseException : Exception
 {
-    public class AuthorIsInUseException : Exception
-    {
-    }
 }
