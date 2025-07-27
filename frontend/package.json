@@ -61,7 +61,15 @@
     "typescript-eslint": "8.34.1"
   },
   "overrides": {
-    "@ngrx/signals": {
+    "@ngrx/effects": {
+      "@angular/common": "$@angular/common",
+      "@angular/core": "$@angular/core"
+    },
+    "@ngrx/store": {
+      "@angular/common": "$@angular/common",
+      "@angular/core": "$@angular/core"
+    },
+    "@ngrx/store-devtools": {
       "@angular/common": "$@angular/common",
       "@angular/core": "$@angular/core"
     }
