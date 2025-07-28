@@ -9,7 +9,7 @@ import { environment } from '@/environments/environment';
 export class UserService {
   private readonly http = inject(HttpClient);
 
-  update(id: string, user: UpdateUserModel): Observable<User> {
-    return this.http.put<User>(`${environment.apiUrl}/users/${id}`, user);
+  update(user: UpdateUserModel): Observable<User> {
+    return this.http.put<User>(`${environment.apiUrl}/me`, user);
   }
 }

@@ -38,7 +38,7 @@ export class ProfileComponent {
     if (this.profileForm.valid) {
       this.user$.subscribe((user) => {
         if (user) {
-          this.userService.update(user.sub, this.profileForm.value).subscribe();
+          this.userService.update(this.profileForm.value).subscribe();
         }
       });
     }
