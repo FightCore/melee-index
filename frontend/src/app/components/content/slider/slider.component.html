@@ -1,0 +1,20 @@
+<p-carousel
+  [value]="block().files"
+  [numVisible]="3"
+  [numScroll]="3"
+  [circular]="false"
+>
+  <ng-template let-file #item>
+    <div class="border border-surface rounded-border m-2 p-4">
+      <img
+        [src]="file.url"
+        [alt]="file.alternativeText"
+        class="w-full h-48 object-cover rounded-lg mb-2"
+      />
+      <div class="text-center">
+        <h3 class="text-lg font-bold">{{ file.name }}</h3>
+        <p class="text-sm text-gray-500">{{ file.caption }}</p>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

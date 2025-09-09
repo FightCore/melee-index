@@ -10,9 +10,10 @@ import { ListPostsComponent } from './pages/admin/list-posts/list-posts.componen
 import { AuthCallbackComponent } from './pages/auth-callback/auth-callback.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ArticleComponent } from './pages/article/article.component';
 
 export const routes: Routes = [
-  { path: '',  component: HomeComponent},
+  { path: '', component: HomeComponent },
   { path: 'posts', component: PostsComponent },
   {
     path: 'admin',
@@ -23,15 +24,16 @@ export const routes: Routes = [
       },
       {
         path: 'posts',
-        component: ListPostsComponent
-      }
+        component: ListPostsComponent,
+      },
     ],
   },
   { path: 'authors', component: ListAuthorsComponent },
   { path: 'sources', component: ListSourcesComponent },
   { path: 'tags', component: ListTagsComponent },
   { path: 'categories', component: ListCategoriesComponent },
-  { path: 'oauth-callback', component: AuthCallbackComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'profile', component: ProfileComponent }
+  { path: 'oauth-callback', component: AuthCallbackComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'article', component: ArticleComponent },
 ];

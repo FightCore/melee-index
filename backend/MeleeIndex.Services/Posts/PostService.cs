@@ -90,7 +90,18 @@ internal class PostService(IndexDbContext dbContext) : IPostService
             }
         }
 
-        var submitter = await _dbContext.Submitters.FirstOrDefaultAsync(submitter => submitter.Name == submitterName) ?? throw new Exception();
+        var submitter = await _dbContext.Submitters.FirstOrDefaultAsync(submitter => submitter.Name == submitterName);
+
+        if (submitter == null)
+        {
+            submitter = new Submitter
+            {
+                Name = submitterName ?? "Unknown"
+            };
+            _dbContext.Submitters.Add(submitter);
+            await _dbContext.SaveChangesAsync();
+        }
+
         return submitter;
     }
 }

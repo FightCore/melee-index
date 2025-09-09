@@ -1,0 +1,19 @@
+<p-card header="Knowledge Check">
+  <div class="card flex">
+    <div class="flex flex-col gap-4">
+      @for (option of block().answers.split('\n'); track option) {
+      <div class="flex items-center">
+        <p-checkbox
+          name="knowledgeCheck"
+          [value]="option"
+          inputId="{{ option }}"
+          (onChange)="onOptionChange($event)"
+        >
+        </p-checkbox>
+        <label for="{{ option }}" style="margin-left: 8px">{{ option }}</label>
+      </div>
+
+      }
+    </div>
+  </div>
+</p-card>

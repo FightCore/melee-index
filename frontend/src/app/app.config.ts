@@ -1,4 +1,4 @@
-import { ApplicationConfig, inject, isDevMode } from '@angular/core';
+import { ApplicationConfig, inject, isDevMode, SecurityContext } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
@@ -15,6 +15,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { userFeature } from './state/users/user.reducer';
 import { tokenInterceptor } from './interceptors/token-interceptor';
+import { MARKED_OPTIONS, provideMarkdown, SANITIZE } from 'ngx-markdown';
+import { markedOptionsFactory } from './config/marked-options';
 
 const indexPreset = definePreset(Aura, {
   semantic: {
@@ -60,5 +62,15 @@ export const appConfig: ApplicationConfig = {
     provideState(userFeature),
     provideEffects(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideMarkdown({
+      markedOptions: {
+        provide: MARKED_OPTIONS,
+        useFactory: markedOptionsFactory,
+      },
+      sanitize: {
+        provide: SANITIZE,
+        useValue: SecurityContext.NONE,
+      },
+    }),
   ],
 };

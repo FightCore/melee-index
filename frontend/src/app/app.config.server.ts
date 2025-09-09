@@ -6,12 +6,7 @@ import { userFeature } from './state/users/user.reducer';
 import { provideEffects } from '@ngrx/effects';
 
 const serverConfig: ApplicationConfig = {
-  providers: [
-    provideServerRendering(),
-    provideStore(),
-    provideState(userFeature),
-    provideEffects([]),
-  ],
+  providers: [provideServerRendering(), provideStore(), provideState(userFeature), provideEffects([])],
 };
 
 export const config = mergeApplicationConfig(appConfig, serverConfig);

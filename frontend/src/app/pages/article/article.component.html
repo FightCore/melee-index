@@ -1,0 +1,44 @@
+<div class="container mx-auto px-40">
+  @if (article === null) {
+  <p>Loading...</p>
+  } @else {
+  <h1 class="text-3xl font-bold">{{ article.title }}</h1>
+  <h3>
+    Written by <a href="#" class="text-primary"> {{ article.author.name }} </a>
+  </h3>
+  <hr class="my-2" />
+  @for (block of article.blocks; track block.__component + block.id) { @switch
+  (block.__component) { @case('shared.rich-text') {
+  <app-rich-text [block]="block"></app-rich-text>
+  } @case ('fightcore.move-embed') {
+  <app-fightcore-move-data [block]="block"></app-fightcore-move-data>
+  } @case ('shared.media') {
+  <app-media [block]="block"></app-media>
+  } @case ('shared.slider') {
+  <app-slider [block]="block"></app-slider>
+  } @case ('shared.quote') {
+  <app-quote [block]="block"></app-quote>
+  } @case ('youtube.video-embed') {
+  <app-youtube-embed [block]="block"></app-youtube-embed>
+  } @case ('exercise.knowledge-check') {
+  <app-knowledge-check [block]="block"></app-knowledge-check>
+  } @default {
+  <p>Unknown block type</p>
+  <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
+    {{ block | json }}
+  </code>
+  } } }
+  <hr class="my-8" />
+  <p-accordion value="0">
+    <p-accordion-panel value="1">
+      <p-accordion-header>Nerd info</p-accordion-header>
+      <p-accordion-content>
+        <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
+          {{ article | json }}
+        </code>
+      </p-accordion-content>
+    </p-accordion-panel>
+  </p-accordion>
+  }
+</div>
+]
