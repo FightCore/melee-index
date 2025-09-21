@@ -1,4 +1,4 @@
-import { YoutubeVideoEmbedBlock } from '@/app/services/articles/articles.service';
+import { YoutubeVideoEmbedBlock } from '@/models/post/blocks/youtube-video-embed-block';
 import { Component, input } from '@angular/core';
 import { YOUTUBE_PLAYER_CONFIG, YouTubePlayer } from '@angular/youtube-player';
 

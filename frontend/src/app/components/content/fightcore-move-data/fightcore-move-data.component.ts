@@ -1,4 +1,4 @@
-import { CharacterFrameDataBlock } from '@/app/services/articles/articles.service';
+import { CharacterFrameDataBlock } from '@/models/post/blocks/character-frame-data-block';
 import { Component, input } from '@angular/core';
 
 @Component({

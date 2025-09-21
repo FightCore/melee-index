@@ -1,4 +1,4 @@
-import { KnowledgeCheckBlock } from '@/app/services/articles/articles.service';
+import { KnowledgeCheckBlock } from '@/models/post/blocks/knowledge-check-block';
 import { Component, input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { CheckboxChangeEvent, CheckboxModule } from 'primeng/checkbox';

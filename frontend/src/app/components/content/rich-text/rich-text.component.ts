@@ -1,4 +1,4 @@
-import { RichTextBlock } from '@/app/services/articles/articles.service';
+import { RichTextBlock } from '@/models/post/blocks/rich-text-block';
 import { Component, input } from '@angular/core';
 import { MarkdownComponent } from 'ngx-markdown';
 

@@ -1,4 +1,4 @@
-import { MediaBlock } from '@/app/services/articles/articles.service';
+import { MediaBlock } from '@/models/post/blocks/media-block';
 import { Component, input } from '@angular/core';
 
 @Component({

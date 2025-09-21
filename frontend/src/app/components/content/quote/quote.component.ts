@@ -1,4 +1,4 @@
-import { QuoteBlock } from '@/app/services/articles/articles.service';
+import { QuoteBlock } from '@/models/post/blocks/quote-block';
 import { Component, input } from '@angular/core';
 import { MessageModule } from 'primeng/message';
 

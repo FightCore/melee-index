@@ -1,4 +1,4 @@
-import { SliderBlock } from '@/app/services/articles/articles.service';
+import { SliderBlock } from '@/models/post/blocks/slider-block';
 import { Component, input } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 
