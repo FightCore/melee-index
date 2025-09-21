@@ -10,5 +10,5 @@ export const routes: Routes = [
   { path: 'oauth-callback', component: AuthCallbackComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'articles/:id/slug', component: ArticleComponent },
+  { path: 'posts/:id/:slug', component: ArticleComponent },
 ];

@@ -1,6 +1,6 @@
 import { FightcoreMoveDataComponent } from '@/app/components/content/fightcore-move-data/fightcore-move-data.component';
 import { RichTextComponent } from '@/app/components/content/rich-text/rich-text.component';
-import { Article, ArticlesService } from '@/app/services/articles/articles.service';
+import { ArticlesService } from '@/app/services/articles/articles.service';
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MediaComponent } from '@/app/components/content/media/media.component';
@@ -11,6 +11,7 @@ import { YoutubeEmbedComponent } from '@/app/components/content/youtube-embed/yo
 import { KnowledgeCheckComponent } from '@/app/components/content/knowledge-check/knowledge-check.component';
 import { AccordionModule } from 'primeng/accordion';
 import { ActivatedRoute } from '@angular/router';
+import { Article } from '@/models/post/article';
 
 @Component({
   selector: 'app-article',

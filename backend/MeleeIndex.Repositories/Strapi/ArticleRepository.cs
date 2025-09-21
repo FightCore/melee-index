@@ -19,7 +19,7 @@ internal class ArticleRepository : IArticleRepository
 
     public async Task<StrapiRequest<Article>?> Get(int page, int pageSize, CancellationToken cancellationToken = default)
     {
-        var url = $"api/articles?pagination[page]={page}&pagination[pageSize]={pageSize}&populate[blocks][populate]=*&populate[author][populate]=avatar";
+        var url = $"api/articles?pagination[page]={page}&pagination[pageSize]={pageSize}&populate[blocks][populate]=*&populate[author][populate]=avatar&populate=cover";
         var response = await _httpClient.GetAsync(url, cancellationToken);
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<StrapiRequest<Article>>(cancellationToken);

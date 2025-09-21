@@ -1,0 +1,36 @@
+<p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+  <ng-template #header>
+    @if (post().cover) {
+    <img alt="Card" class="w-full" src="{{ post().cover!.url }}" />
+    }
+  </ng-template>
+  <ng-template #title> {{ post().title }} </ng-template>
+  <ng-template #subtitle>
+    <div class="flex items-center gap-2">
+      <p-avatar
+        image="{{ post().author.avatar.url }}"
+        shape="circle"
+        size="normal"
+      ></p-avatar>
+      <span>Created by {{ post().author.name }}</span>
+    </div>
+  </ng-template>
+
+  <p>
+    {{ post().description }}
+  </p>
+  <ng-template #footer>
+    <div class="flex gap-4 mt-1">
+      <a
+        [routerLink]="'/posts/' + post().documentId + '/' + post().slug"
+        class="w-full"
+        styleClass="w-full"
+        pButton
+      >
+        Read
+      </a>
+      <p-button pButtonIcon icon="pi pi-bookmark" severity="secondary" />
+      <p-button pButtonIcon icon="pi pi-share-alt" severity="secondary" />
+    </div>
+  </ng-template>
+</p-card>
