@@ -1,9 +1,0 @@
-<div class="p-4">
-  @if (posts()) {
-  <div class="grid md:grid-cols-4 grid-cols-1 gap-5">
-    @for (post of posts(); track post.id) {
-    <app-post-card [post]="post"></app-post-card>
-    }
-  </div>
-  }
-</div>

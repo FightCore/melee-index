@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Data", "2 Data", "{21CEFF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.DAL", "MeleeIndex.DAL\MeleeIndex.DAL.csproj", "{9C650360-B2CF-464D-AEAD-5C971B533232}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 API", "4 API", "{1E4B8D6A-973F-4A73-A6A2-8BACB28839F1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 API", "5 API", "{1E4B8D6A-973F-4A73-A6A2-8BACB28839F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.Contracts", "MeleeIndex.Contracts\MeleeIndex.Contracts.csproj", "{43F43C3A-0E6C-4EFD-9816-B996F3C52CF1}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.GraphQL", "Melee
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.Api", "MeleeIndex.Api\MeleeIndex.Api.csproj", "{C4174547-AF47-4278-B6E0-A6CC2DBCBF7A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 Services", "3 Services", "{E72E07BF-FCD3-45A8-A62A-E52038D6156F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Services", "4 Services", "{E72E07BF-FCD3-45A8-A62A-E52038D6156F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.Services", "MeleeIndex.Services\MeleeIndex.Services.csproj", "{1EFBC94D-363D-473B-9049-A9B96F81EEAD}"
 EndProject
@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 Repositories", "3 Repositories", "{34B97B6F-EA32-4087-B80C-5A9B45AA8238}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeleeIndex.Repositories", "MeleeIndex.Repositories\MeleeIndex.Repositories.csproj", "{6284BFFD-836F-46ED-A3B0-105EDC91AC0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +68,10 @@ Global
 		{9176AB88-9096-4B3E-B3FA-1E9CA4690259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9176AB88-9096-4B3E-B3FA-1E9CA4690259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9176AB88-9096-4B3E-B3FA-1E9CA4690259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6284BFFD-836F-46ED-A3B0-105EDC91AC0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6284BFFD-836F-46ED-A3B0-105EDC91AC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6284BFFD-836F-46ED-A3B0-105EDC91AC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6284BFFD-836F-46ED-A3B0-105EDC91AC0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +84,6 @@ Global
 		{C4174547-AF47-4278-B6E0-A6CC2DBCBF7A} = {1E4B8D6A-973F-4A73-A6A2-8BACB28839F1}
 		{1EFBC94D-363D-473B-9049-A9B96F81EEAD} = {E72E07BF-FCD3-45A8-A62A-E52038D6156F}
 		{9176AB88-9096-4B3E-B3FA-1E9CA4690259} = {1E4B8D6A-973F-4A73-A6A2-8BACB28839F1}
+		{6284BFFD-836F-46ED-A3B0-105EDC91AC0A} = {34B97B6F-EA32-4087-B80C-5A9B45AA8238}
 	EndGlobalSection
 EndGlobal

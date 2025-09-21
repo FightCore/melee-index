@@ -8,7 +8,8 @@ public class PostConfiguration : IEntityTypeConfiguration<Post>
 {
     public void Configure(EntityTypeBuilder<Post> builder)
     {
-        builder.HasMany(post => post.Tags)
-            .WithMany();
+        builder.Property(post => post.PostData)
+            .IsRequired()
+            .HasColumnType("jsonb");
     }
 }

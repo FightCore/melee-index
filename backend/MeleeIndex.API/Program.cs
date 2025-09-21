@@ -2,12 +2,9 @@ using FluentValidation;
 using MeleeIndex.Api.Startup;
 using MeleeIndex.Api.Validators;
 using MeleeIndex.Configurations;
-using MeleeIndex.Contracts.Authors;
-using MeleeIndex.Contracts.Categories;
 using MeleeIndex.Contracts.Posts;
-using MeleeIndex.Contracts.Sources;
-using MeleeIndex.Contracts.Tags;
 using MeleeIndex.DAL;
+using MeleeIndex.Repositories.Configuration;
 using MeleeIndex.Services.Authentication;
 using MeleeIndex.Services.Configurations;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -54,15 +51,11 @@ builder.Services.AddAuthorization(options =>
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IValidator<CreatePostModel>, CreatePostValidator>();
-builder.Services.AddScoped<IValidator<CreateAuthorModel>, CreateAuthorValidator>();
-builder.Services.AddScoped<IValidator<CreateCategoryModel>, CreateCategoryValidator>();
-builder.Services.AddScoped<IValidator<CreateSourceModel>, CreateSourceValidator>();
-builder.Services.AddScoped<IValidator<CreateTagModel>, CreateTagValidator>();
 
 builder.Services.AddDbContext<IndexDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
-builder.Services.AddPostServices();
+builder.Services.AddPostServices(builder.Configuration).AddRepositories(builder.Configuration);
 builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 

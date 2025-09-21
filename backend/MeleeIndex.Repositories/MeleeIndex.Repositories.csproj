@@ -7,18 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MeleeIndex.Configurations\MeleeIndex.Configurations.csproj" />
-      <ProjectReference Include="..\MeleeIndex.Contracts\MeleeIndex.Contracts.csproj" />
-      <ProjectReference Include="..\MeleeIndex.DAL\MeleeIndex.DAL.csproj" />
-      <ProjectReference Include="..\MeleeIndex.Models\MeleeIndex.Models.csproj" />
-      <ProjectReference Include="..\MeleeIndex.Repositories\MeleeIndex.Repositories.csproj" />
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\9.0.8\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
-      <PackageReference Include="Polly" Version="8.6.3" />
-      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.1" />
+      <ProjectReference Include="..\MeleeIndex.Configurations\MeleeIndex.Configurations.csproj" />
+      <ProjectReference Include="..\MeleeIndex.DAL\MeleeIndex.DAL.csproj" />
+      <ProjectReference Include="..\MeleeIndex.Models\MeleeIndex.Models.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
+        <PackageReference Include="Polly" Version="8.6.3" />
     </ItemGroup>
 
 </Project>

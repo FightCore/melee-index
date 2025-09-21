@@ -1,25 +1,23 @@
-﻿using MeleeIndex.Services.Authentication;
-using MeleeIndex.Services.Authors;
-using MeleeIndex.Services.Categories;
+﻿using MeleeIndex.Configurations;
+using MeleeIndex.Services.Authentication;
 using MeleeIndex.Services.Posts;
-using MeleeIndex.Services.Sources;
-using MeleeIndex.Services.Tags;
+using MeleeIndex.Services.Strapi;
 using MeleeIndex.Services.Users;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MeleeIndex.Services.Configurations;
 
 public static class DependencyExtensions
 {
-    public static IServiceCollection AddPostServices(this IServiceCollection services)
+    public static IServiceCollection AddPostServices(this IServiceCollection services, IConfiguration configuration)
     {
-        return services
+        services
+            .AddScoped<IArticleSyncService, ArticleSyncService>()
             .AddScoped<IPostService, PostService>()
-            .AddScoped<IAuthorService, AuthorService>()
-            .AddScoped<ISourceService, SourceService>()
-            .AddScoped<ICategoryService, CategoryService>()
-            .AddScoped<ITagService, TagService>()
             .AddScoped<IJwtService, JwtService>()
             .AddScoped<IUserService, UserService>();
+
+        return services;
     }
 }

@@ -10,6 +10,7 @@ import { ChipModule } from 'primeng/chip';
 import { YoutubeEmbedComponent } from '@/app/components/content/youtube-embed/youtube-embed.component';
 import { KnowledgeCheckComponent } from '@/app/components/content/knowledge-check/knowledge-check.component';
 import { AccordionModule } from 'primeng/accordion';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article',
@@ -30,10 +31,17 @@ import { AccordionModule } from 'primeng/accordion';
 })
 export class ArticleComponent {
   private readonly articlesService = inject(ArticlesService);
+  private readonly route = inject(ActivatedRoute);
   article: Article | null = null;
 
   constructor() {
-    this.articlesService.article().subscribe((article) => {
+    const articleId = this.route.snapshot.paramMap.get('id');
+
+    if (!articleId) {
+      throw new Error('No article ID provided in route');
+    }
+
+    this.articlesService.article(articleId).subscribe((article) => {
       this.article = article;
     });
   }

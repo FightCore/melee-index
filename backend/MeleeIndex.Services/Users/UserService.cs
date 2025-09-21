@@ -1,7 +1,6 @@
 ﻿using MeleeIndex.Contracts.Users;
 using MeleeIndex.DAL;
 using MeleeIndex.Models.Users;
-using MeleeIndex.Services.Authentication;
 using MeleeIndex.Services.Mappers;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,3 +1,4 @@
+import { environment } from '@/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
@@ -8,18 +9,12 @@ import { map, Observable } from 'rxjs';
 export class ArticlesService {
   private readonly httpClient = inject(HttpClient);
 
-  list(): Observable<PaginatedResult<ListedArticle>> {
-    return this.httpClient.get<PaginatedResult<ListedArticle>>(
-      'https://celebrated-hope-2a2f77da72.strapiapp.com/api/articles?populate=author'
-    );
+  list(): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(`${environment.apiUrl}/posts`);
   }
 
-  article(): Observable<Article> {
-    return this.httpClient
-      .get<ArticleResponse>(
-        'https://celebrated-hope-2a2f77da72.strapiapp.com/api/articles/zyswdx3ppdieolog4p6jv8mq?populate[blocks][populate]=*&populate[author][populate]=avatar'
-      )
-      .pipe(map((response) => response.data));
+  article(id: string): Observable<Article> {
+    return this.httpClient.get<Article>(`${environment.apiUrl}/posts/${id}`);
   }
 }
 
@@ -41,10 +36,6 @@ export interface Author {
   id: number;
   name: string;
   avatar: MediaFile;
-}
-
-export interface ArticleResponse {
-  data: Article;
 }
 
 export interface Article {
