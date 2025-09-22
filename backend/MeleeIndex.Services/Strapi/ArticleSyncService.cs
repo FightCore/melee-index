@@ -37,7 +37,20 @@ public class ArticleSyncService : IArticleSyncService
             foreach (var article in currentPage.Data)
             {
                 var post = PostMapper.Convert(article);
-                _postRepository.Add(post);
+
+                var existing = await _postRepository.GetById(post.DocumentId);
+
+                if (existing == null)
+                {
+                    _postRepository.Add(post);
+                }
+                else
+                {
+                    existing.PostData = post.PostData;
+                    existing.PublishedAt = post.PublishedAt;
+                    existing.UpdatedAt = post.UpdatedAt;
+                    _postRepository.Update(existing);
+                }
             }
 
             await _dbContext.SaveChangesAsync(cancellationToken);

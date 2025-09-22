@@ -11,6 +11,8 @@ public interface IPostRepository
     Task<Post?> GetById(string id);
     
     void Add(Post post);
+    
+    void Update(Post post);
 }
 
 
@@ -36,5 +38,10 @@ public class PostRepository : IPostRepository
     public void Add(Post post)
     {
         _dbContext.Posts.Add(post);
+    }
+
+    public void Update(Post post)
+    {
+        _dbContext.Posts.Update(post);
     }
 }
