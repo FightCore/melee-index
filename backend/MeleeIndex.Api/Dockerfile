@@ -17,7 +17,7 @@ COPY ["MeleeIndex.Contracts/MeleeIndex.Contracts.csproj", "MeleeIndex.Contracts/
 COPY ["MeleeIndex.DAL/MeleeIndex.DAL.csproj", "MeleeIndex.DAL/"]
 COPY ["MeleeIndex.Models/MeleeIndex.Models.csproj", "MeleeIndex.Models/"]
 COPY ["MeleeIndex.Services/MeleeIndex.Services.csproj", "MeleeIndex.Services/"]
-RUN dotnet restore "./MeleeIndex.API/MeleeIndex.API.csproj"
+RUN dotnet restore "./MeleeIndex.Api/MeleeIndex.Api.csproj"
 COPY . .
 WORKDIR "/src/MeleeIndex.Api"
 RUN dotnet build "./MeleeIndex.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
