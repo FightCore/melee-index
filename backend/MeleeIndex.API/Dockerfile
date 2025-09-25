@@ -12,23 +12,23 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["MeleeIndex.API/MeleeIndex.API.csproj", "MeleeIndex.API/"]
+COPY ["MeleeIndex.Api/MeleeIndex.Api.csproj", "MeleeIndex.Api/"]
 COPY ["MeleeIndex.Contracts/MeleeIndex.Contracts.csproj", "MeleeIndex.Contracts/"]
 COPY ["MeleeIndex.DAL/MeleeIndex.DAL.csproj", "MeleeIndex.DAL/"]
 COPY ["MeleeIndex.Models/MeleeIndex.Models.csproj", "MeleeIndex.Models/"]
 COPY ["MeleeIndex.Services/MeleeIndex.Services.csproj", "MeleeIndex.Services/"]
 RUN dotnet restore "./MeleeIndex.API/MeleeIndex.API.csproj"
 COPY . .
-WORKDIR "/src/MeleeIndex.API"
-RUN dotnet build "./MeleeIndex.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/MeleeIndex.Api"
+RUN dotnet build "./MeleeIndex.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./MeleeIndex.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./MeleeIndex.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MeleeIndex.API.dll"]
+ENTRYPOINT ["dotnet", "MeleeIndex.Api.dll"]

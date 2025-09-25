@@ -23,7 +23,7 @@ services:
 
   api:
     build:
-      dockerfile: MeleeIndex.API/Dockerfile
+      dockerfile: MeleeIndex.Api/Dockerfile
       context: ./backend
     restart: always
     ports:
