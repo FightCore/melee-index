@@ -18,6 +18,5 @@ export class KnowledgeCheckComponent {
 
   submit(): void {
     this.isCorrect = this.selectedOption === this.block().correctAnswer;
-    console.log(this.isCorrect);
   }
 }
