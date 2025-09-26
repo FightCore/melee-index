@@ -1,11 +1,21 @@
-<img
-  src="{{
-    'https://i.fightcore.gg/beta/' +
-      block().character +
-      '/' +
-      block().move +
-      '.gif'
-  }}"
-  alt="{{ block().character }} {{ block().move }} animation"
-  class="bg-black dark:bg-transparent"
-/>
+<div class="bg-black dark:bg-transparent">
+  <img
+    src="{{
+      'https://i.fightcore.gg/beta/' +
+        block().character +
+        '/' +
+        block().move +
+        '.gif'
+    }}"
+    alt="{{ block().character }} {{ block().move }} animation"
+  />
+  <span class="italic text-sm text-white dark:text-gray-400 p-4">
+    Frame data antimations by
+    <a
+      class="text-primary underline cursor-pointer"
+      href="https://www.fightcore.gg?utm_source=meleeindex"
+      target="_blank"
+      >Fightcore</a
+    >
+  </span>
+</div>
