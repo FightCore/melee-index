@@ -6,7 +6,7 @@ namespace MeleeIndex.Repositories.Posts;
 
 public interface IPostRepository
 {
-    Task<List<Post>> GetAll();
+    Task<List<Post>> GetAll(bool includeUnpublished = false);
 
     Task<Post?> GetById(string id);
     
@@ -30,9 +30,11 @@ public class PostRepository : IPostRepository
         return _dbContext.Posts.FirstOrDefaultAsync(post => post.DocumentId == id);
     }
 
-    public Task<List<Post>> GetAll()
+    public Task<List<Post>> GetAll(bool includeUnpublished = false)
     {
-        return _dbContext.Posts.ToListAsync();
+        return _dbContext.Posts.Where(post => includeUnpublished || 
+            (post.PublishedAt.HasValue && post.PublishedAt < DateTime.UtcNow)
+        ).ToListAsync();
     }
 
     public void Add(Post post)
