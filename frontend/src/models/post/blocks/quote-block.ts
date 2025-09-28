@@ -4,5 +4,5 @@ export interface QuoteBlock extends Block {
   __component: 'shared.quote';
   title: string;
   body: string;
-  type: null | 'info' | 'warning' | 'danger' | 'success';
+  type: 'success' | 'info' | 'warn' | 'secondary' | 'contrast' | 'error' | null | undefined;
 }
