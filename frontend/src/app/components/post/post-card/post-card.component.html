@@ -5,6 +5,7 @@
     }
   </ng-template>
   <ng-template #title> {{ post().title }} </ng-template>
+  @if(post().author) {
   <ng-template #subtitle>
     <div class="flex items-center gap-2">
       <p-avatar
@@ -15,10 +16,14 @@
       <span>Created by {{ post().author.name }}</span>
     </div>
   </ng-template>
+  }
 
   <p>
     {{ post().description }}
   </p>
+  @if (post().category) {
+  <p-chip label="#{{ post().category.slug }}" class="mt-2"></p-chip>
+  }
   <ng-template #footer>
     <div class="flex gap-4 mt-1">
       <a

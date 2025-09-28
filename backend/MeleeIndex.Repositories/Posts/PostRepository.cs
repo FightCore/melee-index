@@ -9,12 +9,11 @@ public interface IPostRepository
     Task<List<Post>> GetAll(bool includeUnpublished = false);
 
     Task<Post?> GetById(string id);
-    
+
     void Add(Post post);
-    
+
     void Update(Post post);
 }
-
 
 public class PostRepository : IPostRepository
 {
@@ -32,9 +31,10 @@ public class PostRepository : IPostRepository
 
     public Task<List<Post>> GetAll(bool includeUnpublished = false)
     {
-        return _dbContext.Posts.Where(post => includeUnpublished || 
-            (post.PublishedAt.HasValue && post.PublishedAt < DateTime.UtcNow)
-        ).ToListAsync();
+        return _dbContext.Posts.Where(post => includeUnpublished ||
+                                              (post.PublishedAt.HasValue && post.PublishedAt < DateTime.UtcNow)
+            ).OrderByDescending(post => post.PublishedAt)
+            .ToListAsync();
     }
 
     public void Add(Post post)

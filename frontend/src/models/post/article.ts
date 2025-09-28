@@ -1,5 +1,6 @@
 import { Author } from './blocks/author';
 import { MediaFile } from './blocks/media-file';
+import { Category } from './category';
 import { ComponentType } from './component-type';
 
 export interface Article {
@@ -13,4 +14,5 @@ export interface Article {
   cover: MediaFile | null;
   createdAt: Date;
   updatedAt: Date;
+  category: Category;
 }
