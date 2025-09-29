@@ -1,6 +1,7 @@
 import { Author } from './blocks/author';
 import { MediaFile } from './blocks/media-file';
 import { Category } from './category';
+import { Character } from './character';
 import { ComponentType } from './component-type';
 
 export interface Article {
@@ -15,4 +16,5 @@ export interface Article {
   createdAt: Date;
   updatedAt: Date;
   category: Category;
+  characters: Character[] | null;
 }
