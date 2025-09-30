@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MeleeIndex.Models\MeleeIndex.Models.csproj" />
+    <ProjectReference Include="..\MeleeIndex.Utilities\MeleeIndex.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

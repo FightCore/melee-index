@@ -1,4 +1,5 @@
 ﻿using MeleeIndex.Models.Abstract;
+using MeleeIndex.Models.Posts;
 
 namespace MeleeIndex.Models;
 
@@ -10,5 +11,5 @@ public class Post : TrackableEntity
     
     public DateTime? PublishedAt { get; set; }
     
-    public string PostData { get; set; }
+    public PostData PostData { get; set; }
 }

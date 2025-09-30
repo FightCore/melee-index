@@ -21,7 +21,7 @@ public class PostController : ControllerBase
     public async Task<IActionResult> GetPosts()
     {
         var posts = await _postService.GetAll();
-        var jsonPostData = posts.Select(post => JsonSerializer.Deserialize<JsonElement>(post.PostData));
+        var jsonPostData = posts.Select(post => post.PostData);
         return Ok(jsonPostData);
     }
     
@@ -35,7 +35,6 @@ public class PostController : ControllerBase
             return NotFound();
         }
         
-        var jsonPostData = JsonSerializer.Deserialize<JsonElement>(post.PostData);
-        return Ok(jsonPostData);
+        return Ok(post.PostData);
     }
 }
