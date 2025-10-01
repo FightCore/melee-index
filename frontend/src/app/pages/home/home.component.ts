@@ -6,6 +6,7 @@ import { FeaturedCollectionsComponent } from '@/app/components/collections/featu
 import { LatestPostsComponent } from '@/app/components/post/latest-posts/latest-posts.component';
 import { ArticlesService } from '@/app/services/articles/articles.service';
 import { Article } from '@/models/post/article';
+import { PostService } from '@/app/services/post/post.service';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +15,11 @@ import { Article } from '@/models/post/article';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  private readonly articlesService = inject(ArticlesService);
+  private readonly postService = inject(PostService);
   latestPosts: Article[] = [];
 
   constructor() {
-    this.articlesService.list().subscribe((posts) => {
+    this.postService.getAll().subscribe((posts) => {
       this.latestPosts = posts;
     });
   }
