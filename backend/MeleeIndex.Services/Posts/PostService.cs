@@ -1,5 +1,4 @@
-﻿using MeleeIndex.Contracts.Posts;
-using MeleeIndex.DAL;
+﻿using MeleeIndex.DAL;
 using MeleeIndex.Models;
 using MeleeIndex.Repositories.Posts;
 

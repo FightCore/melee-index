@@ -1,9 +1,5 @@
-﻿using FluentValidation;
-using MeleeIndex.Api.Errors;
-using MeleeIndex.Contracts.Posts;
-using MeleeIndex.Services.Posts;
+﻿using MeleeIndex.Services.Posts;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 
 namespace MeleeIndex.Api.Controllers;
 

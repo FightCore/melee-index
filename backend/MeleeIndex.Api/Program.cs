@@ -1,8 +1,5 @@
-using FluentValidation;
 using MeleeIndex.Api.Startup;
-using MeleeIndex.Api.Validators;
 using MeleeIndex.Configurations;
-using MeleeIndex.Contracts.Posts;
 using MeleeIndex.DAL;
 using MeleeIndex.Repositories.Configuration;
 using MeleeIndex.Services.Authentication;

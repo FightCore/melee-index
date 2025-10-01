@@ -1,6 +1,4 @@
-using MeleeIndex.Contracts.Posts;
 using MeleeIndex.DAL;
-using MeleeIndex.GraphQL.Mapper;
 using MeleeIndex.Models.Posts;
 
 namespace MeleeIndex.GraphQL.Types;
@@ -9,6 +7,8 @@ namespace MeleeIndex.GraphQL.Types;
 public class Query
 {
     [UseOffsetPaging]
-    public IQueryable<PostModel> GetProducts(IndexDbContext dbContext) =>
-        dbContext.Posts.Select(post => PostDataMapper.Convert(post.PostData));
+    [UseFiltering]
+    [UseSorting]
+    public IQueryable<PostData> GetProducts(IndexDbContext dbContext) =>
+        dbContext.Posts.Select(post => post.PostData);
 }
