@@ -8,6 +8,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
     .AddUserSecrets(Assembly.GetExecutingAssembly())
     .AddEnvironmentVariables();
 
+builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddPooledDbContextFactory<IndexDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
@@ -22,10 +24,14 @@ builder.AddGraphQL().RegisterDbContextFactory<IndexDbContext>().AddProjections()
 
 builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
+
+
 var app = builder.Build();
+
 
 app.MapGraphQL();
 
 app.UseCors("AllowAll");
+app.UseMiddleware<ResponseCachingMiddleware>();
 
 app.RunWithGraphQLCommands(args);

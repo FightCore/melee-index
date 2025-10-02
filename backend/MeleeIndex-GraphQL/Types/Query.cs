@@ -9,6 +9,8 @@ public class Query
     [UseOffsetPaging]
     [UseFiltering]
     [UseSorting]
-    public IQueryable<PostData> GetPosts(IndexDbContext dbContext) =>
-        dbContext.Posts.Select(post => post.PostData);
+    public IQueryable<PostData> GetPosts(IndexDbContext dbContext)
+    {
+        return dbContext.Posts.Select(post => post.PostData);
+    }
 }
