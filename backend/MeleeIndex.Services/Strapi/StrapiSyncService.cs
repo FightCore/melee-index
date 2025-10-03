@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 
 namespace MeleeIndex.Services.Strapi;
 
@@ -11,11 +12,13 @@ public class StrapiSyncService : IStrapiSyncService
 {
     private readonly List<IEntitySyncService> _syncServices;
     private readonly ILogger<StrapiSyncService> _logger;
+    private readonly IDistributedCache _distributedCache;
     
-    public StrapiSyncService(IEnumerable<IEntitySyncService> syncServices, ILogger<StrapiSyncService> logger)
+    public StrapiSyncService(IEnumerable<IEntitySyncService> syncServices, ILogger<StrapiSyncService> logger, IDistributedCache distributedCache)
     {
         _syncServices = syncServices.ToList();
         _logger = logger;
+        _distributedCache = distributedCache;
     }
 
 

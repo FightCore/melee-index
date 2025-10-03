@@ -1,0 +1,15 @@
+<p-select
+  [options]="categories"
+  (onChange)="selectedCategory.emit($event.value)"
+  optionLabel="name"
+  placeholder="Select a category"
+  class="w-full md:w-56"
+  [showClear]="true"
+  [filter]="true"
+>
+  <ng-template let-character #item>
+    <div class="flex items-center gap-2">
+      <div>{{ character.name }}</div>
+    </div>
+  </ng-template>
+</p-select>
