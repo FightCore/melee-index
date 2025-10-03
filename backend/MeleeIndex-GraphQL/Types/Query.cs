@@ -1,5 +1,5 @@
 using MeleeIndex.DAL;
-using MeleeIndex.Models.Posts;
+using MeleeIndex.Models.DataEntities;
 
 namespace MeleeIndex.GraphQL.Types;
 
@@ -12,5 +12,20 @@ public class Query
     public IQueryable<PostData> GetPosts(IndexDbContext dbContext)
     {
         return dbContext.Posts.Select(post => post.PostData);
+    }
+
+    public IQueryable<CharacterData> GetCharacters(IndexDbContext dbContext)
+    {
+        return dbContext.Characters.Select(character => character.CharacterData);
+    }
+
+    public IQueryable<CategoryData> GetCategories(IndexDbContext dbContext)
+    {
+        return dbContext.Categories.Select(category => category.CategoryData);
+    }
+
+    public IQueryable<AuthorData> GetAuthors(IndexDbContext dbContext)
+    {
+        return dbContext.Authors.Select(author => author.AuthorData);
     }
 }

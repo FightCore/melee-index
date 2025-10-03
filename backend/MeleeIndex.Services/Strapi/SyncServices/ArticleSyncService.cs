@@ -3,26 +3,24 @@ using MeleeIndex.Repositories.Posts;
 using MeleeIndex.Repositories.Strapi;
 using MeleeIndex.Repositories.Strapi.Models;
 using MeleeIndex.Services.Mappers;
+using Microsoft.Extensions.Logging;
 
 namespace MeleeIndex.Services.Strapi;
 
-public interface IArticleSyncService
-{
-    Task Execute(CancellationToken cancellationToken = default);
-}
-
-public class ArticleSyncService : IArticleSyncService
+public class ArticleSyncService : IEntitySyncService
 {
     private readonly IArticleRepository _articleRepository;
     private readonly IPostRepository _postRepository;
     private readonly IndexDbContext _dbContext;
+    private readonly ILogger<ArticleSyncService> _logger;
 
     public ArticleSyncService(IArticleRepository articleRepository, IPostRepository postRepository,
-        IndexDbContext dbContext)
+        IndexDbContext dbContext, ILogger<ArticleSyncService> logger)
     {
         _articleRepository = articleRepository;
         _postRepository = postRepository;
         _dbContext = dbContext;
+        _logger = logger;
     }
 
     public async Task Execute(CancellationToken cancellationToken = default)
@@ -48,7 +46,9 @@ public class ArticleSyncService : IArticleSyncService
 
         var posts = await _postRepository.GetAll(true);
 
-        var postToBeDeleted = posts.Where(post => articles.All(article => article.DocumentId != post.DocumentId));
+        var postToBeDeleted = posts.Where(post => articles.All(article => article.DocumentId != post.DocumentId)).ToList();
+        var numberOfPostsAdded = 0;
+        var numberOfPostsUpdated = 0;
 
         foreach (var article in articles)
         {
@@ -59,6 +59,7 @@ public class ArticleSyncService : IArticleSyncService
             if (existing == null)
             {
                 _postRepository.Add(post);
+                numberOfPostsAdded++;
             }
             else
             {
@@ -66,11 +67,14 @@ public class ArticleSyncService : IArticleSyncService
                 existing.PublishedAt = post.PublishedAt;
                 existing.UpdatedAt = post.UpdatedAt;
                 _postRepository.Update(existing);
+                numberOfPostsUpdated++;
             }
         }
         
         _dbContext.Posts.RemoveRange(postToBeDeleted);
 
         await _dbContext.SaveChangesAsync(cancellationToken);
+        
+        _logger.LogInformation("Removed {NumberOfPostsRemoved} posts, added {NumberOfPostsAdded} posts, updated {NumberOfPostsUpdated} posts", postToBeDeleted.Count, numberOfPostsAdded, numberOfPostsUpdated);
     }
 }

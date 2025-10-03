@@ -22,5 +22,5 @@ public class Article : JsonExtendableData
     
     public List<object> Blocks { get; set; }
     
-    public Author Author { get; set; }
+    public StrapiAuthor Author { get; set; }
 }

@@ -1,9 +1,9 @@
 ﻿using MeleeIndex.Models.Serialization;
 using System.Text.Json.Serialization;
 
-namespace MeleeIndex.Models.Posts;
+namespace MeleeIndex.Models.DataEntities;
 
-public class CharacterData : JsonExtendableData
+public class CategoryData : JsonExtendableData
 {
     [JsonPropertyName("name")]
     public string Name { get; set; }

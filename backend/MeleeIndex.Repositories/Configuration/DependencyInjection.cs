@@ -13,11 +13,22 @@ public static class DependencyInjection
         var strapiConfiguration = configuration.GetSection(StrapiConfiguration.SectionName).Get<StrapiConfiguration>();
 
         services.Configure<StrapiConfiguration>(configuration.GetSection(StrapiConfiguration.SectionName));
+        services.AddStrapiHttpClient<IArticleRepository, ArticleRepository>(strapiConfiguration);
+        services.AddStrapiHttpClient<IStrapiAuthorRepository, StrapiAuthorRepository>(strapiConfiguration);
+        services.AddStrapiHttpClient<IStrapiCategoryRepository, StrapiCategoryRepository>(strapiConfiguration);
+        services.AddStrapiHttpClient<IStrapiCharacterRepository, StrapiCharacterRepository>(strapiConfiguration);
         
-        services.AddHttpClient<IArticleRepository, ArticleRepository>(client =>
+        return services.AddScoped<IPostRepository, PostRepository>();
+    }
+    
+    
+    private static IHttpClientBuilder AddStrapiHttpClient<TInterface, TImplementation>(this IServiceCollection services, StrapiConfiguration strapiConfiguration)
+        where TInterface : class
+        where TImplementation : class, TInterface
+    {
+        return services.AddHttpClient<TInterface, TImplementation>(client =>
         {
             client.BaseAddress = new Uri(strapiConfiguration.Uri);
         });
-        return services.AddScoped<IPostRepository, PostRepository>();
     }
 }

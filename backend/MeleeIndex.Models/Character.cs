@@ -3,13 +3,11 @@ using MeleeIndex.Models.DataEntities;
 
 namespace MeleeIndex.Models;
 
-public class Post : TrackableEntity
+public class Character : TrackableEntity
 {
     public string DocumentId { get; set; }
     
     public int StrapiId { get; set; }
     
-    public DateTime? PublishedAt { get; set; }
-    
-    public PostData PostData { get; set; }
+    public CharacterData CharacterData { get; set; }
 }

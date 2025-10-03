@@ -13,7 +13,11 @@ public static class DependencyExtensions
     public static IServiceCollection AddPostServices(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddScoped<IArticleSyncService, ArticleSyncService>()
+            .AddScoped<IEntitySyncService, ArticleSyncService>()
+            .AddScoped<IEntitySyncService, AuthorSyncService>()
+            .AddScoped<IEntitySyncService, CategorySyncService>()
+            .AddScoped<IEntitySyncService, CharacterSyncService>()
+            .AddScoped<IStrapiSyncService, StrapiSyncService>()
             .AddScoped<IPostService, PostService>()
             .AddScoped<IJwtService, JwtService>()
             .AddScoped<IUserService, UserService>();

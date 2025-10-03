@@ -2,7 +2,7 @@
 
 namespace MeleeIndex.Repositories.Strapi.Models;
 
-public class Author : JsonExtendableData
+public class StrapiAuthor : JsonExtendableData
 {
     public int Id { get; set; }
     
@@ -11,4 +11,8 @@ public class Author : JsonExtendableData
     public string Name { get; set; }
     
     public string Email { get; set; }
+    
+    public DateTime CreatedAt { get; set; }
+    
+    public DateTime UpdatedAt { get; set; }
 }

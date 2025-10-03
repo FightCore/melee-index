@@ -6,19 +6,18 @@ using System.Text.Json;
 
 namespace MeleeIndex.Services.Mappers;
 
-public static class PostMapper
+public static class AuthorMapper
 {
-    public static Post Convert(Article article)
+    public static Author Convert(StrapiAuthor article)
     {
-        return new Post
+        return new Author
         {
             Id = Guid.NewGuid(),
             CreatedAt = article.CreatedAt,
             UpdatedAt = article.UpdatedAt,
-            PublishedAt = article.PublishedAt,
             DocumentId = article.DocumentId,
             StrapiId = article.Id,
-            PostData = JsonSerializer.Deserialize<PostData>(JsonSerializer.Serialize(article, SerializationOptions.CamelCase))!,
+            AuthorData = JsonSerializer.Deserialize<AuthorData>(JsonSerializer.Serialize(article, SerializationOptions.CamelCase))!,
         };
     }
 }

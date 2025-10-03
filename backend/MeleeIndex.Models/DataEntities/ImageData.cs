@@ -1,7 +1,7 @@
 ﻿using MeleeIndex.Models.Serialization;
 using System.Text.Json.Serialization;
 
-namespace MeleeIndex.Models.Posts;
+namespace MeleeIndex.Models.DataEntities;
 
 public class ImageData : JsonExtendableData
 {

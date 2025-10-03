@@ -7,16 +7,16 @@ using System.Text.Json;
 
 namespace MeleeIndex.DAL.Configuration;
 
-public class PostConfiguration : IEntityTypeConfiguration<Post>
+public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
-    public void Configure(EntityTypeBuilder<Post> builder)
+    public void Configure(EntityTypeBuilder<Category> builder)
     {
-        builder.Property(post => post.PostData)
+        builder.Property(author => author.CategoryData)
             .IsRequired()
             .HasColumnType("jsonb")
             .HasConversion(
                 value => JsonSerializer.Serialize(value, SerializationOptions.CamelCase),
-                value => JsonSerializer.Deserialize<PostData>(value, SerializationOptions.CamelCase)!
+                value => JsonSerializer.Deserialize<CategoryData>(value, SerializationOptions.CamelCase)!
             );
     }
 }
