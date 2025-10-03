@@ -1,11 +1,28 @@
-<app-select-author
-  (selectedAuthor)="onSelectedAuthor($event)"
-></app-select-author>
+<div class="p-6">
+  <p-toolbar>
+    <ng-template #start>
+      <div class="flex gap-2">
+        <app-select-author
+          (selectedAuthor)="onSelectedAuthor($event)"
+        ></app-select-author>
 
-<app-select-character
-  (selectedCharacter)="onSelectedCharacter($event)"
-></app-select-character>
+        <app-select-character
+          (selectedCharacter)="onSelectedCharacter($event)"
+        ></app-select-character>
 
-<app-select-category
-  (selectedCategory)="onSelectedCategory($event)"
-></app-select-category>
+        <app-select-category
+          (selectedCategory)="onSelectedCategory($event)"
+        ></app-select-category>
+      </div>
+    </ng-template>
+    <ng-template #end>
+      <input type="text" pInputText placeholder="Search" pInputText />
+    </ng-template>
+  </p-toolbar>
+
+  <div class="grid grid-cols-4 gap-4">
+    @for (post of posts; track $index) {
+    <app-post-card [post]="post"></app-post-card>
+    }
+  </div>
+</div>

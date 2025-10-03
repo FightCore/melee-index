@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
   selector: 'app-list-posts',
   imports: [ButtonModule, TableModule, RouterModule, DatePipe],
   templateUrl: './list-posts.component.html',
-  styleUrl: './list-posts.component.scss'
+  styleUrl: './list-posts.component.scss',
 })
 export class ListPostsComponent {
   private readonly postService = inject(PostService);
@@ -22,7 +22,7 @@ export class ListPostsComponent {
   }
 
   refreshPosts(): void {
-    this.postService.getAll(false).subscribe((posts) => {
+    this.postService.getLatest(false).subscribe((posts) => {
       this.posts = posts;
     });
   }

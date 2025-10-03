@@ -19,7 +19,7 @@ export class HomeComponent {
   latestPosts: Article[] = [];
 
   constructor() {
-    this.postService.getAll().subscribe((posts) => {
+    this.postService.getLatest().subscribe((posts) => {
       this.latestPosts = posts;
     });
   }

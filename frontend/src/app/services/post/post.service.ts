@@ -12,7 +12,20 @@ export class PostService {
   private readonly httpClient = inject(HttpClient);
   private readonly apollo = inject(Apollo);
 
-  getAll(useCache = true): Observable<Article[]> {
+  getLatest(useCache = true): Observable<Article[]> {
+    return this.apollo
+      .query({
+        query: GET_LATEST_POSTS,
+        fetchPolicy: useCache ? 'cache-first' : 'no-cache',
+      })
+      .pipe(
+        map((result) => {
+          return (result.data as { data: { items: Article[] } }).data.items;
+        })
+      );
+  }
+
+  getPaginated(useCache = true): Observable<Article[]> {
     return this.apollo
       .query({
         query: GET_LATEST_POSTS,
