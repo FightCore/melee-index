@@ -2,7 +2,7 @@ import { gql } from 'apollo-angular';
 
 export const GET_LATEST_POSTS = gql`
   {
-    data: posts(where: { author: { name: { eq: "Bort" } } }) {
+    data: posts(order: [{ publishedAt: DESC }], take: 4) {
       items {
         id
         documentId
