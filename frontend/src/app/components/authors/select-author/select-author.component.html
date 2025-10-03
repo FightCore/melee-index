@@ -1,0 +1,20 @@
+<p-select
+  [options]="authors"
+  (onChange)="selectedAuthor.emit($event.value)"
+  optionLabel="name"
+  placeholder="Select an author"
+  class="w-full md:w-56"
+  [showClear]="true"
+  [filter]="true"
+>
+  <ng-template let-author #item>
+    <div class="flex items-center gap-2">
+      <p-avatar
+        image="{{ author.avatar.url }}"
+        shape="square"
+        size="normal"
+      ></p-avatar>
+      <div>{{ author.name }}</div>
+    </div>
+  </ng-template>
+</p-select>

@@ -4,11 +4,13 @@ import { AuthCallbackComponent } from './pages/auth-callback/auth-callback.compo
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ArticleComponent } from './pages/article/article.component';
+import { PostsComponent } from './pages/posts/posts.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'oauth-callback', component: AuthCallbackComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'posts', component: PostsComponent },
   { path: 'posts/:id/:slug', component: ArticleComponent },
 ];
