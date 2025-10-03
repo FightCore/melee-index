@@ -1,0 +1,20 @@
+<p-select
+  [options]="characters"
+  (onChange)="selectedCharacter.emit($event.value)"
+  optionLabel="name"
+  placeholder="Select a character"
+  class="w-full md:w-56"
+  [showClear]="true"
+  [filter]="true"
+>
+  <ng-template let-character #item>
+    <div class="flex items-center gap-2">
+      <img
+        src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
+        class="w-6 h-6 inline-block mr-1"
+        alt="Character"
+      />
+      <div>{{ character.name }}</div>
+    </div>
+  </ng-template>
+</p-select>
