@@ -5,10 +5,6 @@ import { inject } from '@angular/core';
 export function tokenInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
   // Inject the current `AuthService` and use it to get an authentication token:
   try {
-    if (req.url.includes('strapiapp.com')) {
-      return next(req);
-    }
-
     const authToken = inject(AuthService).getToken();
     // Clone the request to add the authentication header.
     const newReq = req.clone({

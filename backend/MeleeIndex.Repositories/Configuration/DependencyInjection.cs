@@ -1,6 +1,7 @@
 ﻿using MeleeIndex.Configurations;
 using MeleeIndex.Repositories.Posts;
 using MeleeIndex.Repositories.Strapi;
+using MeleeIndex.Repositories.Users;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,7 +19,8 @@ public static class DependencyInjection
         services.AddStrapiHttpClient<IStrapiCategoryRepository, StrapiCategoryRepository>(strapiConfiguration);
         services.AddStrapiHttpClient<IStrapiCharacterRepository, StrapiCharacterRepository>(strapiConfiguration);
         
-        return services.AddScoped<IPostRepository, PostRepository>();
+        return services.AddScoped<IPostRepository, PostRepository>()
+            .AddScoped<IBookmarkRepository, BookmarkRepository>();
     }
     
     

@@ -47,7 +47,12 @@
       >
         Read
       </a>
-      <p-button pButtonIcon icon="pi pi-bookmark" severity="secondary" />
+      <p-button
+        (onClick)="toggleBookmark()"
+        pButtonIcon
+        icon="pi pi-bookmark"
+        severity="secondary"
+      />
       <p-button pButtonIcon icon="pi pi-share-alt" severity="secondary" />
     </div>
   </ng-template>

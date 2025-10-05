@@ -17,6 +17,8 @@ public class IndexDbContext(DbContextOptions<IndexDbContext> options) : DbContex
     public DbSet<Author> Authors { get; set; }
     
     public DbSet<User> Users { get; set; }
+    
+    public DbSet<Bookmark> Bookmarks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -25,6 +27,7 @@ public class IndexDbContext(DbContextOptions<IndexDbContext> options) : DbContex
         modelBuilder.ApplyConfiguration(new AuthorConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new CharacterConfiguration());
+        modelBuilder.ApplyConfiguration(new BookmarkConfiguration());
 
         var entityTypes = typeof(Post).Assembly.GetTypes()
             .Where(t => typeof(IEntity).IsAssignableFrom(t) && !t.IsAbstract);

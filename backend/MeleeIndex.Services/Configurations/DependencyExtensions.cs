@@ -1,5 +1,4 @@
-﻿using MeleeIndex.Configurations;
-using MeleeIndex.Services.Authentication;
+﻿using MeleeIndex.Services.Authentication;
 using MeleeIndex.Services.Posts;
 using MeleeIndex.Services.Strapi;
 using MeleeIndex.Services.Users;
@@ -20,7 +19,8 @@ public static class DependencyExtensions
             .AddScoped<IStrapiSyncService, StrapiSyncService>()
             .AddScoped<IPostService, PostService>()
             .AddScoped<IJwtService, JwtService>()
-            .AddScoped<IUserService, UserService>();
+            .AddScoped<IUserService, UserService>()
+            .AddScoped<IBookmarkService, BookmarkService>();
 
         return services;
     }

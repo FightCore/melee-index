@@ -3,6 +3,7 @@ using System;
 using MeleeIndex.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MeleeIndex.DAL.Migrations
 {
     [DbContext(typeof(IndexDbContext))]
-    partial class IndexDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251005180040_Added_Bookmarks")]
+    partial class Added_Bookmarks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
