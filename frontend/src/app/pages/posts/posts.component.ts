@@ -10,6 +10,8 @@ import { Article } from '@/models/post/article';
 import { PostCardComponent } from '@/app/components/post/post-card/post-card.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { InputTextModule } from 'primeng/inputtext';
+import { FilterState } from '@/app/queries/filters/filter-state';
+import { FilterBuilder } from '@/app/queries/filters/filter-builder';
 
 @Component({
   selector: 'app-posts',
@@ -27,19 +29,29 @@ import { InputTextModule } from 'primeng/inputtext';
 export class PostsComponent implements OnInit {
   posts: Article[] = [];
   private readonly postService = inject(PostService);
+  private readonly filterState = new FilterState();
 
   onSelectedAuthor(author: Author | null): void {
-    console.log('Selected author:', author);
+    this.filterState.authors = author ? [author.name] : undefined;
+    this.executeQuery();
   }
   onSelectedCharacter(character: Character | null): void {
-    console.log('Selected character:', character);
+    this.filterState.characters = character ? [character.name] : undefined;
+    console.log(this.filterState);
+    this.executeQuery();
   }
   onSelectedCategory(category: Category | null): void {
-    console.log('Selected category:', category);
+    this.filterState.categories = category ? [category.name] : undefined;
+    this.executeQuery();
   }
 
   ngOnInit(): void {
-    this.postService.getPaginated().subscribe((posts) => {
+    this.executeQuery();
+  }
+
+  executeQuery(): void {
+    const filterParameter = FilterBuilder.build(this.filterState);
+    this.postService.getPaginated(filterParameter).subscribe((posts) => {
       this.posts = posts;
     });
   }

@@ -45,6 +45,8 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("ObjectCreation", policy => policy.RequireClaim(CustomClaims.Admin, "True", "true"));
 });
 
+builder.Services.AddDistributedMemoryCache();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
