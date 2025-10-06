@@ -22,7 +22,7 @@ public class BookmarkController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetBookmarks()
     {
-        if (TryGetUserId(out var userId)!)
+        if (!TryGetUserId(out var userId) || userId == Guid.Empty)
         {
             return Unauthorized();
         }

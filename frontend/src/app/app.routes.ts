@@ -13,4 +13,9 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'posts', component: PostsComponent },
   { path: 'posts/:id/:slug', component: ArticleComponent },
+  {
+    path: 'bookmarks',
+    loadComponent: () => import('./pages/bookmarks/bookmarks.component').then((m) => m.BookmarksComponent),
+  },
+  { path: '**', redirectTo: '' },
 ];
