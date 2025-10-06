@@ -17,4 +17,5 @@ export interface Article {
   updatedAt: Date;
   category: Category;
   characters: Character[] | null;
+  bookmarked: boolean | null;
 }

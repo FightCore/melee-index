@@ -20,11 +20,20 @@ export class PostCardComponent {
   readonly post = input.required<Article>();
 
   toggleBookmark(): void {
-    const isBookmarked = false; // TODO: check if post is bookmarked
-    if (isBookmarked) {
-      this.bookmarkService.remove(this.post().documentId).subscribe();
+    if (this.post().bookmarked) {
+      this.post().bookmarked = false;
+      this.bookmarkService.remove(this.post().documentId).subscribe({
+        error: () => {
+          this.post().bookmarked = true;
+        },
+      });
     } else {
-      this.bookmarkService.add(this.post().documentId).subscribe();
+      this.post().bookmarked = true;
+      this.bookmarkService.add(this.post().documentId).subscribe({
+        error: () => {
+          this.post().bookmarked = false;
+        },
+      });
     }
   }
 }

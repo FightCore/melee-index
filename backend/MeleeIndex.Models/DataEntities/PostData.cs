@@ -40,4 +40,5 @@ public class PostData : JsonExtendableData
     
     [JsonPropertyName("cover")]
     public ImageData Cover { get; set; }
+    
 }

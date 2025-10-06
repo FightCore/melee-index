@@ -51,7 +51,7 @@
         (onClick)="toggleBookmark()"
         pButtonIcon
         icon="pi pi-bookmark"
-        severity="secondary"
+        [severity]="post().bookmarked ? 'primary' : 'secondary'"
       />
       <p-button pButtonIcon icon="pi pi-share-alt" severity="secondary" />
     </div>

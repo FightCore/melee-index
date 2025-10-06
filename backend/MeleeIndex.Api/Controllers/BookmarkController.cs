@@ -2,6 +2,7 @@
 using MeleeIndex.Services.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace MeleeIndex.Api.Controllers;
 
@@ -28,7 +29,13 @@ public class BookmarkController : BaseController
         }
 
         var posts = await _bookmarkService.GetPostsByUser(userId);
-        return Ok(posts.Select(post => post.PostData));
+        var postData = posts.Select(post =>
+        {
+            var postData = post.PostData;
+            postData.AdditionalProperties.Add("bookmarked", JsonSerializer.SerializeToElement(true));
+            return postData;
+        });
+        return Ok(postData);
     }
 
     [HttpPost("/posts/{documentId}/bookmark")]
