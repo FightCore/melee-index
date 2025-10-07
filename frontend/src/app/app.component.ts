@@ -36,7 +36,7 @@ export class AppComponent implements AfterViewInit {
       .pipe(tap(console.log))
       .subscribe((user) => {
         this.user = user;
-        this.setMenubarItems(user);
+        this.setMenubarItems();
       });
   }
 
@@ -46,8 +46,7 @@ export class AppComponent implements AfterViewInit {
     this.isLightMode = !this.isLightMode;
   }
 
-  private setMenubarItems(user: TokenUser | null = null): void {
-    const overrideUser = user ?? this.user;
+  private setMenubarItems(): void {
     this.items = [
       {
         label: 'Home',
@@ -58,42 +57,6 @@ export class AppComponent implements AfterViewInit {
         label: 'Posts',
         icon: 'pi pi-file',
         routerLink: '/posts',
-      },
-      {
-        label: 'Collections',
-        icon: 'pi pi-star',
-      },
-      {
-        label: 'Admin',
-        icon: 'pi pi-cog',
-        visible: overrideUser?.admin ?? false,
-        items: [
-          {
-            label: 'Authors',
-            icon: 'pi pi-users',
-            routerLink: '/authors',
-          },
-          {
-            label: 'Categories',
-            icon: 'pi pi-folder',
-            routerLink: '/categories',
-          },
-          {
-            label: 'Posts',
-            icon: 'pi pi-pencil',
-            routerLink: '/admin/posts',
-          },
-          {
-            label: 'Sources',
-            icon: 'pi pi-sitemap',
-            routerLink: '/sources',
-          },
-          {
-            label: 'Tags',
-            icon: 'pi pi-hashtag',
-            routerLink: '/tags',
-          },
-        ],
       },
     ];
   }
