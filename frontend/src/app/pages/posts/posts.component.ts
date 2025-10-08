@@ -12,6 +12,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { InputTextModule } from 'primeng/inputtext';
 import { FilterState } from '@/app/queries/filters/filter-state';
 import { FilterBuilder } from '@/app/queries/filters/filter-builder';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posts',
@@ -30,6 +31,16 @@ export class PostsComponent implements OnInit {
   posts: Article[] = [];
   private readonly postService = inject(PostService);
   private readonly filterState = new FilterState();
+  private readonly metaService = inject(Meta);
+  private readonly titleService = inject(Title);
+
+  constructor() {
+    this.titleService.setTitle('Posts - Melee Index');
+    this.metaService.addTags([
+      { name: 'description', content: 'Browse and filter articles about Super Smash Bros. Melee by author, character, and category.' },
+      { name: 'keywords', content: 'Super Smash Bros. Melee, Melee, Articles, Posts, Filter, Author, Character, Category' },
+    ]);
+  }
 
   onSelectedAuthor(author: Author | null): void {
     this.filterState.authors = author ? [author.name] : undefined;
