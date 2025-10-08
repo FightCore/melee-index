@@ -14,8 +14,8 @@ public class StrapiController : BaseController
         _strapiSyncService = strapiSyncService;
     }
     
-    [HttpPost("sync")]
     // Include the legacy route
+    [HttpPost("sync")]
     [Route("/articles/sync")]
     public async Task<IActionResult> ExecuteSync()
     {

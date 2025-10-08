@@ -66,7 +66,10 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddDistributedMemoryCache();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options =>
+    // Do not include methods that do not have an explicit [HttpX] attribute on it.
+    options.ShouldInclude = operation => operation.HttpMethod != null
+);
 
 builder.Services.AddDbContext<IndexDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
