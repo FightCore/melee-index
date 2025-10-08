@@ -1,6 +1,7 @@
 ﻿using MeleeIndex.DAL;
 using MeleeIndex.Models;
 using MeleeIndex.Models.Users;
+using MeleeIndex.Utilities.CacheKeys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
@@ -31,7 +32,7 @@ public class BookmarkRepository : IBookmarkRepository
     
     public async Task<List<Post>> GetPostsByUser(Guid userId, CancellationToken cancellationToken = default)
     {
-        var cacheKey = CreateListCacheKey(userId);
+        var cacheKey = BookmarkCacheKeys.GetListCacheKey(userId);
         var cachedValue = await _distributedCache.GetStringAsync(cacheKey, cancellationToken);
         if (cachedValue != null)
         {
@@ -53,17 +54,27 @@ public class BookmarkRepository : IBookmarkRepository
         };
         _dbSet.Add(bookmark);
         await _dbContext.SaveChangesAsync(cancellationToken);
-        
+        await InvalidateBookmarkCaches(userId);
         return bookmark;
     }
 
-    public Task Remove(Guid postId, Guid userId, CancellationToken cancellationToken = default)
+    public async Task Remove(Guid postId, Guid userId, CancellationToken cancellationToken = default)
     {
-        return _dbSet.Where(bookmark => bookmark.PostId == postId && bookmark.UserId == userId).ExecuteDeleteAsync(cancellationToken);
+        await _dbSet.Where(bookmark => bookmark.PostId == postId && bookmark.UserId == userId).ExecuteDeleteAsync(cancellationToken);
+        await InvalidateBookmarkCaches(userId);
     }
 
-    private static string CreateListCacheKey(Guid userId)
+    private async Task InvalidateBookmarkCaches(Guid userId)
     {
-        return $"Bookmarkers:{userId}";
+        List<string> cacheKeys =
+        [
+            BookmarkCacheKeys.GetIdListCacheKey(userId),
+            BookmarkCacheKeys.GetListCacheKey(userId)
+        ];
+
+        foreach (var cacheKey in cacheKeys)
+        {
+            await _distributedCache.RemoveAsync(cacheKey);
+        }
     }
 }

@@ -55,4 +55,22 @@ public class BookmarkController : BaseController
         var bookmark = await _bookmarkService.Create(post.Id, userId);
         return Ok(bookmark);
     }
+    
+    [HttpDelete(("/posts/{documentId}/bookmark"))]
+    public async Task<IActionResult> DeleteBookmark(string documentId)
+    {
+        if (!TryGetUserId(out var userId) || userId == Guid.Empty)
+        {
+            return Unauthorized();
+        }
+
+        var post = await _postService.GetById(documentId);
+        if (post == null)
+        {
+            return NotFound();
+        }
+
+        await _bookmarkService.Remove(post.Id, userId);
+        return Ok();
+    }
 }

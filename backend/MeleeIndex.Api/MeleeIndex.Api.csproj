@@ -18,6 +18,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.9" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1-Preview.1" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
         <PackageReference Include="Serilog" Version="4.3.0" />
@@ -35,6 +36,11 @@
       <ProjectReference Include="..\MeleeIndex.Contracts\MeleeIndex.Contracts.csproj" />
       <ProjectReference Include="..\MeleeIndex.DAL\MeleeIndex.DAL.csproj" />
       <ProjectReference Include="..\MeleeIndex.Services\MeleeIndex.Services.csproj" />
+      <ProjectReference Include="..\MeleeIndex.Startup\MeleeIndex.Startup.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Startup\" />
     </ItemGroup>
 
 </Project>

@@ -33,9 +33,9 @@ public class ResponseCachingMiddleware
         var cachedResult = await _cache.GetStringAsync(cacheKey);
         if (cachedResult is not null)
         {
-            context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(cachedResult);
-            return;
+            // context.Response.ContentType = "application/json";
+            // await context.Response.WriteAsync(cachedResult);
+            // return;
         }
 
         // Value is not known within the cache, capture the body and write it to the cache.
