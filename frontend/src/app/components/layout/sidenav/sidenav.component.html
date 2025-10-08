@@ -1,0 +1,55 @@
+<div class="h-full w-full">
+  <p-menu
+    [model]="items"
+    class="flex justify-center"
+    styleClass="w-full h-screen"
+  >
+    <ng-template #start>
+      <span class="inline-flex items-center gap-1 px-2 py-2">
+        <svg
+          width="33"
+          height="35"
+          viewBox="0 0 33 35"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="block mx-auto"
+        >
+          <path d="..." fill="var(--primary-color)" />
+        </svg>
+        <span class="text-xl font-semibold">
+          Melee<span class="text-primary">Index</span>
+        </span>
+      </span>
+    </ng-template>
+    <ng-template #submenuheader let-item>
+      <span class="text-primary font-bold">{{ item.label }}</span>
+    </ng-template>
+    <ng-template #item let-item>
+      @if (item.routerLink){
+      <a
+        [routerLink]="item.routerLink"
+        routerLinkActive="bg-gray-200 dark:bg-gray-800"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center p-menu-item-link"
+        pRipple
+        >
+        <span [class]="item.icon"></span>
+        <span class="ml-2 w-full">{{ item.label }}</span>
+      </a>
+      } @else if (item.click) {
+      <a
+        (click)="item.click()"
+        class="flex items-center p-menu-item-link"
+        pRipple
+        ><span [class]="item.icon"></span>
+        <span class="ml-2 w-full">{{ item.label }}</span>
+      </a>
+      } @else {
+      <span class="flex items-center p-menu-item-link" pRipple
+        ><span [class]="item.icon"></span>
+        <span class="ml-2 w-full">{{ item.label }}</span>
+      </span>
+      }
+    </ng-template>
+  </p-menu>
+</div>

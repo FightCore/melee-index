@@ -1,24 +1,22 @@
+import { AuthService } from '@/app/services/auth/auth.service';
+import { userFeature } from '@/app/state/users/user.reducer';
+import { TokenUser } from '@/models/auth/token-user';
 import { afterNextRender, AfterViewInit, Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { MenuItem } from 'primeng/api';
+import { tap } from 'rxjs';
+import { UserComponent } from '../user/user.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
-import { UserComponent } from './components/layout/user/user.component';
-import { TokenUser } from '@/models/auth/token-user';
-import { Store } from '@ngrx/store';
-import { AuthService } from './services/auth/auth.service';
-import { userFeature } from './state/users/user.reducer';
-import { tap } from 'rxjs';
-import { SidenavComponent } from "./components/layout/sidenav/sidenav.component";
-import { NavbarComponent } from "./components/layout/navbar/navbar.component";
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, MenubarModule, ButtonModule, UserComponent, SidenavComponent, NavbarComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  selector: 'app-navbar',
+  imports: [MenubarModule, ButtonModule, UserComponent],
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.scss',
+  standalone: true,
 })
-export class AppComponent implements AfterViewInit {
+export class NavbarComponent implements AfterViewInit {
   private readonly store = inject(Store);
   private readonly authService = inject(AuthService);
 

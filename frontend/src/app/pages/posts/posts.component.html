@@ -1,7 +1,7 @@
 <div class="p-6">
   <p-toolbar>
     <ng-template #start>
-      <div class="flex gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <app-select-author
           (selectedAuthor)="onSelectedAuthor($event)"
         ></app-select-author>
@@ -20,7 +20,7 @@
     </ng-template>
   </p-toolbar>
 
-  <div class="grid grid-cols-4 gap-4">
+  <div class="grid lg:grid-cols-4 gap-4 md:grid-cols-2 grid-cols-1">
     @for (post of posts; track $index) {
     <app-post-card [post]="post"></app-post-card>
     }
