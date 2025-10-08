@@ -5,11 +5,11 @@ import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { MenuModule } from 'primeng/menu';
 import { RippleModule } from 'primeng/ripple';
-import { UserComponent } from '../user/user.component';
 import { ButtonModule } from 'primeng/button';
 import { TokenUser } from '@/models/auth/token-user';
 import { Store } from '@ngrx/store';
 import { userFeature } from '@/app/state/users/user.reducer';
+import { AuthService } from '@/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -23,6 +23,7 @@ export class SidenavComponent implements AfterViewInit {
   isLightMode = true;
   user: TokenUser | null = null;
   private readonly store = inject(Store);
+  private readonly authService = inject(AuthService);
 
   ngAfterViewInit(): void {
     this.store.select(userFeature.selectUser).subscribe((user) => {
@@ -36,6 +37,10 @@ export class SidenavComponent implements AfterViewInit {
     element?.classList.toggle('dark');
     this.isLightMode = !this.isLightMode;
     this.setMenubarItems(this.user);
+  }
+
+  signout(): void {
+    this.authService.logout();
   }
 
   private setMenubarItems(user: TokenUser | null): void {
@@ -60,7 +65,7 @@ export class SidenavComponent implements AfterViewInit {
 				{
 					label: 'Logout',
 					icon: 'pi pi-sign-out',
-					routerLink: '/logout',
+					click: () => this.signout(),
 				}
       ];
     } else {

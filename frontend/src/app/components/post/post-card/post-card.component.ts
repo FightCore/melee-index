@@ -1,5 +1,5 @@
 import { Article } from '@/models/post/article';
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
@@ -19,21 +19,41 @@ export class PostCardComponent {
 
   readonly post = input.required<Article>();
 
+  private readonly internalPost = signal<Article | null>(null);
+
+  displayPost = computed(() => {
+    const fromInput = this.post();
+    const fromInternal = this.internalPost();
+    return fromInternal || fromInput;
+  })
+  
+
   toggleBookmark(): void {
     if (this.post().bookmarked) {
-      this.post().bookmarked = false;
+      this.updateBookmarked(false);
       this.bookmarkService.remove(this.post().documentId).subscribe({
         error: () => {
-          this.post().bookmarked = true;
+          this.updateBookmarked(true);
         },
       });
     } else {
-      this.post().bookmarked = true;
+      this.updateBookmarked(true);
       this.bookmarkService.add(this.post().documentId).subscribe({
         error: () => {
-          this.post().bookmarked = false;
+          this.updateBookmarked(false);
         },
       });
     }
+  }
+
+  private updateBookmarked(bookmarked: boolean): void {
+    this.internalPost.update((post) => {
+      if (!post) {
+        // Clone the input post as mutating inputs is not allowed
+        post = structuredClone(this.post());
+      }
+      post.bookmarked = bookmarked;
+      return post;
+    });
   }
 }

@@ -1,32 +1,32 @@
 <p-card>
   <ng-template #header>
-    @if (post().cover) {
-    <img alt="Card" class="w-full" src="{{ post().cover!.url }}" />
+    @if (displayPost().cover) {
+    <img alt="Card" class="w-full" src="{{ displayPost().cover!.url }}" />
     }
   </ng-template>
-  <ng-template #title> {{ post().title }} </ng-template>
-  @if(post().author) {
+  <ng-template #title> {{ displayPost().title }} </ng-template>
+  @if(displayPost().author) {
   <ng-template #subtitle>
     <div class="flex items-center gap-2">
       <p-avatar
-        image="{{ post().author.avatar.url }}"
+        image="{{ displayPost().author.avatar.url }}"
         shape="circle"
         size="normal"
       ></p-avatar>
-      <span>Created by {{ post().author.name }}</span>
+      <span>Created by {{ displayPost().author.name }}</span>
     </div>
   </ng-template>
   }
 
   <p>
-    {{ post().description }}
+    {{ displayPost().description }}
   </p>
   <div class="mt-2">
-    @if (post().category) {
-    <p-chip label="#{{ post().category.slug }}"></p-chip>
-    } @if (post().characters && post().characters!.length > 0) {
+    @if (displayPost().category) {
+    <p-chip label="#{{ displayPost().category.slug }}"></p-chip>
+    } @if (displayPost().characters && displayPost().characters!.length > 0) {
     <div class="float-right mt-2">
-      @for (character of post().characters; track $index){
+      @for (character of displayPost().characters; track $index){
       <img
         src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
         class="w-6 h-6 inline-block mr-1"
@@ -40,7 +40,7 @@
   <ng-template #footer>
     <div class="flex gap-4 mt-1">
       <a
-        [routerLink]="'/posts/' + post().documentId + '/' + post().slug"
+        [routerLink]="'/posts/' + displayPost().documentId + '/' + displayPost().slug"
         class="w-full"
         styleClass="w-full"
         pButton
@@ -51,7 +51,7 @@
         (onClick)="toggleBookmark()"
         pButtonIcon
         icon="pi pi-bookmark"
-        [severity]="post().bookmarked ? 'primary' : 'secondary'"
+        [severity]="displayPost().bookmarked ? 'primary' : 'secondary'"
       />
       <p-button pButtonIcon icon="pi pi-share-alt" severity="secondary" />
     </div>
