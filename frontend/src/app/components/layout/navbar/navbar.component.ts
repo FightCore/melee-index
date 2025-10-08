@@ -33,7 +33,6 @@ export class NavbarComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.store
       .select(userFeature.selectUser)
-      .pipe(tap(console.log))
       .subscribe((user) => {
         this.user = user;
         this.setMenubarItems();
