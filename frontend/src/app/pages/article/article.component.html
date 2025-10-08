@@ -1,46 +1,76 @@
-<div class="lg:container mx-auto px-5 lg:px-40">
-  @if (article === null) {
-  <p>Loading...</p>
-  } @else {
-  <h1 class="text-3xl font-bold">{{ article.title }}</h1>
-  <h3>
-    Written by <a href="#" class="text-primary"> {{ article.author.name }} </a>
-  </h3>
-  <hr class="my-2" />
-  @for (block of article.blocks; track block.__component + block.id) {
-  <div class="my-2">
-    @switch (block.__component) { @case('shared.rich-text') {
-    <app-rich-text [block]="block"></app-rich-text>
-    } @case ('fightcore.move-embed') {
-    <app-fightcore-move-data [block]="block"></app-fightcore-move-data>
-    } @case ('shared.media') {
-    <app-media [block]="block"></app-media>
-    } @case ('shared.slider') {
-    <app-slider [block]="block"></app-slider>
-    } @case ('shared.quote') {
-    <app-quote [block]="block"></app-quote>
-    } @case ('youtube.video-embed') {
-    <app-youtube-embed [block]="block"></app-youtube-embed>
-    } @case ('exercise.knowledge-check') {
-    <app-knowledge-check [block]="block"></app-knowledge-check>
-    } @default {
-    <p>Unknown block type</p>
-    <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
-      {{ block | json }}
-    </code>
-    } }
+@if (article === null) {
+<p>Loading...</p>
+} @else {
+<div class="flex">
+  <div class="w-full lg:w-3/4 mx-auto px-5 lg:px-10">
+    <h1 class="text-3xl font-bold">{{ article.title }}</h1>
+    <hr class="my-2" />
+    @for (block of article.blocks; track block.__component + block.id) {
+    <div class="my-2">
+      @switch (block.__component) { @case('shared.rich-text') {
+      <app-rich-text [block]="block"></app-rich-text>
+      } @case ('fightcore.move-embed') {
+      <app-fightcore-move-data [block]="block"></app-fightcore-move-data>
+      } @case ('shared.media') {
+      <app-media [block]="block"></app-media>
+      } @case ('shared.slider') {
+      <app-slider [block]="block"></app-slider>
+      } @case ('shared.quote') {
+      <app-quote [block]="block"></app-quote>
+      } @case ('youtube.video-embed') {
+      <app-youtube-embed [block]="block"></app-youtube-embed>
+      } @case ('exercise.knowledge-check') {
+      <app-knowledge-check [block]="block"></app-knowledge-check>
+      } @default {
+      <p>Unknown block type</p>
+      <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
+        {{ block | json }}
+      </code>
+      } }
+    </div>
+    }
+    <hr class="my-8" />
+    <p-accordion value="0">
+      <p-accordion-panel value="1">
+        <p-accordion-header>Nerd info</p-accordion-header>
+        <p-accordion-content>
+          <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
+            {{ article | json }}
+          </code>
+        </p-accordion-content>
+      </p-accordion-panel>
+    </p-accordion>
   </div>
-  }
-  <hr class="my-8" />
-  <p-accordion value="0">
-    <p-accordion-panel value="1">
-      <p-accordion-header>Nerd info</p-accordion-header>
-      <p-accordion-content>
-        <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
-          {{ article | json }}
-        </code>
-      </p-accordion-content>
-    </p-accordion-panel>
-  </p-accordion>
-  }
+  <div class="w-full lg:w-1/4 px-5">
+    <p-card>
+      <ng-template #title>
+        <p-avatar
+          image="{{ article.author.avatar.url }}"
+          shape="circle"
+          size="normal"
+        ></p-avatar>
+        {{ article.author.name }}</ng-template
+      >
+      <p class="text-sm">
+        {{ article.author.bio?.substring(0, 200)
+        }}{{
+          article.author.bio && article.author.bio.length > 200 ? "..." : ""
+        }}
+      </p>
+      @if (article.author.mains && article.author.mains.length > 0) {
+      <hr class="my-2" />
+      <p>Mains:</p>
+      <ul>
+        @for (main of article.author.mains; track main.slug) {
+        <img
+          src="https://www.fightcore.gg/newicons/{{ main.name }}.webp"
+          class="w-6 h-6 inline-block mr-1"
+          alt="Character {{ main.name }}"
+        />
+        }
+      </ul>
+      }
+    </p-card>
+  </div>
 </div>
+}

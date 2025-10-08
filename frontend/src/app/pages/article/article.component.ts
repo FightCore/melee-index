@@ -12,6 +12,8 @@ import { KnowledgeCheckComponent } from '@/app/components/content/knowledge-chec
 import { AccordionModule } from 'primeng/accordion';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@/models/post/article';
+import { CardModule } from "primeng/card";
+import { Avatar } from "primeng/avatar";
 
 @Component({
   selector: 'app-article',
@@ -26,7 +28,9 @@ import { Article } from '@/models/post/article';
     YoutubeEmbedComponent,
     KnowledgeCheckComponent,
     AccordionModule,
-  ],
+    CardModule,
+    Avatar
+],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss',
 })
