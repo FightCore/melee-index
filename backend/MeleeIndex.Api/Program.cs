@@ -8,16 +8,34 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using Serilog.Events;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
+
+builder.Logging.ClearProviders();
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
+
+builder.Logging.AddSerilog(logger);
+
 var jwtConfiguration = builder.Configuration.GetSection(JwtConfiguration.Key).Get<JwtConfiguration>();
 
 builder.Services.Configure<JwtConfiguration>(builder.Configuration.GetSection(JwtConfiguration.Key));
 builder.Services.Configure<OAuthConfiguration>(builder.Configuration.GetSection(OAuthConfiguration.Key));
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddSerilog(logger);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -59,13 +77,23 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+app.UseSerilogRequestLogging(options =>
+{
+    options.Logger = logger;
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "v1");
+    });
 }
 
 app.UseCors("AllowAll");
+
 
 app.UseHttpsRedirection();
 

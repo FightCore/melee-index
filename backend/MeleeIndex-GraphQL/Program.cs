@@ -1,5 +1,7 @@
 using MeleeIndex.DAL;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Events;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,23 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
     .AddUserSecrets(Assembly.GetExecutingAssembly())
     .AddEnvironmentVariables();
+
+builder.Logging.ClearProviders();
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+builder.Logging.AddSerilog(logger);
+
+builder.Services.AddSerilog(logger);
+
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -24,10 +43,11 @@ builder.AddGraphQL().RegisterDbContextFactory<IndexDbContext>().AddProjections()
 
 builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
-
-
 var app = builder.Build();
-
+app.UseSerilogRequestLogging(options =>
+{
+    options.Logger = logger;
+});
 
 app.MapGraphQL();
 
