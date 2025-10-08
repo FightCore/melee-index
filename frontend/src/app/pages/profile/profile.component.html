@@ -1,11 +1,11 @@
-<div class="text-center mb-5">
-  <h1 class="text-5xl font-bold text-900 mb-2">Your Profile Settings</h1>
-  <p class="text-lg text-600">
-    Manage your personal information and preferences.
-  </p>
-</div>
-<div class="flex flex-column align-items-center h-full w-full p-4">
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Profile</h2>
+
+<div class="flex flex-column align-items-center h-full w-full">
   <p-card class="w-full md:max-w-5xl shadow-2 p-6 mx-auto">
+    <ng-template pTemplate="header">
+      <div class="text-xl">Edit Profile</div>
+    </ng-template>
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-fluid">
       <div class="field mb-4">
         <label for="username" class="block text-900 font-medium mb-2"
@@ -58,8 +58,9 @@
       </div>
 
       <div class="flex justify-content-end">
-        <p-button label="Update Profile" type="submit" icon="pi pi-check" />
+        <p-button label="Save" type="submit" icon="pi pi-save" />
       </div>
     </form>
   </p-card>
+</div>
 </div>
