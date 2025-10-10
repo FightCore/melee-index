@@ -1,0 +1,27 @@
+<Solution>
+  <Folder Name="/1 Models/">
+    <Project Path="MeleeIndex.Models/MeleeIndex.Models.csproj" />
+  </Folder>
+  <Folder Name="/2 Data/">
+    <Project Path="MeleeIndex.DAL/MeleeIndex.DAL.csproj" />
+  </Folder>
+  <Folder Name="/3 Repositories/">
+    <Project Path="MeleeIndex.Repositories/MeleeIndex.Repositories.csproj" />
+  </Folder>
+  <Folder Name="/4 Services/">
+    <Project Path="MeleeIndex.Services/MeleeIndex.Services.csproj" />
+  </Folder>
+  <Folder Name="/5 API/">
+    <Project Path="MeleeIndex-GraphQL/MeleeIndex.GraphQL.csproj" />
+    <Project Path="MeleeIndex.Api/MeleeIndex.Api.csproj" />
+    <Project Path="MeleeIndex.Configurations/MeleeIndex.Configurations.csproj" />
+    <Project Path="MeleeIndex.Contracts/MeleeIndex.Contracts.csproj" />
+    <Project Path="MeleeIndex.Startup/MeleeIndex.Startup.csproj" />
+  </Folder>
+  <Folder Name="/6 Utilities/">
+    <Project Path="MeleeIndex.Utilities/MeleeIndex.Utilities.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+</Solution>
