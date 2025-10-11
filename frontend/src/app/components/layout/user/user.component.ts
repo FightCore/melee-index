@@ -37,6 +37,11 @@ export class UserComponent implements OnInit {
           routerLink: '/profile',
         },
         {
+          label: 'Bookmarks',
+          icon: 'pi pi-user',
+          routerLink: '/bookmarks',
+        },
+        {
           label: 'Sign out',
           icon: 'pi pi-sign-out',
           command: () => {
