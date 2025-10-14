@@ -2,9 +2,9 @@
 <p>Loading...</p>
 } @else {
 <div class="flex">
-  <div class="w-full lg:w-3/4 mx-auto px-5 lg:px-10">
-    <h1 class="text-3xl font-bold">{{ article.title }}</h1>
-    <hr class="my-2" />
+  <div class="w-full lg:w-3/4 mx-auto px-5 lg:px-10 bg-white">
+    <h1 class="text-6xl font-bold mb-2">{{ article.title }}</h1>
+    <h4>{{ article.description }}</h4>
     @for (block of article.blocks; track block.__component + block.id) {
     <div class="my-2">
       @switch (block.__component) { @case('shared.rich-text') {
@@ -42,35 +42,7 @@
     </p-accordion>
   </div>
   <div class="w-full lg:w-1/4 px-5">
-    <p-card>
-      <ng-template #title>
-        <p-avatar
-          image="{{ article.author.avatar.url }}"
-          shape="circle"
-          size="normal"
-        ></p-avatar>
-        {{ article.author.name }}</ng-template
-      >
-      <p class="text-sm">
-        {{ article.author.bio?.substring(0, 200)
-        }}{{
-          article.author.bio && article.author.bio.length > 200 ? "..." : ""
-        }}
-      </p>
-      @if (article.author.mains && article.author.mains.length > 0) {
-      <hr class="my-2" />
-      <p>Mains:</p>
-      <ul>
-        @for (main of article.author.mains; track main.slug) {
-        <img
-          src="https://www.fightcore.gg/newicons/{{ main.name }}.webp"
-          class="w-6 h-6 inline-block mr-1"
-          alt="Character {{ main.name }}"
-        />
-        }
-      </ul>
-      }
-    </p-card>
+    <app-author-card [author]="article.author"></app-author-card>
   </div>
 </div>
 }

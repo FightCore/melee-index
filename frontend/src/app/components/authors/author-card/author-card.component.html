@@ -1,0 +1,47 @@
+<p-card>
+  <ng-template #title>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <p-avatar
+          image="{{ author().avatar.url }}"
+          shape="circle"
+          size="large"
+        ></p-avatar>
+        <p>
+          {{ author().name }}
+        </p>
+      </div>
+      <div class="flex flex-col items-end">
+        <p-button size="small" label="Follow"></p-button>
+
+        @if (author().mains && author().mains.length > 0) {
+        <ul class="mt-2">
+          @for (main of author().mains; track main.slug) {
+          <img
+            src="https://www.fightcore.gg/newicons/{{ main.name }}.webp"
+            class="w-6 h-6 inline-block ml-1"
+            alt="Character {{ main.name }}"
+          />
+          }
+        </ul>
+        }
+      </div>
+    </div>
+    <p class="text-sm text-gray-400">
+      Joined: {{ author().createdAt | date : "mediumDate" }}
+    </p>
+  </ng-template>
+  <hr class="my-2" />
+  <p class="text-sm">
+    {{ author().bio?.substring(0, 200)
+    }}{{ author().bio && author().bio!.length > 200 ? "..." : "" }}
+  </p>
+
+  <ng-template #footer>
+    <p-button variant="text" icon="pi pi-globe"></p-button>
+    <p-button variant="text" icon="pi pi-twitter"></p-button>
+    <p-button variant="text" icon="pi pi-hashtag"></p-button>
+    <p-button variant="text" icon="pi pi-youtube"></p-button>
+    <p-button variant="text" icon="pi pi-twitch"></p-button>
+  </ng-template>
+</p-card>

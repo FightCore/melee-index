@@ -1,15 +1,14 @@
 @if(user) {
-  <p-button
-    type="button"
-    icon="pi pi-user"
-    (click)="toggleMenu($event)"
-    ariaControls="user_menu"
-    ariaHaspopup="true"
-    [rounded]="true"
-    [text]="true"
-  />
-  <p-menu #menu [model]="items" popup="true" />
-}
-@else {
-  <a routerLink="/login" class="font-bold">Login</a>
+<p-button
+  type="button"
+  icon="pi pi-user"
+  (click)="toggleMenu($event)"
+  ariaControls="user_menu"
+  ariaHaspopup="true"
+  size="small"
+  variant="outlined"
+/>
+<p-menu #menu [model]="items" popup="true" />
+} @else {
+<a routerLink="/login" class="font-bold">Login</a>
 }

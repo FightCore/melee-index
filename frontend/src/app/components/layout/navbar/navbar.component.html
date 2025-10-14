@@ -1,19 +1,37 @@
 <div class="card">
-  <p-menubar [model]="items">
+  <p-menubar>
     <ng-template #start>
-      <img
-        src="https://i.fightcore.gg/clients/fightcore.png"
-        width="30"
-        alt="FightCore logo"
-      />
+      <span class="inline-flex items-center gap-1 px-2 py-2">
+        <svg
+          width="33"
+          height="35"
+          viewBox="0 0 33 35"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="block mx-auto"
+        >
+          <path d="..." fill="var(--primary-color)" />
+        </svg>
+        <span class="text-xl font-semibold">
+          <i class="pi pi-book"></i>
+          Melee<span class="text-primary">Index</span>
+        </span>
+      </span>
     </ng-template>
     <ng-template #end>
-      <app-user></app-user>
-      <p-button
-        [icon]="'pi ' + (isLightMode ? 'pi-moon' : 'pi-sun')"
-        variant="text"
-        (onClick)="toggleDarkMode()"
-      />
+      <div class="flex gap-1">
+        <p-button icon="pi pi-search" variant="outlined" size="small" />
+        <p-button icon="pi pi-discord" variant="outlined" size="small" />
+        <p-button icon="pi pi-github" variant="outlined" size="small" />
+        <span class="mr-2"></span>
+        <app-user></app-user>
+        <p-button
+          [icon]="'pi ' + (isLightMode ? 'pi-moon' : 'pi-sun')"
+          variant="outlined"
+          (onClick)="toggleDarkMode()"
+          size="small"
+        />
+      </div>
     </ng-template>
   </p-menubar>
 </div>

@@ -10,10 +10,11 @@ import { TokenUser } from '@/models/auth/token-user';
 import { Store } from '@ngrx/store';
 import { userFeature } from '@/app/state/users/user.reducer';
 import { AuthService } from '@/app/services/auth/auth.service';
+import { MenubarModule } from 'primeng/menubar';
 
 @Component({
   selector: 'app-sidenav',
-  imports: [MenuModule, BadgeModule, RippleModule, AvatarModule, RouterModule, ButtonModule],
+  imports: [MenuModule, BadgeModule, RippleModule, AvatarModule, RouterModule, ButtonModule, MenubarModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
   standalone: true,
@@ -44,38 +45,23 @@ export class SidenavComponent implements AfterViewInit {
   }
 
   private setMenubarItems(user: TokenUser | null): void {
-    let profileSection = [];
+    let profileSection: MenuItem | null = null;
     if (user) {
-      profileSection = [
-        {
-          label: 'Profile',
-          icon: 'pi pi-user',
-          routerLink: '/profile',
-        },
-        {
-          label: 'Bookmarks',
-          icon: 'pi pi-bookmark',
-          routerLink: '/bookmarks',
-        },
-        {
-          label: 'Settings',
-          icon: 'pi pi-cog',
-          routerLink: '/settings',
-        },
-				{
-					label: 'Logout',
-					icon: 'pi pi-sign-out',
-					click: () => this.signout(),
-				}
-      ];
-    } else {
-      profileSection = [
-        {
-          label: 'Login',
-          icon: 'pi pi-sign-in',
-          routerLink: '/login',
-        },
-      ];
+      profileSection = {
+        label: 'Profile',
+        items: [
+          {
+            label: 'Profile',
+            icon: 'pi pi-user',
+            routerLink: '/profile',
+          },
+          {
+            label: 'Bookmarks',
+            icon: 'pi pi-bookmark',
+            routerLink: '/bookmarks',
+          },
+        ],
+      };
     }
 
     this.items = [
@@ -100,30 +86,7 @@ export class SidenavComponent implements AfterViewInit {
       {
         separator: true,
       },
-      {
-        label: 'Profile',
-        items: profileSection,
-      },
-      {
-        separator: true,
-      },
-      {
-        label: '',
-        items: [
-          {
-            label: 'About',
-						icon: 'pi pi-info-circle',
-          },
-          {
-            label: 'Dark Mode',
-            click: () => this.toggleDarkMode(),
-            icon: 'pi ' + (this.isLightMode ? 'pi-moon' : 'pi-sun'),
-          },
-        ],
-      },
-      {
-        separator: true,
-      },
+      ...(profileSection ? [profileSection] : []),
     ];
   }
 }

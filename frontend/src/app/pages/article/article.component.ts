@@ -12,8 +12,10 @@ import { KnowledgeCheckComponent } from '@/app/components/content/knowledge-chec
 import { AccordionModule } from 'primeng/accordion';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@/models/post/article';
-import { CardModule } from "primeng/card";
-import { Avatar } from "primeng/avatar";
+import { CardModule } from 'primeng/card';
+import { Avatar } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+import { AuthorCardComponent } from '@/app/components/authors/author-card/author-card.component';
 
 @Component({
   selector: 'app-article',
@@ -29,8 +31,10 @@ import { Avatar } from "primeng/avatar";
     KnowledgeCheckComponent,
     AccordionModule,
     CardModule,
-    Avatar
-],
+    Avatar,
+    ButtonModule,
+    AuthorCardComponent,
+  ],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss',
 })
