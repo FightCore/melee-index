@@ -2,7 +2,7 @@
 <p>Loading...</p>
 } @else {
 <div class="flex">
-  <div class="w-full lg:w-3/4 mx-auto px-5 lg:px-10 bg-white">
+  <div class="w-full lg:w-3/4 mx-auto px-5 lg:px-10 bg-white dark:bg-zinc-900">
     <h1 class="text-6xl font-bold mb-2">{{ article.title }}</h1>
     <h4>{{ article.description }}</h4>
     @for (block of article.blocks; track block.__component + block.id) {
