@@ -1,9 +1,11 @@
 @if (article === null) {
 <p>Loading...</p>
 } @else {
-<div class="flex">
-  <div class="w-full lg:w-3/4 mx-auto px-5 lg:px-10 bg-white dark:bg-zinc-900 shadow-sm rounded-md pt-4">
-    <h1 class="text-6xl font-bold mb-4">{{ article.title }}</h1>
+<div class="md:flex">
+  <div
+    class="w-full lg:w-3/4 mx-auto px-5 lg:px-10 bg-white dark:bg-zinc-900 shadow-sm rounded-md pt-4"
+  >
+    <h1 class="text-3xl md:text-6xl font-bold mb-4">{{ article.title }}</h1>
     <p>{{ article.introduction }}</p>
     <hr class="my-8" />
     @for (block of article.blocks; track block.__component + block.id) {
