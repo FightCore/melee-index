@@ -18,6 +18,8 @@ public static class DependencyInjection
         services.AddStrapiHttpClient<IStrapiAuthorRepository, StrapiAuthorRepository>(strapiConfiguration);
         services.AddStrapiHttpClient<IStrapiCategoryRepository, StrapiCategoryRepository>(strapiConfiguration);
         services.AddStrapiHttpClient<IStrapiCharacterRepository, StrapiCharacterRepository>(strapiConfiguration);
+        services.AddStrapiHttpClient<IStrapiSourceRepository, StrapiSourceRepository>(strapiConfiguration);
+        services.AddStrapiHttpClient<IStrapiResourceRepository, StrapiResourceRepository>(strapiConfiguration);
         
         return services.AddScoped<IPostRepository, PostRepository>()
             .AddScoped<IBookmarkRepository, BookmarkRepository>();

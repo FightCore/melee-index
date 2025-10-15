@@ -28,4 +28,14 @@ public class Query
     {
         return dbContext.Authors.Select(author => author.Data);
     }
+
+    public IQueryable<SourceData> GetSources(IndexDbContext dbContext)
+    {
+        return dbContext.Sources.Select(source => source.Data);
+    }
+
+    public IQueryable<ResourceData> GetResources(IndexDbContext dbContext)
+    {
+        return dbContext.Resources.Select(resource => resource.Data);
+    }
 }

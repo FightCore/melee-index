@@ -19,6 +19,10 @@ public class IndexDbContext(DbContextOptions<IndexDbContext> options) : DbContex
     public DbSet<User> Users { get; set; }
     
     public DbSet<Bookmark> Bookmarks { get; set; }
+    
+    public DbSet<Source> Sources { get; set; }
+    
+    public DbSet<Resource> Resources { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -28,6 +32,8 @@ public class IndexDbContext(DbContextOptions<IndexDbContext> options) : DbContex
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new CharacterConfiguration());
         modelBuilder.ApplyConfiguration(new BookmarkConfiguration());
+        modelBuilder.ApplyConfiguration(new SourceConfiguration());
+        modelBuilder.ApplyConfiguration(new ResourceConfiguration());
 
         var entityTypes = typeof(Post).Assembly.GetTypes()
             .Where(t => typeof(IEntity).IsAssignableFrom(t) && !t.IsAbstract);

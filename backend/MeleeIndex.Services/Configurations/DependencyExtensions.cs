@@ -17,6 +17,8 @@ public static class DependencyExtensions
             .AddScoped<IEntitySyncService, AuthorSyncService>()
             .AddScoped<IEntitySyncService, CategorySyncService>()
             .AddScoped<IEntitySyncService, CharacterSyncService>()
+            .AddScoped<IEntitySyncService, ResourceSyncService>()
+            .AddScoped<IEntitySyncService, SourceSyncService>()
             .AddScoped<IStrapiSyncService, StrapiSyncService>()
             .AddScoped<IPostService, PostService>()
             .AddScoped<IJwtService, JwtService>()
