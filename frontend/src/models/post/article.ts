@@ -8,6 +8,7 @@ export interface Article {
   id: number;
   title: string;
   description: string;
+  introduction: string;
   slug: string;
   documentId: string;
   blocks: ComponentType[];
