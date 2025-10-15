@@ -1,0 +1,48 @@
+<p-card>
+  @if (resource().preview) {
+  <ng-template #header>
+    <img class="w-full" src="{{ resource().preview.url }}" />
+  </ng-template>
+  }
+  <ng-template #title>{{ resource().name }}</ng-template>
+  <ng-template #subtitle>
+    <div class="flex items-center gap-2">
+      <p-avatar image="{{ resource().icon.url }}" size="normal" />
+      <p>
+        Hosted on
+        <a
+          class="underline"
+          [href]="resource().source.url"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ resource().source.name }}
+        </a>
+      </p>
+    </div>
+  </ng-template>
+  <p>
+    {{ resource().description }}
+  </p>
+  <ng-template #footer>
+    <a
+      [href]="resource().url"
+      target="_blank"
+      rel="noopener noreferrer"
+      pButton
+    >
+      <i class="pi pi-external-link"></i> Visit resource
+    </a>
+    @if (resource().characters && resource().characters!.length > 0) {
+    <div class="float-right mt-2">
+      @for (character of resource().characters; track $index){
+      <img
+        src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
+        class="w-6 h-6 inline-block mr-1"
+        alt="Character"
+      />
+      }
+    </div>
+    }
+  </ng-template>
+</p-card>

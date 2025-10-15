@@ -1,7 +1,15 @@
 <div class="w-full">
-    @for (character of characters; track $index) {
-        <img src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
-            class="w-10 h-10 inline-block mr-4"
-            alt="{{character.name}} Icon" />
-    }
+  @for (character of characters; track $index) {
+  <p-button
+    (onClick)="onClickCharacter(character)"
+    [severity]="character === internalSelectedCharacter ? 'primary' : undefined"
+    [variant]="character === internalSelectedCharacter ? undefined : 'text'"
+  >
+    <img
+      src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
+      class="w-10 h-10 inline-block"
+      alt="{{ character.name }} Icon"
+    />
+  </p-button>
+  }
 </div>
