@@ -12,7 +12,6 @@
         </p>
       </div>
       <div class="flex flex-col items-end">
-        <p-button size="small" label="Follow"></p-button>
 
         @if (author().mains && author().mains.length > 0) {
         <ul class="mt-2">
@@ -38,10 +37,16 @@
   </p>
 
   <ng-template #footer>
-    <p-button variant="text" icon="pi pi-globe"></p-button>
-    <p-button variant="text" icon="pi pi-twitter"></p-button>
-    <p-button variant="text" icon="pi pi-hashtag"></p-button>
-    <p-button variant="text" icon="pi pi-youtube"></p-button>
-    <p-button variant="text" icon="pi pi-twitch"></p-button>
+    <div class="w-full flex gap-1 mb-2">
+    <p-button size="small" variant="text" icon="pi pi-globe"></p-button>
+    <p-button size="small" variant="text" icon="pi pi-twitter"></p-button>
+    <p-button size="small" variant="text" icon="pi pi-hashtag"></p-button>
+    <p-button size="small" variant="text" icon="pi pi-youtube"></p-button>
+    <p-button size="small" variant="text" icon="pi pi-twitch"></p-button>
+    </div>
+    <div class="flex gap-2 justify-between">
+      <p-button size="small" label="View"></p-button>
+      <p-button size="small" label="Follow"></p-button>
+    </div>
   </ng-template>
 </p-card>
