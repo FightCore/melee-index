@@ -1,6 +1,6 @@
 <p-card>
   <ng-template #header>
-    @if (displayPost().cover) {
+    @if (displayPost().cover && !compact()) {
     <img alt="Card" class="w-full" src="{{ displayPost().cover!.url }}" />
     }
   </ng-template>

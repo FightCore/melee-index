@@ -1,0 +1,13 @@
+<div class="max-w-full bg-white dark:bg-zinc-800 shadow-sm rounded-md p-5">
+  <app-character-selection-bar></app-character-selection-bar>
+</div>
+
+<div class="w-full my-3 flex">
+  <div class="w-2/3">Placeholder</div>
+  <div class="w-1/3">
+    <h1 class="text-xl mb-1">Latest posts</h1>
+    @for (post of latestPosts; track $index) {
+    <app-post-card [compact]="true" [post]="post" class="mb-4"></app-post-card>
+    }
+  </div>
+</div>

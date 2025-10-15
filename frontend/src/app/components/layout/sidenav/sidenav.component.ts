@@ -69,7 +69,7 @@ export class SidenavComponent implements AfterViewInit {
         separator: true,
       },
       {
-        label: 'Posts',
+        label: '',
         items: [
           {
             label: 'Home',
@@ -80,6 +80,11 @@ export class SidenavComponent implements AfterViewInit {
             label: 'Posts',
             icon: 'pi pi-file',
             routerLink: '/posts',
+          },
+          {
+            label: 'Characters',
+            icon: 'pi pi-users',
+            routerLink: '/characters',
           },
         ],
       },

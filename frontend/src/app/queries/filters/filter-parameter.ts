@@ -26,6 +26,7 @@ export interface CharacterFilter {
   slug?: StringFilter;
   or?: OrFilter<CharacterFilter>;
   and?: AndFilter<CharacterFilter>;
+  any?: boolean;
 }
 
 export interface CategoryFilter {

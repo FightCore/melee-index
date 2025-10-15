@@ -18,6 +18,7 @@ export class PostCardComponent {
   private readonly bookmarkService = inject(BookmarkService);
 
   readonly post = input.required<Article>();
+  readonly compact = input<boolean>(false);
 
   private readonly internalPost = signal<Article | null>(null);
 
