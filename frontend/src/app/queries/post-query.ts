@@ -7,6 +7,7 @@ export const GET_LATEST_POSTS = gql`
         id
         documentId
         bookmarked
+        slug
         title
         description
         cover {
@@ -40,6 +41,7 @@ export const GET_POSTS_WITH_FILTERS = gql`
         documentId
         bookmarked
         title
+        slug
         description
         cover {
           url
