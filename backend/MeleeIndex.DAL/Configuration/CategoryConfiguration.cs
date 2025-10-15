@@ -11,7 +11,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
     {
-        builder.Property(author => author.CategoryData)
+        builder.Property(author => author.Data)
             .IsRequired()
             .HasColumnType("jsonb")
             .HasConversion(

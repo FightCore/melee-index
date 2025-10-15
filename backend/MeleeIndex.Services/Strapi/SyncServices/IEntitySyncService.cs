@@ -1,4 +1,4 @@
-﻿namespace MeleeIndex.Services.Strapi;
+﻿namespace MeleeIndex.Services.Strapi.SyncServices;
 
 public interface IEntitySyncService
 {

@@ -17,7 +17,7 @@ public static class CharacterMapper
             UpdatedAt = character.UpdatedAt,
             DocumentId = character.DocumentId,
             StrapiId = character.Id,
-            CharacterData = JsonSerializer.Deserialize<CharacterData>(JsonSerializer.Serialize(character, SerializationOptions.CamelCase))!,
+            Data = JsonSerializer.Deserialize<CharacterData>(JsonSerializer.Serialize(character, SerializationOptions.CamelCase))!,
         };
     }
 }

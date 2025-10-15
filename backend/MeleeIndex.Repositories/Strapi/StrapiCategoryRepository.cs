@@ -3,26 +3,17 @@ using System.Net.Http.Json;
 
 namespace MeleeIndex.Repositories.Strapi;
 
-public interface IStrapiCategoryRepository
+public interface IStrapiCategoryRepository : IStrapiRepository<StrapiCategory>
 {
-    Task<StrapiRequest<StrapiCategory>?> Get(int page, int pageSize, CancellationToken cancellationToken = default);
 } 
 
-public class StrapiCategoryRepository : IStrapiCategoryRepository
+public class StrapiCategoryRepository : StrapiRepository<StrapiCategory>, IStrapiCategoryRepository
 { 
-    private readonly HttpClient _httpClient;
-
-    public StrapiCategoryRepository(HttpClient httpClient)
+    public StrapiCategoryRepository(HttpClient httpClient) : base(httpClient)
     {
-        _httpClient = httpClient;
     }
 
-    public async Task<StrapiRequest<StrapiCategory>?> Get(int page, int pageSize, CancellationToken cancellationToken = default)
-    {
-        var url = $"api/categories?pagination[page]={page}&pagination[pageSize]={pageSize}";
-        var response = await _httpClient.GetAsync(url, cancellationToken);
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<StrapiRequest<StrapiCategory>>(cancellationToken);
-    }
+    protected override string Resource => "categories";
     
+    protected override string Populate => string.Empty;
 }

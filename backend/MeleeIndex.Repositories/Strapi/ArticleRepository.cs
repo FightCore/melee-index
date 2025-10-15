@@ -3,25 +3,19 @@ using System.Net.Http.Json;
 
 namespace MeleeIndex.Repositories.Strapi;
 
-public interface IArticleRepository
+public interface IArticleRepository : IStrapiRepository<Article>
 {
-    Task<StrapiRequest<Article>?> Get(int page, int pageSize, CancellationToken cancellationToken = default);
 }
 
-internal class ArticleRepository : IArticleRepository
+internal class ArticleRepository : StrapiRepository<Article>, IArticleRepository
 {
-    private readonly HttpClient _httpClient;
-
-    public ArticleRepository(HttpClient httpClient)
+    public ArticleRepository(HttpClient httpClient) : base(httpClient)
     {
-        _httpClient = httpClient;
     }
 
-    public async Task<StrapiRequest<Article>?> Get(int page, int pageSize, CancellationToken cancellationToken = default)
-    {
-        var url = $"api/articles?pagination[page]={page}&pagination[pageSize]={pageSize}&populate[blocks][populate]=*&populate[author][populate]=*&populate[cover][populate]=*&populate[category][populate]=*&populate[characters][populate]=*";
-        var response = await _httpClient.GetAsync(url, cancellationToken);
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<StrapiRequest<Article>>(cancellationToken);
-    }
+    protected override string Resource => "articles";
+
+    protected override string Populate =>
+        "populate[blocks][populate]=*&populate[author][populate]=*&populate[cover][populate]=*&populate[category][populate]=*&populate[characters][populate]=*";
+    
 }

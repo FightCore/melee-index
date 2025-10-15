@@ -3,26 +3,17 @@ using System.Net.Http.Json;
 
 namespace MeleeIndex.Repositories.Strapi;
 
-public interface IStrapiAuthorRepository
+public interface IStrapiAuthorRepository : IStrapiRepository<StrapiAuthor>
 {
-    Task<StrapiRequest<StrapiAuthor>?> Get(int page, int pageSize, CancellationToken cancellationToken = default);
 } 
 
-public class StrapiAuthorRepository : IStrapiAuthorRepository
+public class StrapiAuthorRepository : StrapiRepository<StrapiAuthor>, IStrapiAuthorRepository
 { 
-    private readonly HttpClient _httpClient;
-
-    public StrapiAuthorRepository(HttpClient httpClient)
+    public StrapiAuthorRepository(HttpClient httpClient) : base(httpClient)
     {
-        _httpClient = httpClient;
     }
 
-    public async Task<StrapiRequest<StrapiAuthor>?> Get(int page, int pageSize, CancellationToken cancellationToken = default)
-    {
-        var url = $"api/authors?pagination[page]={page}&pagination[pageSize]={pageSize}&populate=avatar";
-        var response = await _httpClient.GetAsync(url, cancellationToken);
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<StrapiRequest<StrapiAuthor>>(cancellationToken);
-    }
-    
+    protected override string Resource => "authors";
+
+    protected override string Populate => "populate=avatar";
 }

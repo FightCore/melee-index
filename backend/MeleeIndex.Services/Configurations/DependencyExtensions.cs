@@ -1,6 +1,7 @@
 ﻿using MeleeIndex.Services.Authentication;
 using MeleeIndex.Services.Posts;
 using MeleeIndex.Services.Strapi;
+using MeleeIndex.Services.Strapi.SyncServices;
 using MeleeIndex.Services.Users;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

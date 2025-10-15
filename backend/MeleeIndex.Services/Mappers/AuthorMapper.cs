@@ -17,7 +17,7 @@ public static class AuthorMapper
             UpdatedAt = article.UpdatedAt,
             DocumentId = article.DocumentId,
             StrapiId = article.Id,
-            AuthorData = JsonSerializer.Deserialize<AuthorData>(JsonSerializer.Serialize(article, SerializationOptions.CamelCase))!,
+            Data = JsonSerializer.Deserialize<AuthorData>(JsonSerializer.Serialize(article, SerializationOptions.CamelCase))!,
         };
     }
 }

@@ -17,7 +17,7 @@ public class PostController : ControllerBase
     public async Task<IActionResult> GetPosts()
     {
         var posts = await _postService.GetAll();
-        var jsonPostData = posts.Select(post => post.PostData);
+        var jsonPostData = posts.Select(post => post.Data);
         return Ok(jsonPostData);
     }
     
@@ -31,6 +31,6 @@ public class PostController : ControllerBase
             return NotFound();
         }
         
-        return Ok(post.PostData);
+        return Ok(post.Data);
     }
 }

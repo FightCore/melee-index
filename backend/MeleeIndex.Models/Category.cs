@@ -3,11 +3,6 @@ using MeleeIndex.Models.DataEntities;
 
 namespace MeleeIndex.Models;
 
-public class Category : TrackableEntity
+public class Category : DocumentEntity<CategoryData>
 {
-    public string DocumentId { get; set; }
-    
-    public int StrapiId { get; set; }
-
-    public CategoryData CategoryData { get; set; }
 }

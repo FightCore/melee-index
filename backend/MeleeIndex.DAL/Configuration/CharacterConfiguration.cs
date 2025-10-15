@@ -11,7 +11,7 @@ public class CharacterConfiguration : IEntityTypeConfiguration<Character>
 {
     public void Configure(EntityTypeBuilder<Character> builder)
     {
-        builder.Property(author => author.CharacterData)
+        builder.Property(author => author.Data)
             .IsRequired()
             .HasColumnType("jsonb")
             .HasConversion(

@@ -31,7 +31,7 @@ public class BookmarkController : BaseController
         var posts = await _bookmarkService.GetPostsByUser(userId);
         var postData = posts.Select(post =>
         {
-            var postData = post.PostData;
+            var postData = post.Data;
             postData.AdditionalProperties.Add("bookmarked", JsonSerializer.SerializeToElement(true));
             return postData;
         });

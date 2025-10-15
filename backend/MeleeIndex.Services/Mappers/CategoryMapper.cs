@@ -17,7 +17,7 @@ public static class CategoryMapper
             UpdatedAt = category.UpdatedAt,
             DocumentId = category.DocumentId,
             StrapiId = category.Id,
-            CategoryData = JsonSerializer.Deserialize<CategoryData>(JsonSerializer.Serialize(category, SerializationOptions.CamelCase))!,
+            Data = JsonSerializer.Deserialize<CategoryData>(JsonSerializer.Serialize(category, SerializationOptions.CamelCase))!,
         };
     }
 }

@@ -18,7 +18,7 @@ public static class PostMapper
             PublishedAt = article.PublishedAt,
             DocumentId = article.DocumentId,
             StrapiId = article.Id,
-            PostData = JsonSerializer.Deserialize<PostData>(JsonSerializer.Serialize(article, SerializationOptions.CamelCase))!,
+            Data = JsonSerializer.Deserialize<PostData>(JsonSerializer.Serialize(article, SerializationOptions.CamelCase))!,
         };
     }
 }
