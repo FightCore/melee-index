@@ -91,7 +91,62 @@ export class SidenavComponent implements AfterViewInit {
       {
         separator: true,
       },
-      ...(profileSection ? [profileSection] : []),
+      ...(profileSection
+        ? [
+            profileSection,
+            {
+              separator: true,
+            },
+          ]
+        : []),
+      {
+        label: 'Frame data',
+        items: [
+          {
+            label: 'Frame data',
+            icon: 'pi pi-file',
+            routerLink: '/frame-data',
+          },
+          {
+            label: 'Glossary',
+            icon: 'pi pi-book',
+            routerLink: '/glossary',
+          },
+          {
+            label: 'Crouch Cancel Calculator',
+            icon: 'pi pi-calculator',
+            routerLink: '/crouch-cancel-calculator',
+          },
+          {
+            label: 'Animation Google Drive',
+            icon: 'pi pi-google',
+            routerLink: '/animation-google-drive',
+          },
+        ],
+      },
+      {
+        separator: true,
+      },
+      {
+        label: 'Others (TODO Rename)',
+        items: [
+          {
+            label: 'About',
+            icon: 'pi pi-info-circle',
+            routerLink: '/about',
+          },
+          {
+            label: 'Sources',
+            icon: 'pi pi-github',
+            routerLink: '/credits',
+          },
+          {
+            label: 'Donate',
+            icon: 'pi pi-money-bill',
+            routerLink: '/donate',
+          },
+        ],
+      },
     ];
   }
 }

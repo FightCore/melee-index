@@ -1,6 +1,5 @@
 using MeleeIndex.DAL;
 using MeleeIndex.GraphQL.Middleware;
-using MeleeIndex.GraphQL.Types;
 using MeleeIndex.Startup;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
