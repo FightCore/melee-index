@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OverviewComponent } from './overview.component';
+import { FrameDataOverviewComponent } from './overview.component';
 
 describe('OverviewComponent', () => {
-  let component: OverviewComponent;
-  let fixture: ComponentFixture<OverviewComponent>;
+  let component: FrameDataOverviewComponent;
+  let fixture: ComponentFixture<FrameDataOverviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OverviewComponent]
-    })
-    .compileComponents();
+      imports: [FrameDataOverviewComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(OverviewComponent);
+    fixture = TestBed.createComponent(FrameDataOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

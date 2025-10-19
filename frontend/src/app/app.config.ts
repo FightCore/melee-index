@@ -4,7 +4,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { definePreset } from '@primeng/themes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { provideApollo } from 'apollo-angular';
+import { provideNamedApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 import { provideRouter } from '@angular/router';
@@ -49,13 +49,21 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     provideHttpClient(withInterceptors([tokenInterceptor]), withFetch()),
-    provideApollo(() => {
+    provideNamedApollo(() => {
       const httpLink = inject(HttpLink);
       return {
-        link: httpLink.create({
-          uri: `${environment.graphUrl}/graphql`,
-        }),
-        cache: new InMemoryCache(),
+        default: {
+          link: httpLink.create({
+            uri: `${environment.graphUrl}/graphql`,
+          }),
+          cache: new InMemoryCache(),
+        },
+        frameData: {
+          link: httpLink.create({
+            uri: `${environment.frameDataUrl}/graphql`,
+          }),
+          cache: new InMemoryCache(),
+        },
       };
     }),
     provideStore(),

@@ -1,1 +1,9 @@
-<p>overview works!</p>
+@if (characters$ | async; as characters) {
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+  @for(character of characters; track character.id) {
+  <app-character-card [character]="character"></app-character-card>
+  }
+</div>
+} @else {
+<p-skeleton width="10rem" height="4rem" borderRadius="8px" />
+}
