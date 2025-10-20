@@ -1,0 +1,62 @@
+<p-card>
+  <ng-template #header>
+    @if (move().webmUrl) {
+    <video
+      class="w-full bg-zinc-600 dark:bg-transparent rounded-md"
+      [src]="move().webmUrl"
+      autoplay
+      loop
+      muted
+    ></video>
+    } @else {
+    <p class="p-2 text-sm italic">No animation available</p>
+    }
+  </ng-template>
+  <ng-template #title> {{ move().name }} </ng-template>
+  <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-1 p-2">
+    <div
+      class="bg-primary text-white dark:text-black w-full flex flex-col items-center rounded-md"
+    >
+      <h4 class="block">Start</h4>
+      <p class="block">{{ move().start }}</p>
+    </div>
+    <div
+      class="bg-primary text-white dark:text-black w-full flex flex-col items-center rounded-md"
+    >
+      <h4 class="block">End</h4>
+      <p class="block">{{ move().end }}</p>
+    </div>
+    <div
+      class="bg-primary text-white dark:text-black w-full flex flex-col items-center rounded-md"
+    >
+      <h4 class="block">Total</h4>
+      <p class="block">{{ move().totalFrames }}</p>
+    </div>
+  </div>
+  <div class="w-full px-2 grid grid-cols-2">
+    @for(stat of statistics; track stat.name) {
+    <div>
+      {{ stat.name }}
+    </div>
+    <div class="flex justify-end">{{ stat.value }}</div>
+
+    }
+  </div>
+  @if(move().notes) {
+  <p-divider />
+  <h4 class="text-md">Notes</h4>
+  <p>{{ move().notes }}</p>
+  }
+  <ng-template #footer>
+    <div class="flex gap-4 mt-1">
+      <a
+        pButton
+        routerLink="/frame-data/{{ character().fightCoreId }}/{{
+          character().normalizedName
+        }}/moves/{{ move().id }}/{{ move().normalizedName }}"
+        class="w-full"
+        >View</a
+      >
+    </div>
+  </ng-template>
+</p-card>

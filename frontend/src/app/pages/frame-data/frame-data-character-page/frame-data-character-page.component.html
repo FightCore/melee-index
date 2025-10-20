@@ -1,3 +1,16 @@
-@if(character$ | async; as character) {
-<h2>{{ character.name }}</h2>
-}
+<div class="p-6">
+  @if(character === null) {
+  <p>Loading...</p>
+  } @else {
+  <h2 class="text-2xl font-bold mb-4">{{ character.name }}</h2>
+  @for (moveDisplay of moves; track moveDisplay.name) {
+  <h3 class="text-xl py-2">{{ moveDisplay.name }}</h3>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2"
+  >
+    @for (move of moveDisplay.moves; track move.normalizedName) {
+    <app-move-card [move]="move" [character]="character"></app-move-card>
+    }
+  </div>
+  } }
+</div>

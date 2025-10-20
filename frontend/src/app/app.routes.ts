@@ -34,13 +34,20 @@ export const routes: Routes = [
   {
     path: 'frame-data',
     loadComponent: () =>
-      import('./pages/frame-data//overview/overview.component').then((m) => m.FrameDataOverviewComponent),
+      import('./pages/frame-data/overview/overview.component').then((m) => m.FrameDataOverviewComponent),
   },
   {
     path: 'frame-data/:id/:name',
     loadComponent: () =>
       import('./pages/frame-data/frame-data-character-page/frame-data-character-page.component').then(
         (m) => m.FrameDataCharacterPageComponent
+      ),
+  },
+  {
+    path: 'frame-data/:characterId/:characterName/moves/:moveId/:moveName',
+    loadComponent: () =>
+      import('./pages/frame-data/frame-data-move-page/frame-data-move-page.component').then(
+        (m) => m.FrameDataMovePageComponent
       ),
   },
   { path: '**', redirectTo: '' },

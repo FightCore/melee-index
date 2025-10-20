@@ -1,4 +1,5 @@
 import { CharacterStats } from './character-stats';
+import { Move } from './move';
 
 export interface FrameDataCharacter {
   characterStatistics: CharacterStats;
@@ -6,4 +7,5 @@ export interface FrameDataCharacter {
   id: number;
   name: string;
   normalizedName: string;
+  moves: Move[];
 }

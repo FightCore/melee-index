@@ -1,7 +1,7 @@
 export interface Hitbox {
   angle: number;
   baseKnockback: number;
-  damage: LoginStatus;
+  damage: number;
   effect: string | null;
   hitlagAttacker: number;
   hitlagAttackerCrouched: number;
