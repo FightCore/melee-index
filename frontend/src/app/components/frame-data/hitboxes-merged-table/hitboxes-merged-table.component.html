@@ -1,1 +1,100 @@
-<p>hitboxes-merged-table works!</p>
+@if (flattenedHitboxes){
+<p-table
+  [value]="flattenedHitboxes"
+  sortMode="multiple"
+  [multiSortMeta]="[
+    { field: 'earliestStart', order: 1 },
+    { field: 'name', order: 2 }
+  ]"
+  [scrollable]="true"
+  scrollHeight="400px"
+  rowGroupMode="rowspan"
+  groupRowsBy="hit"
+  [tableStyle]="{ 'min-width': '60rem' }"
+>
+  <ng-template #header>
+    <tr>
+      <th>Hit</th>
+      <th>Name</th>
+      <th>Damage</th>
+      <th>Angle</th>
+      <th>Base Knockback</th>
+      <th>Knockback Growth</th>
+      <th>Set Knockback</th>
+      <th>Effect</th>
+      <th>Hitlag Attacker</th>
+      <th>Hitlag Defender</th>
+      <th>Shieldstun</th>
+    </tr>
+  </ng-template>
+  <ng-template
+    #body
+    let-hit
+    let-rowIndex="rowIndex"
+    let-rowgroup="rowgroup"
+    let-rowspan="rowspan"
+  >
+    <tr>
+      @if (rowgroup) {
+
+      <td [attr.rowspan]="rowspan">
+        <div class="flex justify-start items-center gap-1">
+          @if (hit.color) {
+          <div class="h-5 w-5 {{ hit.color }}"></div>
+          }
+          {{ hit.hit }}
+        </div>
+      </td>
+      }
+      <td>
+        <div class="flex justify-start items-center gap-1">
+          @switch(hit.name) { @case ('id0') {
+          <div class="h-2.5 w-2.5 bg-red-500"></div>
+          } @case ('id1') {
+          <div class="h-2.5 w-2.5 bg-green-500"></div>
+          } @case ('id2') {
+          <div class="h-2.5 w-2.5 bg-blue-300"></div>
+          } @case ('id3') {
+          <div class="h-2.5 w-2.5 bg-purple-500"></div>
+          } }
+          {{ hit.name }}
+        </div>
+      </td>
+      <td>
+        {{ hit.damage }}
+      </td>
+      <td>
+        {{ hit.angle }}
+      </td>
+      <td>
+        {{ hit.baseKnockback }}
+      </td>
+      <td>
+        {{ hit.knockbackGrowth }}
+      </td>
+      <td>
+        {{ hit.setKnockback }}
+      </td>
+      <td>
+        {{ hit.effect }}
+      </td>
+      <td>
+        @if(hit.hitlagAttacker === hit.hitlagAttackerCrouched){
+        {{ hit.hitlagAttacker }}
+        } @else {
+        {{ hit.hitlagAttacker }} (Crouched {{ hit.hitlagAttackerCrouched }}) }
+      </td>
+      <td>
+        @if(hit.hitlagDefender === hit.hitlagDefenderCrouched){
+        {{ hit.hitlagDefender }}
+        } @else {
+
+        {{ hit.hitlagDefender }} (Crouched {{ hit.hitlagDefenderCrouched }}) }
+      </td>
+      <td>
+        {{ hit.shieldstun }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+}

@@ -46,7 +46,7 @@ export class FrameDataCharacterPageComponent {
             (a, b) => moveType.sorting.indexOf(a.normalizedName!) - moveType.sorting.indexOf(b.normalizedName!)
           );
         }
-        console.log(filteredMoves);
+
         moveMap.push({ name: moveType.name, moves: filteredMoves });
       }
     }

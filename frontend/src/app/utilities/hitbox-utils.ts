@@ -66,7 +66,7 @@ export function processDuplicateHitboxes(hits: Hit[]): Hit[] {
 
 export function processDuplicateHits(hits: FlattenedHitbox[]): FlattenedHitbox[] {
   const newHits = cloneObject(hits);
-  // Javascript moment. Gets the unique items in an array that I can then iterate over.
+
   let uniqueHitTexts = getMappedUnique(newHits, (hit) => hit.hit);
   for (let i = uniqueHitTexts.length - 1; i > 0; i--) {
     const firstHits = newHits.filter((hit) => hit.hit === uniqueHitTexts[i]);
@@ -154,6 +154,9 @@ export function generateColors(data: FlattenedHitbox[]): HitboxColor[] {
 export interface FlattenedHitbox extends Hitbox {
   hit: string;
   hitObjects: Hit[];
+  earliestStart: number;
+  latestEnd: number;
+  color?: string | null;
 }
 
 export function flattenData(hits: Hit[]): FlattenedHitbox[] {
@@ -161,6 +164,8 @@ export function flattenData(hits: Hit[]): FlattenedHitbox[] {
     hit.hitboxes.flatMap((hitbox) => ({
       hit: hit.name ? hit.name : hit.start + ' - ' + hit.end,
       hitObjects: [hit],
+      earliestStart: hit.start,
+      latestEnd: hit.end,
       ...hitbox,
     }))
   );
