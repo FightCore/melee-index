@@ -132,7 +132,9 @@ const colors = [
   'bg-lime-500',
 ];
 
-export function generateColors(data: FlattenedHitbox[]): HitboxColor[] {
+const hexColors = ['#ef4444', '#3b82f6', '#22c55e', '#a855f7', '#ffffff'];
+
+export function generateColors(data: FlattenedHitbox[], useHex = false): HitboxColor[] {
   const result: HitboxColor[] = [];
   const uniqueTexts = getMappedUnique(data, (hitbox) => hitbox.hit);
   let iterator = 0;
@@ -145,7 +147,7 @@ export function generateColors(data: FlattenedHitbox[]): HitboxColor[] {
       result.push({
         start: hit.start,
         end: hit.end,
-        color: colors[iterator],
+        color: useHex ? hexColors[iterator] : colors[iterator],
       });
     }
     iterator++;
