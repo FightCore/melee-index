@@ -1,0 +1,129 @@
+@if (selectableHits) {
+
+<p-card class="w-full">
+  <div class="mb-2 w-full justify-evenly items-center flex gap-5">
+    <div>
+      <h4 class="text-medium font-bold">Sorting</h4>
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center">
+          <p-radiobutton
+            value="alphabetical"
+            [(ngModel)]="sorting"
+            inputId="ingredient1"
+            (ngModelChange)="calculate()"
+          />
+          <label for="ingredient1" class="ml-2">Alphabetical</label>
+        </div>
+      </div>
+
+      <div class="flex items-center">
+        <p-radiobutton
+          value="weight"
+          [(ngModel)]="sorting"
+          inputId="ingredient2"
+          (ngModelChange)="calculate()"
+        />
+        <label for="ingredient2" class="ml-2">Weight</label>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <p-checkbox
+        inputId="ceilingPercentages"
+        [binary]="true"
+        [(ngModel)]="ceiling"
+        (onChange)="calculate()"
+      />
+      <label for="ceilingPercentages" class="ml-2">
+        <span class="text-medium font-bold">Ceiling Percentages</span>
+        <span class="text-small">
+          Melee uses floored percentages for its calculations, if a move breaks
+          at 11.10%, it means it breaks at 12%.
+        </span>
+      </label>
+    </div>
+    <div class="flex items-center">
+      <p-checkbox
+        inputId="percentageToggle"
+        [binary]="true"
+        [(ngModel)]="percentageToggle"
+        (onChange)="calculate()"
+      />
+      <label for="percentageToggle" class="ml-2">
+        <span class="text-medium font-bold"
+          >Use 99% for moves that never break</span
+        >
+        <span class="text-small">
+          Some moves can never break crouch cancel/ASDI Down, note these moves
+          as &quot;99%&quot; rather than &quot;Never breaks&quot;
+        </span>
+      </label>
+    </div>
+    <div>
+      <h4 class="text-medium font-bold">Staleness</h4>
+      <app-staleness-selector
+        (stalenessChanged)="updateStaleness($event)"
+      ></app-staleness-selector>
+    </div>
+  </div>
+  <p-divider />
+  <div class="md:flex md:gap-1 mb-2">
+    <p-selectbutton
+      id="select-hit"
+      [options]="selectableHits"
+      [(ngModel)]="selectedHit"
+      (onChange)="onHitSelection()"
+      optionLabel="label"
+      optionValue="value"
+      aria-labelledby="basic"
+      fluid
+    />
+
+    <p-selectbutton
+      [options]="selectableHitboxes"
+      [(ngModel)]="selectedHitbox"
+      (onChange)="calculate()"
+      optionLabel="label"
+      optionValue="value"
+      aria-labelledby="basic"
+      fluid
+    />
+  </div>
+  <div class="w-full flex gap-2">
+    @if(asdiDown) {
+    <div class="grow">
+      <h4 class="text-md mb-2">ASDI Down</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1">
+        @for (item of asdiDown; track $index) {
+        <div class="flex justify-center items-center gap-0.5">
+          <p-avatar
+            image="https://www.fightcore.gg/newicons/{{ item.character }}.webp"
+            shape="square"
+            size="normal"
+          ></p-avatar>
+          {{ item.percentage }}
+        </div>
+        }
+      </div>
+    </div>
+    } @if(asdiDown && crouchCancel) {
+    <p-divider class="hidden md:block shrink-1" layout="vertical" />
+    } @if(crouchCancel) {
+    <div class="grow">
+      <h4 class="text-md mb-2">Crouch Cancel</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-1">
+        @for (item of crouchCancel; track $index) {
+        <div class="flex justify-center items-center gap-0.5">
+          <p-avatar
+            image="https://www.fightcore.gg/newicons/{{ item.character }}.webp"
+            shape="square"
+            size="normal"
+          ></p-avatar>
+          {{ item.percentage }}
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</p-card>
+}

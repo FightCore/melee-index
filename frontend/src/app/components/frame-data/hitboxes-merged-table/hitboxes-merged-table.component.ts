@@ -9,10 +9,11 @@ import {
 import { Hit } from '@/models/frame-data/hit';
 import { Component, input, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-hitboxes-merged-table',
-  imports: [TableModule],
+  imports: [TableModule, CardModule],
   templateUrl: './hitboxes-merged-table.component.html',
   styleUrl: './hitboxes-merged-table.component.scss',
   standalone: true,
@@ -26,11 +27,10 @@ export class HitboxesMergedTableComponent implements OnInit {
     const processedHits = processDuplicateHitboxes(this.hits());
     const flattenedHitboxes = processDuplicateHits(flattenData(processedHits));
     this.colors = generateColors(flattenedHitboxes);
+    console.log(this.colors);
     this.flattenedHitboxes = flattenedHitboxes.map((hit) => ({
       ...hit,
-      color:
-        this.colors?.find((color) => color.start === hit.earliestStart && color.end === hit.latestEnd)?.color ?? null,
+      color: this.colors?.find((color) => color.start === hit.earliestStart)?.color ?? null,
     }));
-    console.log(this.flattenedHitboxes);
   }
 }

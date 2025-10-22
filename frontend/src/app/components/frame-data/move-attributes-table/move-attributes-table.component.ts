@@ -1,10 +1,11 @@
 import { Move } from '@/models/frame-data/move';
 import { Component, input, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-move-attributes-table',
-  imports: [TableModule],
+  imports: [TableModule, CardModule],
   templateUrl: './move-attributes-table.component.html',
   styleUrl: './move-attributes-table.component.scss',
 })

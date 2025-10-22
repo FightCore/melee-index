@@ -1,5 +1,5 @@
 @if(cols) {
-<div class="w-full rounded-md">
+<p-card class="w-full">
   <p-table [columns]="cols" [value]="[move()]" [size]="'small'">
     <ng-template #header let-columns>
       <tr>
@@ -20,5 +20,5 @@
       </tr>
     </ng-template>
   </p-table>
-</div>
+</p-card>
 }

@@ -80,7 +80,10 @@ export function processDuplicateHits(hits: FlattenedHitbox[]): FlattenedHitbox[]
       for (const hit of [...secondHits]) {
         hit.hit = newText;
         hit.hitObjects.push(...firstHits[0].hitObjects);
+        hit.earliestStart = Math.min(hit.earliestStart, firstHits[0].earliestStart);
+        hit.latestEnd = Math.max(hit.latestEnd, firstHits[0].latestEnd);
       }
+
       const leadingIndex = newHits.indexOf(firstHits[0]);
       newHits.splice(leadingIndex, firstHits.length);
       uniqueHitTexts = getMappedUnique(newHits, (hit) => hit.hit);
@@ -160,7 +163,7 @@ export interface FlattenedHitbox extends Hitbox {
 }
 
 export function flattenData(hits: Hit[]): FlattenedHitbox[] {
-  return hits.flatMap((hit) =>
+  const flattenedHits = hits.flatMap((hit) =>
     hit.hitboxes.flatMap((hitbox) => ({
       hit: hit.name ? hit.name : hit.start + ' - ' + hit.end,
       hitObjects: [hit],
@@ -169,6 +172,8 @@ export function flattenData(hits: Hit[]): FlattenedHitbox[] {
       ...hitbox,
     }))
   );
+
+  return flattenedHits;
 }
 
 export function getUnique<T>(values: T[]): T[] {

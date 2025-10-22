@@ -8,5 +8,9 @@
   @if(move.hits) {
   <h4 class="text-xl py-2">Hitboxes</h4>
   <app-hitboxes-merged-table [hits]="move.hits"></app-hitboxes-merged-table>
+  <h4 class="text-xl py-2">Crouch Cancel Percentages</h4>
+  <app-crouch-cancel-percentages-table
+    [hits]="move.hits"
+  ></app-crouch-cancel-percentages-table>
   } }
 </div>

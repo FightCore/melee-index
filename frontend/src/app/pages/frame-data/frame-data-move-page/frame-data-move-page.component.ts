@@ -5,10 +5,11 @@ import { Move } from '@/models/frame-data/move';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HitboxesMergedTableComponent } from '@/app/components/frame-data/hitboxes-merged-table/hitboxes-merged-table.component';
+import { CrouchCancelPercentagesTableComponent } from '@/app/components/frame-data/crouch-cancel-percentages-table/crouch-cancel-percentages-table.component';
 
 @Component({
   selector: 'app-frame-data-move-page',
-  imports: [MoveAttributesTableComponent, HitboxesMergedTableComponent],
+  imports: [MoveAttributesTableComponent, HitboxesMergedTableComponent, CrouchCancelPercentagesTableComponent],
   templateUrl: './frame-data-move-page.component.html',
   styleUrl: './frame-data-move-page.component.scss',
   standalone: true,

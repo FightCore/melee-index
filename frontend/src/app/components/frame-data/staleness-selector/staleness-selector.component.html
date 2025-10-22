@@ -1,0 +1,8 @@
+@for(option of stalenessOptions; track $index) {
+<p-togglebutton
+  class="w-6 h-6 justify-center"
+  onLabel="{{ option.label }}"
+  offLabel="{{ option.label }}"
+  (onChange)="changeStaleness(option.value, $event)"
+/>
+}
