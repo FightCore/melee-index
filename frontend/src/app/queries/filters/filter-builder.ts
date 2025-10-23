@@ -34,8 +34,6 @@ export class FilterBuilder {
       }
     }
 
-    console.log(filterParameter);
-
     return filterParameter;
   }
 }

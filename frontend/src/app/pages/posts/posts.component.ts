@@ -37,8 +37,14 @@ export class PostsComponent implements OnInit {
   constructor() {
     this.titleService.setTitle('Posts - Melee Index');
     this.metaService.addTags([
-      { name: 'description', content: 'Browse and filter articles about Super Smash Bros. Melee by author, character, and category.' },
-      { name: 'keywords', content: 'Super Smash Bros. Melee, Melee, Articles, Posts, Filter, Author, Character, Category' },
+      {
+        name: 'description',
+        content: 'Browse and filter articles about Super Smash Bros. Melee by author, character, and category.',
+      },
+      {
+        name: 'keywords',
+        content: 'Super Smash Bros. Melee, Melee, Articles, Posts, Filter, Author, Character, Category',
+      },
     ]);
   }
 
@@ -48,7 +54,6 @@ export class PostsComponent implements OnInit {
   }
   onSelectedCharacter(character: Character | null): void {
     this.filterState.characters = character ? [character.name] : undefined;
-    console.log(this.filterState);
     this.executeQuery();
   }
   onSelectedCategory(category: Category | null): void {

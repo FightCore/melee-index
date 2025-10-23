@@ -6,7 +6,7 @@ import { AuthService } from '@/app/services/auth/auth.service';
   selector: 'app-auth-callback',
   imports: [],
   templateUrl: './auth-callback.component.html',
-  styleUrl: './auth-callback.component.scss'
+  styleUrl: './auth-callback.component.scss',
 })
 export class AuthCallbackComponent {
   private readonly route = inject(ActivatedRoute);
@@ -15,14 +15,14 @@ export class AuthCallbackComponent {
 
   constructor() {
     afterNextRender(() => {
-    const token = this.route.snapshot.queryParamMap.get('token');
-    if (token) {
-      this.auth.saveToken(token);
-      console.log(token);
-      this.router.navigate(['']);
-    } else {
-      this.router.navigate(['/login']);
-    }
-    })
+      const token = this.route.snapshot.queryParamMap.get('token');
+      if (token) {
+        this.auth.saveToken(token);
+
+        this.router.navigate(['']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

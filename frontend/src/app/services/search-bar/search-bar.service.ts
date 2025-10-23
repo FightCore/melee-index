@@ -35,6 +35,5 @@ export class SearchBarService {
       newFilters.and.push(value);
     }
     this.filters.set({ filters: newFilters });
-    console.log('New Filters', newFilters);
   }
 }

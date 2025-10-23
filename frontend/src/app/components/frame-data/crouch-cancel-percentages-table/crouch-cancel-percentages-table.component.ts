@@ -135,7 +135,6 @@ export class CrouchCancelPercentagesTableComponent implements OnInit {
       return;
     }
 
-    console.log(this.staleness);
     this.calculateAsdiDown(hitbox!);
     this.calculateCrouchCancel(hitbox!);
   }

@@ -37,8 +37,7 @@ export class TailwindMarkedRenderer implements MarkedRenderer {
   }
 
   html({ text }: Tokens.HTML | Tokens.Tag): string {
-    console.log('Rendering heading:', text);
-    return text; // ⚠️ consider sanitizing if content is untrusted
+    return text;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -47,7 +46,6 @@ export class TailwindMarkedRenderer implements MarkedRenderer {
   }
 
   heading({ tokens, depth }: Tokens.Heading): string {
-    console.log('Rendering heading:', tokens, depth);
     const sizes: Record<number, string> = {
       1: 'text-3xl md:text-4xl font-extrabold leading-tight',
       2: 'text-2xl md:text-3xl font-bold leading-snug',
@@ -155,7 +153,6 @@ export class TailwindMarkedRenderer implements MarkedRenderer {
   }
 
   text(token: Tokens.Text | Tokens.Escape): string {
-    console.log('Rendering text token:', token);
     return escapeHtml(token.text);
   }
 }

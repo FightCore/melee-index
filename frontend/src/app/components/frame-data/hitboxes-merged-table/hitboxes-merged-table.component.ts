@@ -27,7 +27,6 @@ export class HitboxesMergedTableComponent implements OnInit {
     const processedHits = processDuplicateHitboxes(this.hits());
     const flattenedHitboxes = processDuplicateHits(flattenData(processedHits));
     this.colors = generateColors(flattenedHitboxes);
-    console.log(this.colors);
     this.flattenedHitboxes = flattenedHitboxes.map((hit) => ({
       ...hit,
       color: this.colors?.find((color) => color.start === hit.earliestStart)?.color ?? null,

@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HitboxesMergedTableComponent } from '@/app/components/frame-data/hitboxes-merged-table/hitboxes-merged-table.component';
 import { CrouchCancelPercentagesTableComponent } from '@/app/components/frame-data/crouch-cancel-percentages-table/crouch-cancel-percentages-table.component';
 import { HitTimelineComponent } from '@/app/components/frame-data/hit-timeline/hit-timeline.component';
+import { FrameDataPlayerComponent } from '@/app/components/frame-data/frame-data-player/frame-data-player.component';
 
 @Component({
   selector: 'app-frame-data-move-page',
@@ -15,6 +16,7 @@ import { HitTimelineComponent } from '@/app/components/frame-data/hit-timeline/h
     HitboxesMergedTableComponent,
     CrouchCancelPercentagesTableComponent,
     HitTimelineComponent,
+    FrameDataPlayerComponent,
   ],
   templateUrl: './frame-data-move-page.component.html',
   styleUrl: './frame-data-move-page.component.scss',
