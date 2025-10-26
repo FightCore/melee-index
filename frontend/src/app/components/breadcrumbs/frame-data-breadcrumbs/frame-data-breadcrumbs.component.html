@@ -1,0 +1,8 @@
+<div class="flex justify-start gap-2 items-center text-zinc-500">
+  @if (home) {
+  <a [routerLink]="home.routerLink"><i class="{{ home.icon }}"></i></a>
+  @for (item of items; track $index) {
+  <i class="pi pi-chevron-right"></i>
+  <a [routerLink]="item.routerLink">{{ item.label }}</a>
+  } }
+</div>

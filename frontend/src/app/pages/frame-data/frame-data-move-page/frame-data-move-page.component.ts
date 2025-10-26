@@ -8,6 +8,7 @@ import { HitboxesMergedTableComponent } from '@/app/components/frame-data/hitbox
 import { CrouchCancelPercentagesTableComponent } from '@/app/components/frame-data/crouch-cancel-percentages-table/crouch-cancel-percentages-table.component';
 import { HitTimelineComponent } from '@/app/components/frame-data/hit-timeline/hit-timeline.component';
 import { FrameDataPlayerComponent } from '@/app/components/frame-data/frame-data-player/frame-data-player.component';
+import { FrameDataBreadcrumbsComponent } from '@/app/components/breadcrumbs/frame-data-breadcrumbs/frame-data-breadcrumbs.component';
 
 @Component({
   selector: 'app-frame-data-move-page',
@@ -17,6 +18,7 @@ import { FrameDataPlayerComponent } from '@/app/components/frame-data/frame-data
     CrouchCancelPercentagesTableComponent,
     HitTimelineComponent,
     FrameDataPlayerComponent,
+    FrameDataBreadcrumbsComponent,
   ],
   templateUrl: './frame-data-move-page.component.html',
   styleUrl: './frame-data-move-page.component.scss',

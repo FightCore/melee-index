@@ -3,11 +3,13 @@
   <p>Loading...</p>
   } @else {
   <h2 class="text-2xl font-bold">{{ character.name }} - {{ move.name }}</h2>
+  <app-frame-data-breadcrumbs
+    [character]="character"
+    [move]="move"
+  ></app-frame-data-breadcrumbs>
   <div class="w-1/2">
     <app-frame-data-player [move]="move"></app-frame-data-player>
   </div>
-
-  <h4 class="text-xl py-2">Timeline</h4>
   <app-hit-timeline [move]="move"></app-hit-timeline>
   <h4 class="text-xl py-2">Attributes</h4>
   <app-move-attributes-table [move]="move"></app-move-attributes-table>
