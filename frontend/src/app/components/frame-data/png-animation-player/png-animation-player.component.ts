@@ -65,8 +65,10 @@ export class PngAnimationPlayerComponent implements PlayerComponent, OnInit {
       const canvas = document.createElement('canvas');
       canvas.width = apng.width;
       canvas.height = apng.height;
-      canvas.style.width = '100%';
+      canvas.style.width = 'auto';
       canvas.style.height = '100%';
+      canvas.style.maxHeight = '50vh';
+      canvas.style.maxWidth = '90vw';
       // TODO: Check for a proper way to do this with like view element
       const containerElement = document.getElementById(this.containerId);
       if (!containerElement) {
