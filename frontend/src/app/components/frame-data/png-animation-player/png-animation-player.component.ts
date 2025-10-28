@@ -40,20 +40,28 @@ export class PngAnimationPlayerComponent implements PlayerComponent, OnInit {
 
     const currentFrame = this.player.currentFrameNumber;
 
-    // PNGs are created by diffing the increment, we can not go a frame back and need to fast forward.
-    while (this.player.currentFrameNumber !== currentFrame - 1) {
-      this.player.renderNextFrame();
+    let targetFrame = currentFrame - 1;
+    if (targetFrame < 0) {
+      targetFrame = this.move().totalFrames;
     }
+
+    this.goToFrame(targetFrame);
   }
   nextFrame(): void {
     if (!this.player) {
       return;
     }
-    if (!this.player.paused) {
-      this.player.pause();
+
+    let targetFrame = this.player.currentFrameNumber + 1;
+    if (targetFrame > this.move().totalFrames) {
+      targetFrame = 0;
     }
 
-    this.player.renderNextFrame();
+    this.goToFrame(targetFrame);
+  }
+
+  setFrame(frameNumber: number): void {
+    this.goToFrame(frameNumber);
   }
 
   ngOnInit(): void {
@@ -83,13 +91,20 @@ export class PngAnimationPlayerComponent implements PlayerComponent, OnInit {
       this.player.addListener('frame', (frameNumber: number) => {
         this.frame.set(frameNumber + 1);
       });
-      // this.player .addListener('play', () => {
-      //   setPlaying(true);
-      // });
-      // this.player.addListener('pause', () => {
-      //   setPlaying(false);
-      // });
       this.player.play();
     });
+  }
+
+  private goToFrame(frameNumber: number): void {
+    if (!this.player) {
+      return;
+    }
+    if (!this.player.paused) {
+      this.player.pause();
+    }
+
+    while (this.player.currentFrameNumber !== frameNumber) {
+      this.player.renderNextFrame();
+    }
   }
 }

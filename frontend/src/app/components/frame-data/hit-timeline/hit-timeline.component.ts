@@ -7,7 +7,7 @@ import {
   processDuplicateHits,
 } from '@/app/utilities/hitbox-utils';
 import { Move } from '@/models/frame-data/move';
-import { Component, input, OnDestroy, OnInit } from '@angular/core';
+import { Component, input, OnDestroy, OnInit, output } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -19,6 +19,7 @@ import * as d3 from 'd3';
 })
 export class HitTimelineComponent implements OnInit, OnDestroy {
   move = input.required<Move>();
+  setFrame = output<number>();
   private readonly frames: {
     value: number;
     color: string;
@@ -103,6 +104,8 @@ export class HitTimelineComponent implements OnInit, OnDestroy {
       }
     }
 
+    const component = this;
+
     const legendContainer = d3.select('#d3-based-legend');
 
     // Clear any existing SVG elements
@@ -158,8 +161,8 @@ export class HitTimelineComponent implements OnInit, OnDestroy {
       .attr('ry', 5)
       .attr('cursor', 'pointer')
       .on('click', function () {
-        //const index = d3.select(this).datum() as { value: number };
-        //emitter.emit('seek', index.value);
+        const index = d3.select(this).datum() as { value: number };
+        component.setFrame.emit(index.value - 1);
       });
 
     svg
@@ -177,8 +180,8 @@ export class HitTimelineComponent implements OnInit, OnDestroy {
       .attr('alignment-baseline', 'middle')
       .attr('cursor', 'pointer')
       .on('click', function () {
-        //const index = d3.select(this).datum() as { value: number };
-        //emitter.emit('seek', index.value);
+        const index = d3.select(this).datum() as { value: number };
+        component.setFrame.emit(index.value - 1);
       });
   }
 

@@ -8,9 +8,12 @@
     [move]="move"
   ></app-frame-data-breadcrumbs>
   <div class="w-full md:w-1/2">
-    <app-frame-data-player [move]="move"></app-frame-data-player>
+    <app-frame-data-player #player [move]="move"></app-frame-data-player>
   </div>
-  <app-hit-timeline [move]="move"></app-hit-timeline>
+  <app-hit-timeline
+    (setFrame)="player.setFrame($event)"
+    [move]="move"
+  ></app-hit-timeline>
   <h4 class="text-xl py-2">Attributes</h4>
   <app-move-attributes-table [move]="move"></app-move-attributes-table>
   @if(move.hits) {

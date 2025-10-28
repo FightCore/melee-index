@@ -7,7 +7,7 @@
 ></app-png-animation-player>
 }
 <p-card>
-  <div class="flex justify-evenly">
+  <div class="md:flex justify-evenly">
     <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-2">
       <p-button (onClick)="togglePlay()" fluid>
         <span class="pi {{ isPlaying ? 'pi-pause' : 'pi-play' }}"> </span
@@ -21,7 +21,9 @@
         ><span class="pi pi-arrow-right"></span>Next Frame</p-button
       >
     </div>
-    <p-divider layout="vertical" />
+    <div class="hidden md:block">
+      <p-divider layout="vertical" />
+    </div>
     <div class="flex flex-col gap-2">
       <p-button fluid><span class="pi pi-download"></span>Download</p-button>
       <p-button fluid

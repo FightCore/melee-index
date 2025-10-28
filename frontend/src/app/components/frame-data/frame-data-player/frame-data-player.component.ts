@@ -49,6 +49,14 @@ export class FrameDataPlayerComponent implements OnInit {
     }
   }
 
+  setFrame(frame: number): void {
+    if (this.isApple) {
+      // Toggle the GIF player
+    } else {
+      this.pngPlayer.setFrame(frame);
+    }
+  }
+
   getBrowserName(): string {
     const ua = window.navigator.userAgent.toLowerCase();
 
