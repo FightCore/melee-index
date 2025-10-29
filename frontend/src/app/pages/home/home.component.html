@@ -1,22 +1,43 @@
 <div class="home-container p-6">
-  <header class="home-header mb-8 text-center">
-    <h1 class="text-4xl font-bold mb-2">Melee Index</h1>
-    <p class="text-lg text-gray-600">
-      Your ultimate resource for Super Smash Bros. Melee information.
+  <header class="mb-6 md:pt-10 text-center">
+    <h1
+      class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-primary-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent pb-1 leading-tight"
+    >
+      The best way to learn Melee
+    </h1>
+    <p
+      class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed"
+    >
+      Unlock your full potential with curated guides from top players and
+      analysts. From beginner fundamentals to advanced tech skill mastery.
+      Everything you need to level up your Melee knowledge, all in one place.
     </p>
   </header>
 
-  <section class="get-started text-center mb-10">
-    <a routerLink="/posts" class="p-button p-button-primary mr-4"
-      >Start reading</a
-    >
-    <a routerLink="/collections" class="p-button p-button-secondary"
-      >Browse Collections</a
-    >
+  <section class="text-center mb-10">
+    <div class="flex justify-center gap-3 mb-6">
+      <a routerLink="/posts" class="p-button p-button-primary"
+        >Start Learning</a
+      >
+      <a routerLink="/collections" class="p-button p-button-secondary"
+        >Browse Collections</a
+      >
+    </div>
+  </section>
+  <section class="text-center">
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
+      @for (section of heroSections; track $index) {
+      <app-website-section-card
+        [title]="section.title"
+        [description]="section.description"
+        [link]="section.link"
+      ></app-website-section-card>
+      }
+    </div>
   </section>
 
-  <section class="mb-10">
+  <!-- <section class="mb-10">
     <h2 class="text-2xl font-semibold mb-4">Latest Posts</h2>
     <app-latest-posts [posts]="latestPosts"></app-latest-posts>
-  </section>
+  </section> -->
 </div>

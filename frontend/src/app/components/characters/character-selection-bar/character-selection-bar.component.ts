@@ -2,10 +2,11 @@ import { CharacterService } from '@/app/services/characters/character.service';
 import { Character } from '@/models/post/character';
 import { Component, inject, OnInit, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
 
 @Component({
   selector: 'app-character-selection-bar',
-  imports: [ButtonModule],
+  imports: [ButtonModule, ChipModule],
   templateUrl: './character-selection-bar.component.html',
   styleUrl: './character-selection-bar.component.scss',
   standalone: true,

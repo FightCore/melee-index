@@ -4,10 +4,11 @@ import { Component, inject, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
 import { SelectModule } from 'primeng/select';
+import { ChipModule } from 'primeng/chip';
 
 @Component({
   selector: 'app-select-character',
-  imports: [SelectModule, FormsModule, AvatarModule],
+  imports: [SelectModule, FormsModule, AvatarModule, ChipModule],
   templateUrl: './select-character.component.html',
   styleUrl: './select-character.component.scss',
   standalone: true,

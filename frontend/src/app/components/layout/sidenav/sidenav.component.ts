@@ -69,13 +69,8 @@ export class SidenavComponent implements AfterViewInit {
         separator: true,
       },
       {
-        label: '',
+        label: 'Menu',
         items: [
-          {
-            label: 'Home',
-            icon: 'pi pi-home',
-            routerLink: '/',
-          },
           {
             label: 'Posts',
             icon: 'pi pi-file',

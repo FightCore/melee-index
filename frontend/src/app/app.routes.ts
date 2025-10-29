@@ -50,5 +50,9 @@ export const routes: Routes = [
         (m) => m.FrameDataMovePageComponent
       ),
   },
+  {
+    path: 'dev/theme',
+    loadComponent: () => import('./pages/dev/theme/theme.component').then((m) => m.ThemeComponent),
+  },
   { path: '**', redirectTo: '' },
 ];

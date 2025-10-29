@@ -8,10 +8,22 @@ import { tap } from 'rxjs';
 import { UserComponent } from '../user/user.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MenubarModule, ButtonModule, UserComponent],
+  imports: [
+    MenubarModule,
+    ButtonModule,
+    UserComponent,
+    IconFieldModule,
+    InputIconModule,
+    InputTextModule,
+    RouterModule,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   standalone: true,
@@ -31,12 +43,10 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.store
-      .select(userFeature.selectUser)
-      .subscribe((user) => {
-        this.user = user;
-        this.setMenubarItems();
-      });
+    this.store.select(userFeature.selectUser).subscribe((user) => {
+      this.user = user;
+      this.setMenubarItems();
+    });
   }
 
   toggleDarkMode(): void {

@@ -26,8 +26,7 @@ export class PostCardComponent {
     const fromInput = this.post();
     const fromInternal = this.internalPost();
     return fromInternal || fromInput;
-  })
-  
+  });
 
   toggleBookmark(): void {
     if (this.post().bookmarked) {

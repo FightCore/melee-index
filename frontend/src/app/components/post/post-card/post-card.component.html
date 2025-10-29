@@ -1,7 +1,11 @@
-<p-card>
+<p-card class="flex flex-col flex-1 h-full">
   <ng-template #header>
     @if (displayPost().cover && !compact()) {
-    <img alt="Card" class="w-full" src="{{ displayPost().cover!.url }}" />
+    <img
+      alt="Card"
+      class="w-full rounded-t-md"
+      src="{{ displayPost().cover!.url }}"
+    />
     }
   </ng-template>
   <ng-template #title> {{ displayPost().title }} </ng-template>
@@ -18,29 +22,33 @@
   </ng-template>
   }
 
-  <p>
-    {{ displayPost().description }}
-  </p>
-  <div class="mt-2">
-    @if (displayPost().category) {
-    <p-chip label="#{{ displayPost().category.slug }}"></p-chip>
-    } @if (displayPost().characters && displayPost().characters!.length > 0) {
-    <div class="float-right mt-2">
-      @for (character of displayPost().characters; track $index){
-      <img
-        src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
-        class="w-6 h-6 inline-block mr-1"
-        alt="Character"
-      />
+  <div class="flex-1">
+    <p>
+      {{ displayPost().description }}
+    </p>
+    <div class="mt-2">
+      @if (displayPost().category) {
+      <p-chip label="#{{ displayPost().category.slug }}"></p-chip>
+      } @if (displayPost().characters && displayPost().characters!.length > 0) {
+      <div class="float-right mt-2">
+        @for (character of displayPost().characters; track $index){
+        <img
+          src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
+          class="w-6 h-6 inline-block mr-1"
+          alt="Character"
+        />
+        }
+      </div>
       }
     </div>
-    }
   </div>
 
   <ng-template #footer>
-    <div class="flex gap-4 mt-1">
+    <div class="flex gap-4 mt-auto">
       <a
-        [routerLink]="'/posts/' + displayPost().documentId + '/' + displayPost().slug"
+        [routerLink]="
+          '/posts/' + displayPost().documentId + '/' + displayPost().slug
+        "
         class="w-full"
         styleClass="w-full"
         pButton

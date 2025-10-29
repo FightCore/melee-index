@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full flex justify-evenly flex-wrap">
   @for (character of characters; track $index) {
   <p-button
     (onClick)="onClickCharacter(character)"
@@ -7,7 +7,7 @@
   >
     <img
       src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
-      class="w-10 h-10 inline-block"
+      class="w-7 h-7"
       alt="{{ character.name }} Icon"
     />
   </p-button>

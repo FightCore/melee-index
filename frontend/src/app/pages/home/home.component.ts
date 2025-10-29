@@ -6,10 +6,11 @@ import { LatestPostsComponent } from '@/app/components/post/latest-posts/latest-
 import { Article } from '@/models/post/article';
 import { PostService } from '@/app/services/post/post.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { WebsiteSectionCardComponent } from '@/app/components/hero/website-section-card/website-section-card.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, MessageModule, ListboxModule, LatestPostsComponent],
+  imports: [CarouselModule, MessageModule, ListboxModule, LatestPostsComponent, WebsiteSectionCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -18,6 +19,24 @@ export class HomeComponent {
   private readonly metaService = inject(Meta);
   private readonly titleService = inject(Title);
   latestPosts: Article[] = [];
+
+  heroSections = [
+    {
+      title: 'Fundamentals',
+      description: 'Learn movement, spacing, and the core mechanics every player needs to get started.',
+      link: '/collections/skill-levels',
+    },
+    {
+      title: 'Advanced Tech',
+      description: 'Dive into advanced matchup knowledge, tech skill, and strategies to elevate your gameplay.',
+      link: '/collections/weapons',
+    },
+    {
+      title: 'Frame data',
+      description: 'Dive into the frame data of every move and learn how to gain the edge over your opponent.',
+      link: '/frame-data',
+    },
+  ];
 
   constructor() {
     this.postService.getLatest().subscribe((posts) => {
