@@ -1,15 +1,20 @@
-<p-card>
-  <ng-container header>
-    <h3 class="text-xl font-semibold mb-2">{{ title() }}</h3>
-  </ng-container>
-  <div class="text-gray-500 dark:text-gray-400 mb-3">
+<p-card class="flex flex-col flex-1 h-full" [pt]="cardPtOptions">
+  <ng-template #title>
+    {{ sectionTitle() }}
+  </ng-template>
+  <ng-template #subtitle>
+    <span>By {{ author() }}</span>
+  </ng-template>
+  <div class="mb-2">
     {{ description() }}
   </div>
-  <ng-container footer>
-    <a
-      [routerLink]="link()"
-      class="text-primary-500 font-medium hover:underline"
-      >Explore {{ title() }}
-    </a>
-  </ng-container>
+  <ng-template #footer>
+    <div class="flex mt-auto gap-4">
+      <a [routerLink]="link()" class="w-full" styleClass="w-full" pButton>
+        View
+      </a>
+      <p-button icon="pi pi-heart" severity="secondary" />
+      <p-button icon="pi pi-share-alt" severity="secondary" />
+    </div>
+  </ng-template>
 </p-card>

@@ -1,9 +1,9 @@
-<p-card class="flex flex-col flex-1 h-full">
+<p-card [pt]="cardPtOptions">
   <ng-template #header>
     @if (displayPost().cover && !compact()) {
     <img
       alt="Card"
-      class="w-full rounded-t-md"
+      class="w-full h-full object-cover rounded-t-md"
       src="{{ displayPost().cover!.url }}"
     />
     }
@@ -22,7 +22,7 @@
   </ng-template>
   }
 
-  <div class="flex-1">
+  <div>
     <p>
       {{ displayPost().description }}
     </p>
@@ -44,7 +44,7 @@
   </div>
 
   <ng-template #footer>
-    <div class="flex gap-4 mt-auto">
+    <div class="flex gap-4">
       <a
         [routerLink]="
           '/posts/' + displayPost().documentId + '/' + displayPost().slug
@@ -57,11 +57,10 @@
       </a>
       <p-button
         (onClick)="toggleBookmark()"
-        pButtonIcon
         icon="pi pi-bookmark"
         [severity]="displayPost().bookmarked ? 'primary' : 'secondary'"
       />
-      <p-button pButtonIcon icon="pi pi-share-alt" severity="secondary" />
+      <p-button icon="pi pi-share-alt" severity="secondary" />
     </div>
   </ng-template>
 </p-card>

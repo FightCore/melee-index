@@ -1,43 +1,55 @@
 <div class="home-container p-6">
-  <header class="mb-6 md:pt-10 text-center">
-    <h1
-      class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-primary-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent pb-1 leading-tight"
-    >
-      The best way to learn Melee
+  <header class="text-center mb-5">
+    <h1 class="text-5xl font-extrabold mb-4 leading-tight">
+      <i class="pi pi-book" style="font-size: 2.5rem"></i> Melee<span
+        class="text-primary-500"
+        >Index</span
+      >
     </h1>
     <p
       class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed"
     >
-      Unlock your full potential with curated guides from top players and
-      analysts. From beginner fundamentals to advanced tech skill mastery.
-      Everything you need to level up your Melee knowledge, all in one place.
+      Your ultimate resource for Super Smash Bros. Melee knowledge.
     </p>
   </header>
-
-  <section class="text-center mb-10">
-    <div class="flex justify-center gap-3 mb-6">
-      <a routerLink="/posts" class="p-button p-button-primary"
-        >Start Learning</a
-      >
-      <a routerLink="/collections" class="p-button p-button-secondary"
-        >Browse Collections</a
-      >
+  <section class="mb-5">
+    <div class="mb-2">
+      <h4 class="text-2xl font-semibold">Collections</h4>
+      <div class="flex justify-between">
+        <p class="text-gray-500">
+          Explore curated collections of guides, tutorials, and resources to
+          enhance your Melee skills.
+        </p>
+        <a href="#" class="text-primary-500 hover:underline"
+          >Explore all collections</a
+        >
+      </div>
     </div>
-  </section>
-  <section class="text-center">
-    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-6">
       @for (section of heroSections; track $index) {
       <app-website-section-card
-        [title]="section.title"
+        [sectionTitle]="section.title"
         [description]="section.description"
         [link]="section.link"
+        [author]="section.author"
       ></app-website-section-card>
       }
     </div>
   </section>
 
-  <!-- <section class="mb-10">
-    <h2 class="text-2xl font-semibold mb-4">Latest Posts</h2>
+  <section class="mb-10">
+    <div class="mb-2">
+      <h4 class="text-2xl font-semibold">Feated Posts</h4>
+      <div class="flex justify-between">
+        <p class="text-gray-500">
+          Hand-picked articles and guides from our community to help you improve
+          your Melee knowledge.
+        </p>
+        <a href="/posts" class="text-primary-500 hover:underline"
+          >Explore all posts</a
+        >
+      </div>
+    </div>
     <app-latest-posts [posts]="latestPosts"></app-latest-posts>
-  </section> -->
+  </section>
 </div>

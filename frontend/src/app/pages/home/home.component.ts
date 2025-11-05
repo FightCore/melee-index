@@ -22,19 +22,28 @@ export class HomeComponent {
 
   heroSections = [
     {
+      title: 'Starter guide',
+      description: 'Learn to get started with setting up your copy of Super Smash Bros Melee.',
+      link: '/frame-data',
+      author: 'Melee Index Team',
+    },
+    {
       title: 'Fundamentals',
-      description: 'Learn movement, spacing, and the core mechanics every player needs to get started.',
+      description: 'Learn movement, spacing, and the core mechanics.',
       link: '/collections/skill-levels',
+      author: 'Melee Index Team',
     },
     {
       title: 'Advanced Tech',
       description: 'Dive into advanced matchup knowledge, tech skill, and strategies to elevate your gameplay.',
       link: '/collections/weapons',
+      author: 'Melee Index Team',
     },
     {
       title: 'Frame data',
       description: 'Dive into the frame data of every move and learn how to gain the edge over your opponent.',
       link: '/frame-data',
+      author: 'Fightcore Team',
     },
   ];
 

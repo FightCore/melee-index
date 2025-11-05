@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ChipModule } from 'primeng/chip';
 import { BookmarkService } from '@/app/services/bookmarks/bookmark.service';
+import { ALIGN_FOOTER_CARD_WITH_HEADER_PT } from '@/app/utilities/passthroughs/card-passthroughs';
 
 @Component({
   selector: 'app-post-card',
@@ -27,6 +28,7 @@ export class PostCardComponent {
     const fromInternal = this.internalPost();
     return fromInternal || fromInput;
   });
+  cardPtOptions = ALIGN_FOOTER_CARD_WITH_HEADER_PT;
 
   toggleBookmark(): void {
     if (this.post().bookmarked) {
