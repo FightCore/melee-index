@@ -8,8 +8,8 @@ export const ALIGN_FOOTER_CARD_PT: CardPassThrough = {
 
 export const ALIGN_FOOTER_CARD_WITH_HEADER_PT: CardPassThrough = {
   root: 'flex flex-col h-full',
-  header: 'h-48 overflow-hidden', // Fixed height for header
-  body: 'flex flex-col flex-1 h-[calc(100%-12rem)]',
+  header: 'h-40 overflow-hidden', // Fixed height for header
+  body: 'flex flex-col flex-1 h-[calc(100%-10rem)]',
   content: 'flex flex-col flex-1',
   footer: 'mt-auto',
 };

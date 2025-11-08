@@ -26,7 +26,10 @@
     <p>
       {{ displayPost().description }}
     </p>
-    <div class="mt-2">
+  </div>
+
+  <ng-template #footer>
+    <div class="mb-2 text-sm">
       @if (displayPost().category) {
       <p-chip label="#{{ displayPost().category.slug }}"></p-chip>
       } @if (displayPost().characters && displayPost().characters!.length > 0) {
@@ -41,16 +44,14 @@
       </div>
       }
     </div>
-  </div>
-
-  <ng-template #footer>
-    <div class="flex gap-4">
+    <div class="flex gap-2">
       <a
         [routerLink]="
           '/posts/' + displayPost().documentId + '/' + displayPost().slug
         "
         class="w-full"
         styleClass="w-full"
+        size="small"
         pButton
       >
         Read
@@ -58,9 +59,10 @@
       <p-button
         (onClick)="toggleBookmark()"
         icon="pi pi-bookmark"
+        size="small"
         [severity]="displayPost().bookmarked ? 'primary' : 'secondary'"
       />
-      <p-button icon="pi pi-share-alt" severity="secondary" />
+      <p-button icon="pi pi-clone" size="small" severity="secondary" />
     </div>
   </ng-template>
 </p-card>

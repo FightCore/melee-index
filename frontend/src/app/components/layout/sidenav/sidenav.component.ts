@@ -69,17 +69,37 @@ export class SidenavComponent implements AfterViewInit {
         separator: true,
       },
       {
-        label: 'Menu',
+        label: 'Guides',
         items: [
           {
-            label: 'Posts',
-            icon: 'pi pi-file',
+            label: 'Starter Guides',
+            icon: 'pi pi-play-circle',
             routerLink: '/posts',
           },
           {
-            label: 'Characters',
+            label: 'Fundamentals',
+            icon: 'pi pi-book',
+            routerLink: '/posts',
+          },
+          {
+            label: 'Advanced Techniques',
+            icon: 'pi pi-bolt',
+            routerLink: '/posts',
+          },
+          {
+            label: 'Characters Guides',
             icon: 'pi pi-users',
             routerLink: '/characters',
+          },
+          {
+            label: 'Matchups',
+            icon: 'pi pi-arrows-h',
+            routerLink: '/matchups',
+          },
+          {
+            label: 'Training & Practice',
+            icon: 'pi pi-replay',
+            routerLink: '/posts',
           },
         ],
       },
@@ -95,11 +115,11 @@ export class SidenavComponent implements AfterViewInit {
           ]
         : []),
       {
-        label: 'Frame data',
+        label: 'Tools & Data',
         items: [
           {
-            label: 'Frame data',
-            icon: 'pi pi-file',
+            label: 'Frame Data',
+            icon: 'pi pi-table',
             routerLink: '/frame-data',
           },
           {
@@ -113,7 +133,7 @@ export class SidenavComponent implements AfterViewInit {
             routerLink: '/crouch-cancel-calculator',
           },
           {
-            label: 'Animation Google Drive',
+            label: 'Animation Resources',
             icon: 'pi pi-google',
             routerLink: '/animation-google-drive',
           },
@@ -123,7 +143,7 @@ export class SidenavComponent implements AfterViewInit {
         separator: true,
       },
       {
-        label: 'Others (TODO Rename)',
+        label: 'Resources',
         items: [
           {
             label: 'About',
@@ -137,7 +157,7 @@ export class SidenavComponent implements AfterViewInit {
           },
           {
             label: 'Donate',
-            icon: 'pi pi-money-bill',
+            icon: 'pi pi-heart',
             routerLink: '/donate',
           },
         ],

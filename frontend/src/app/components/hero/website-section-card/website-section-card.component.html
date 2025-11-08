@@ -9,12 +9,18 @@
     {{ description() }}
   </div>
   <ng-template #footer>
-    <div class="flex mt-auto gap-4">
-      <a [routerLink]="link()" class="w-full" styleClass="w-full" pButton>
+    <div class="flex mt-auto gap-2">
+      <a
+        size="small"
+        [routerLink]="link()"
+        class="w-full"
+        styleClass="w-full"
+        pButton
+      >
         View
       </a>
-      <p-button icon="pi pi-heart" severity="secondary" />
-      <p-button icon="pi pi-share-alt" severity="secondary" />
+      <p-button size="small" icon="pi pi-heart" severity="secondary" />
+      <p-button size="small" icon="pi pi-clone" severity="secondary" />
     </div>
   </ng-template>
 </p-card>
