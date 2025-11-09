@@ -7,10 +7,11 @@ import { AvatarModule } from 'primeng/avatar';
 import { ChipModule } from 'primeng/chip';
 import { BookmarkService } from '@/app/services/bookmarks/bookmark.service';
 import { ALIGN_FOOTER_CARD_WITH_HEADER_PT } from '@/app/utilities/passthroughs/card-passthroughs';
+import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-post-card',
-  imports: [CardModule, ButtonModule, RouterModule, AvatarModule, ChipModule],
+  imports: [CardModule, ButtonModule, RouterModule, AvatarModule, ChipModule, CharacterIconComponent],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.scss',
   standalone: true,

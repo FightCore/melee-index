@@ -23,6 +23,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CheckboxModule } from 'primeng/checkbox';
 import { StalenessSelectorComponent } from '../staleness-selector/staleness-selector.component';
+import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-crouch-cancel-percentages-table',
@@ -37,6 +38,7 @@ import { StalenessSelectorComponent } from '../staleness-selector/staleness-sele
     RadioButtonModule,
     CheckboxModule,
     StalenessSelectorComponent,
+    CharacterIconComponent,
   ],
   templateUrl: './crouch-cancel-percentages-table.component.html',
   styleUrl: './crouch-cancel-percentages-table.component.scss',

@@ -5,10 +5,11 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
 import { RouterModule } from '@angular/router';
+import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-character-card',
-  imports: [CardModule, ButtonModule, AvatarModule, TableModule, RouterModule],
+  imports: [CardModule, ButtonModule, AvatarModule, TableModule, RouterModule, CharacterIconComponent],
   templateUrl: './character-card.component.html',
   styleUrl: './character-card.component.scss',
 })

@@ -36,11 +36,10 @@
     @if (resource().characters && resource().characters!.length > 0) {
     <div class="float-right mt-2">
       @for (character of resource().characters; track $index){
-      <img
-        src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
+      <app-character-icon
+        [characterName]="character.name"
         class="w-6 h-6 inline-block mr-1"
-        alt="Character"
-      />
+      ></app-character-icon>
       }
     </div>
     }

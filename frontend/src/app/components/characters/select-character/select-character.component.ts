@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
 import { SelectModule } from 'primeng/select';
 import { ChipModule } from 'primeng/chip';
+import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-select-character',
-  imports: [SelectModule, FormsModule, AvatarModule, ChipModule],
+  imports: [SelectModule, FormsModule, AvatarModule, ChipModule, CharacterIconComponent],
   templateUrl: './select-character.component.html',
   styleUrl: './select-character.component.scss',
   standalone: true,

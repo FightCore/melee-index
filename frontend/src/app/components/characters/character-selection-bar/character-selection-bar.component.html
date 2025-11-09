@@ -5,11 +5,10 @@
     [severity]="character === internalSelectedCharacter ? 'primary' : undefined"
     [variant]="character === internalSelectedCharacter ? undefined : 'text'"
   >
-    <img
-      src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
+    <app-character-icon
+      [characterName]="character.name"
       class="w-7 h-7"
-      alt="{{ character.name }} Icon"
-    />
+    ></app-character-icon>
   </p-button>
   }
 </div>

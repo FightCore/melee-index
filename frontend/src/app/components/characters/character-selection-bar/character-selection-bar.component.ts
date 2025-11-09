@@ -3,10 +3,11 @@ import { Character } from '@/models/post/character';
 import { Component, inject, OnInit, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
+import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-character-selection-bar',
-  imports: [ButtonModule, ChipModule],
+  imports: [ButtonModule, ChipModule, CharacterIconComponent],
   templateUrl: './character-selection-bar.component.html',
   styleUrl: './character-selection-bar.component.scss',
   standalone: true,

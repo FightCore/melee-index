@@ -10,13 +10,11 @@
         class="w-full flex items-center justify-between pt-2 px-5 rounded-t-md"
       >
         <div class="flex items-center gap-2">
-          <p-avatar
-            image="https://www.fightcore.gg/newicons/{{
-              character().name
-            }}.webp"
-            shape="square"
-            size="normal"
-          ></p-avatar>
+          <app-character-icon
+            [characterName]="character().name"
+            class="w-10 h-10 inline-block mr-1"
+          >
+          </app-character-icon>
           <p class="text-xl font-bold">
             {{ character().name }}
           </p>

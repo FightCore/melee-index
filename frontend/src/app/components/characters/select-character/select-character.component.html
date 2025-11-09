@@ -9,11 +9,10 @@
 >
   <ng-template let-character #item>
     <div class="flex items-center gap-2">
-      <img
-        src="https://www.fightcore.gg/newicons/{{ character.name }}.webp"
+      <app-character-icon
+        [characterName]="character.name"
         class="w-6 h-6 inline-block mr-1"
-        alt="Character"
-      />
+      ></app-character-icon>
       <div>{{ character.name }}</div>
     </div>
   </ng-template>
