@@ -5,7 +5,7 @@ import { afterNextRender, AfterViewInit, Component, inject } from '@angular/core
 import { Store } from '@ngrx/store';
 import { MenuItem } from 'primeng/api';
 import { tap } from 'rxjs';
-import { UserComponent } from '../user/user.component';
+import { UserComponent } from '@/app/components/layout/user/user.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';

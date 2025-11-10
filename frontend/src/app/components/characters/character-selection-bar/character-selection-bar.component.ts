@@ -3,7 +3,7 @@ import { Character } from '@/models/post/character';
 import { Component, inject, OnInit, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
-import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
+import { CharacterIconComponent } from '@/app/components/generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-character-selection-bar',

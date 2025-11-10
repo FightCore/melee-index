@@ -4,7 +4,7 @@ import { CardModule } from 'primeng/card';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { DatePipe } from '@angular/common';
-import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
+import { CharacterIconComponent } from '@/app/components/generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-author-card',

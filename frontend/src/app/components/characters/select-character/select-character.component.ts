@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
 import { SelectModule } from 'primeng/select';
 import { ChipModule } from 'primeng/chip';
-import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
+import { CharacterIconComponent } from '@/app/components/generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-select-character',

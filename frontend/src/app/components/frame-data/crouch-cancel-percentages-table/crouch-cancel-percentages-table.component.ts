@@ -22,8 +22,8 @@ import { DividerModule } from 'primeng/divider';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CheckboxModule } from 'primeng/checkbox';
-import { StalenessSelectorComponent } from '../staleness-selector/staleness-selector.component';
-import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
+import { StalenessSelectorComponent } from '@/app/components/frame-data/staleness-selector/staleness-selector.component';
+import { CharacterIconComponent } from '@/app/components/generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-crouch-cancel-percentages-table',

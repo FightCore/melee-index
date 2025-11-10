@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { TableModule } from 'primeng/table';
 import { RouterModule } from '@angular/router';
-import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
+import { CharacterIconComponent } from '@/app/components/generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-character-card',

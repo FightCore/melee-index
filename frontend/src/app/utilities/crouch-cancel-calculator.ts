@@ -84,7 +84,7 @@ export function meetsKnockbackTarget(
   knockbackTarget: KnockbackTarget
 ): boolean {
   // Weight dependant set knockback formula as found on the following sources:
-  // eslint-disable-next-line max-len
+   
   // - IKneeData: https://github.com/schmooblidon/schmooblidon.github.io/blob/09c8d4303ce6d98d62918073b474099b5ed9a026/calculatormaths.js#L101
   // - standardtoaster/magus on Smashboards: https://smashboards.com/threads/melee-knockback-values.334245/post-15368915
   const knockback =

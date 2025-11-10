@@ -1,6 +1,6 @@
-import { Author } from '../post/blocks/author';
-import { MediaFile } from '../post/blocks/media-file';
-import { Character } from '../post/character';
+import { Author } from '@/models/post/blocks/author';
+import { MediaFile } from '@/models/post/blocks/media-file';
+import { Character } from '@/models/post/character';
 import { Source } from './source';
 
 export interface Resource {

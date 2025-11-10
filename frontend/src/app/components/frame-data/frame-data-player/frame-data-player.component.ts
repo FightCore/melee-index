@@ -2,7 +2,7 @@ import { Component, input, OnInit, signal, ViewChild } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { Divider } from 'primeng/divider';
-import { PngAnimationPlayerComponent } from '../png-animation-player/png-animation-player.component';
+import { PngAnimationPlayerComponent } from '@/app/components/frame-data/png-animation-player/png-animation-player.component';
 import { Move } from '@/models/frame-data/move';
 
 @Component({

@@ -1,4 +1,4 @@
-import { Character } from '../character';
+import { Character } from '@/models/post/character';
 import { MediaFile } from './media-file';
 
 export interface Author {

@@ -4,7 +4,7 @@ import { Card } from 'primeng/card';
 import { BaseIcon } from 'primeng/icons/baseicon';
 import { ButtonModule } from 'primeng/button';
 import { Avatar } from 'primeng/avatar';
-import { CharacterIconComponent } from '../../generic/character-icon/character-icon.component';
+import { CharacterIconComponent } from '@/app/components/generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-resource-card',
