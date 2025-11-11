@@ -2,6 +2,7 @@ using MeleeIndex.DAL;
 using MeleeIndex.Repositories.Configuration;
 using MeleeIndex.Services.Configurations;
 using MeleeIndex.Startup;
+using MeleeIndex.Startup.PostSetups;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
@@ -74,5 +75,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+await app.MigrationContext<IndexDbContext>();
 
 app.Run();

@@ -1,6 +1,7 @@
 using MeleeIndex.DAL;
 using MeleeIndex.GraphQL.Middleware;
 using MeleeIndex.Startup;
+using MeleeIndex.Startup.PostSetups;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
@@ -66,5 +67,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<ResponseCachingMiddleware>();
+
+await app.MigrationContext<IndexDbContext>();
 
 app.RunWithGraphQLCommands(args);
