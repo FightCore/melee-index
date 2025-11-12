@@ -13,7 +13,6 @@ import { AccordionModule } from 'primeng/accordion';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from '@/models/post/article';
 import { CardModule } from 'primeng/card';
-import { Avatar } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { AuthorCardComponent } from '@/app/components/authors/author-card/author-card.component';
 
@@ -31,7 +30,6 @@ import { AuthorCardComponent } from '@/app/components/authors/author-card/author
     KnowledgeCheckComponent,
     AccordionModule,
     CardModule,
-    Avatar,
     ButtonModule,
     AuthorCardComponent,
   ],

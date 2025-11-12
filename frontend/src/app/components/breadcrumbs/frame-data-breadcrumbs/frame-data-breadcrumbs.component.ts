@@ -2,12 +2,11 @@ import { FrameDataCharacter } from '@/models/frame-data/frame-data-character';
 import { Move } from '@/models/frame-data/move';
 import { Component, input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Breadcrumb } from 'primeng/breadcrumb';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-frame-data-breadcrumbs',
-  imports: [Breadcrumb, RouterModule],
+  imports: [RouterModule],
   templateUrl: './frame-data-breadcrumbs.component.html',
   styleUrl: './frame-data-breadcrumbs.component.scss',
   standalone: true,
