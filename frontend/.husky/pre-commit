@@ -1,1 +1,1 @@
-npx lint-staged --allow-empty
+cd frontend && npx lint-staged --allow-empty
