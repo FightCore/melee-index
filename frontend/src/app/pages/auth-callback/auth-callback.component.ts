@@ -1,4 +1,4 @@
-import { afterNextRender, Component, OnInit, inject } from '@angular/core';
+import { afterNextRender, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@/app/services/auth/auth.service';
 

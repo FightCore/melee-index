@@ -1,8 +1,6 @@
 import { ApplicationConfig, inject, isDevMode, SecurityContext } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
-import { definePreset } from '@primeng/themes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideNamedApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';

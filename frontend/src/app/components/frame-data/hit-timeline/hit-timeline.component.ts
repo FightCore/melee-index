@@ -104,8 +104,6 @@ export class HitTimelineComponent implements OnInit, OnDestroy {
       }
     }
 
-    const component = this;
-
     const legendContainer = d3.select('#d3-based-legend');
 
     // Clear any existing SVG elements
@@ -160,9 +158,9 @@ export class HitTimelineComponent implements OnInit, OnDestroy {
       .attr('rx', 5)
       .attr('ry', 5)
       .attr('cursor', 'pointer')
-      .on('click', function () {
-        const index = d3.select(this).datum() as { value: number };
-        component.setFrame.emit(index.value - 1);
+      .on('click', (event) => {
+        const index = d3.select(event.currentTarget).datum() as { value: number };
+        this.setFrame.emit(index.value - 1);
       });
 
     svg
@@ -179,9 +177,9 @@ export class HitTimelineComponent implements OnInit, OnDestroy {
       .attr('text-anchor', 'middle')
       .attr('alignment-baseline', 'middle')
       .attr('cursor', 'pointer')
-      .on('click', function () {
-        const index = d3.select(this).datum() as { value: number };
-        component.setFrame.emit(index.value - 1);
+      .on('click', (event) => {
+        const index = d3.select(event.currentTarget).datum() as { value: number };
+        this.setFrame.emit(index.value - 1);
       });
   }
 

@@ -31,7 +31,7 @@ export class SearchBarService {
 
   private updateFilters(): void {
     const newFilters: { and: any[] } = { and: [] };
-    for (const [_, value] of this.filterMap) {
+    for (const [, value] of this.filterMap) {
       newFilters.and.push(value);
     }
     this.filters.set({ filters: newFilters });

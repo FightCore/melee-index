@@ -1,7 +1,11 @@
 <p-card>
   @if (resource().preview) {
   <ng-template #header>
-    <img class="w-full" src="{{ resource().preview.url }}" />
+    <img
+      class="w-full"
+      src="{{ resource().preview.url }}"
+      alt="{{ resource().name }} Preview"
+    />
   </ng-template>
   }
   <ng-template #title>{{ resource().name }}</ng-template>

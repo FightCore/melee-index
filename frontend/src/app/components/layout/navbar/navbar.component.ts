@@ -4,7 +4,6 @@ import { TokenUser } from '@/models/auth/token-user';
 import { afterNextRender, AfterViewInit, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MenuItem } from 'primeng/api';
-import { tap } from 'rxjs';
 import { UserComponent } from '@/app/components/layout/user/user.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';

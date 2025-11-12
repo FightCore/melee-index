@@ -21,13 +21,15 @@
         <span class="ml-2 w-full">{{ item.label }}</span>
       </a>
       } @else if (item.click) {
-      <a
+      <button
         (click)="item.click()"
+        (keydown)="item.click()"
         class="flex items-center p-menu-item-link"
         pRipple
-        ><span [class]="item.icon"></span>
+      >
+        <span [class]="item.icon"></span>
         <span class="ml-2 w-full">{{ item.label }}</span>
-      </a>
+      </button>
       } @else {
       <span class="flex items-center p-menu-item-link" pRipple
         ><span [class]="item.icon"></span>
