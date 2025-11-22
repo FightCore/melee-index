@@ -1,8 +1,11 @@
 ﻿using MeleeIndex.DAL.Configuration;
 using MeleeIndex.Models;
 using MeleeIndex.Models.Abstract;
+using MeleeIndex.Models.DataEntities;
+using MeleeIndex.Models.Serialization;
 using MeleeIndex.Models.Users;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace MeleeIndex.DAL;
 
@@ -44,5 +47,14 @@ public class IndexDbContext(DbContextOptions<IndexDbContext> options) : DbContex
                 .ValueGeneratedOnAdd()
                 .HasDefaultValueSql("gen_random_uuid()");
         }
+
+        AddPublishedAtQueryFilter<Post, PostData>(modelBuilder);
+    }
+
+    private static void AddPublishedAtQueryFilter<TEntity, TData>(ModelBuilder modelBuilder)
+        where TEntity : DocumentEntity<TData>
+        where TData : JsonExtendableData
+    {
+        modelBuilder.Entity<TEntity>().HasQueryFilter(entity => entity.PublishedAt.HasValue);
     }
 }
