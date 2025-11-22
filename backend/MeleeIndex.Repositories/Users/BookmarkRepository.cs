@@ -34,7 +34,7 @@ public class BookmarkRepository : IBookmarkRepository
     {
         var cacheKey = BookmarkCacheKeys.GetListCacheKey(userId);
         var cachedValue = await _distributedCache.GetStringAsync(cacheKey, cancellationToken);
-        if (cachedValue != null)
+        if (!string.IsNullOrWhiteSpace(cachedValue))
         {
             return JsonSerializer.Deserialize<List<Post>>(cachedValue)!;
         }

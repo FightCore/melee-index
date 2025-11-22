@@ -14,7 +14,7 @@ public interface IBookmarkService
     Task Remove(Guid postId, Guid userId, CancellationToken cancellationToken = default);
 }
 
-public class BookmarkService : IBookmarkService
+internal class BookmarkService : IBookmarkService
 {
     private readonly IBookmarkRepository _bookmarkRepository;
 

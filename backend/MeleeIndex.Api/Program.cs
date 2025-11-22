@@ -79,3 +79,6 @@ app.MapControllers();
 await app.MigrationContext<IndexDbContext>();
 
 app.Run();
+
+// Dummy partial class to allow for initialization during testing.
+public partial class Program { }

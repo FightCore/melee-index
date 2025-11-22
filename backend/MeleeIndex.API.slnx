@@ -21,6 +21,10 @@
   <Folder Name="/6 Utilities/">
     <Project Path="MeleeIndex.Utilities/MeleeIndex.Utilities.csproj" />
   </Folder>
+  <Folder Name="/7 Tests/">
+    <Project Path="MeleeIndex.Tests.Shared/MeleeIndex.Tests.Shared.csproj" />
+    <Project Path="MeleeIndex.Tests.Integration/MeleeIndex.Tests.Integration.csproj" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
   </Folder>
