@@ -38,4 +38,9 @@ public class Query
     {
         return dbContext.Resources.Select(resource => resource.Data);
     }
+
+    public IQueryable<GlossaryItemData> GetGlossaryItems(IndexDbContext dbContext)
+    {
+        return dbContext.GlossaryItems.Select(glossaryItem => glossaryItem.Data);
+    }
 }

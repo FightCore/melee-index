@@ -1,4 +1,5 @@
 ﻿using MeleeIndex.Configurations;
+using MeleeIndex.Repositories.GlossaryItems;
 using MeleeIndex.Repositories.Posts;
 using MeleeIndex.Repositories.Strapi;
 using MeleeIndex.Repositories.Users;
@@ -20,8 +21,10 @@ public static class DependencyInjection
         services.AddStrapiHttpClient<IStrapiCharacterRepository, StrapiCharacterRepository>(strapiConfiguration);
         services.AddStrapiHttpClient<IStrapiSourceRepository, StrapiSourceRepository>(strapiConfiguration);
         services.AddStrapiHttpClient<IStrapiResourceRepository, StrapiResourceRepository>(strapiConfiguration);
+        services.AddStrapiHttpClient<IStrapiGlossaryItemRepository, StrapiGlossaryItemRepository>(strapiConfiguration);
         
         return services.AddScoped<IPostRepository, PostRepository>()
+            .AddScoped<IGlossaryItemRepository, GlossaryItemRepository>()
             .AddScoped<IBookmarkRepository, BookmarkRepository>();
     }
     

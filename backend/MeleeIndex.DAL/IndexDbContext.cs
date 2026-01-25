@@ -26,6 +26,10 @@ public class IndexDbContext(DbContextOptions<IndexDbContext> options) : DbContex
     public DbSet<Source> Sources { get; set; }
     
     public DbSet<Resource> Resources { get; set; }
+    
+    public DbSet<CharacterGuide> CharacterGuides { get; set; }
+    
+    public DbSet<GlossaryItem> GlossaryItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,6 +41,8 @@ public class IndexDbContext(DbContextOptions<IndexDbContext> options) : DbContex
         modelBuilder.ApplyConfiguration(new BookmarkConfiguration());
         modelBuilder.ApplyConfiguration(new SourceConfiguration());
         modelBuilder.ApplyConfiguration(new ResourceConfiguration());
+        modelBuilder.ApplyConfiguration(new CharacterGuideConfiguration());
+        modelBuilder.ApplyConfiguration(new GlossaryItemConfiguration());
 
         var entityTypes = typeof(Post).Assembly.GetTypes()
             .Where(t => typeof(IEntity).IsAssignableFrom(t) && !t.IsAbstract);
