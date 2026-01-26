@@ -10,10 +10,6 @@ import { Observable } from 'rxjs';
 export class ArticlesService {
   private readonly httpClient = inject(HttpClient);
 
-  list(): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(`${environment.apiUrl}/posts`);
-  }
-
   article(id: string): Observable<Article> {
     return this.httpClient.get<Article>(`${environment.apiUrl}/posts/${id}`);
   }

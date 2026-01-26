@@ -1,0 +1,20 @@
+@if (glossaryItems()) {
+  @for (glossaryItem of glossaryItems(); track $index) {
+    <p-card [header]="glossaryItem.name">
+      <p class="m-0">
+        {{ glossaryItem.description }}
+      </p>
+
+      <ng-template #footer>
+        <div class="flex gap-4 mt-1">
+          <a
+            class="w-full"
+            pButton
+            routerLink="/glossary/{{ glossaryItem.documentId }}/{{ glossaryItem.name }}"
+            >View</a
+          >
+        </div>
+      </ng-template>
+    </p-card>
+  }
+}

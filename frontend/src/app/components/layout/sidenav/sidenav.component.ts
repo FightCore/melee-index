@@ -14,7 +14,15 @@ import { MenubarModule } from 'primeng/menubar';
 
 @Component({
   selector: 'app-sidenav',
-  imports: [MenuModule, BadgeModule, RippleModule, AvatarModule, RouterModule, ButtonModule, MenubarModule],
+  imports: [
+    MenuModule,
+    BadgeModule,
+    RippleModule,
+    AvatarModule,
+    RouterModule,
+    ButtonModule,
+    MenubarModule,
+  ],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
   standalone: true,
@@ -118,24 +126,9 @@ export class SidenavComponent implements AfterViewInit {
         label: 'Tools & Data',
         items: [
           {
-            label: 'Frame Data',
-            icon: 'pi pi-table',
-            routerLink: '/frame-data',
-          },
-          {
             label: 'Glossary',
             icon: 'pi pi-book',
             routerLink: '/glossary',
-          },
-          {
-            label: 'Crouch Cancel Calculator',
-            icon: 'pi pi-calculator',
-            routerLink: '/crouch-cancel-calculator',
-          },
-          {
-            label: 'Animation Resources',
-            icon: 'pi pi-google',
-            routerLink: '/animation-google-drive',
           },
         ],
       },

@@ -1,0 +1,61 @@
+@if (glossaryItem() === null) {
+  <p>Loading...</p>
+} @else {
+  <div class="md:flex">
+    <div
+      class="w-full lg:w-3/4 mx-auto px-5 lg:px-10 bg-white dark:bg-zinc-900 shadow-sm rounded-md pt-4"
+    >
+      <h1 class="text-3xl md:text-6xl font-bold mb-4">{{ glossaryItem()?.name }}</h1>
+      <p>{{ glossaryItem()?.description }}</p>
+      <hr class="my-8" />
+      @for (block of glossaryItem()?.blocks; track block.__component + block.id) {
+        <div class="my-2">
+          @switch (block.__component) {
+            @case ('shared.rich-text') {
+              <app-rich-text [block]="block"></app-rich-text>
+            }
+            @case ('fightcore.move-embed') {
+              <app-fightcore-move-data [block]="block"></app-fightcore-move-data>
+            }
+            @case ('shared.media') {
+              <app-media [block]="block"></app-media>
+            }
+            @case ('shared.slider') {
+              <app-slider [block]="block"></app-slider>
+            }
+            @case ('shared.quote') {
+              <app-quote [block]="block"></app-quote>
+            }
+            @case ('youtube.video-embed') {
+              <app-youtube-embed [block]="block"></app-youtube-embed>
+            }
+            @case ('exercise.knowledge-check') {
+              <app-knowledge-check [block]="block"></app-knowledge-check>
+            }
+            @default {
+              <p>Unknown block type</p>
+              <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
+                {{ block | json }}
+              </code>
+            }
+          }
+        </div>
+      }
+      <hr class="my-8" />
+      <p-accordion value="0">
+        <p-accordion-panel value="1">
+          <p-accordion-header>Nerd info</p-accordion-header>
+          <p-accordion-content>
+            <code class="text-sm text-gray-500 border-blue-500 border-l-4 pl-2">
+              {{ glossaryItem() | json }}
+            </code>
+          </p-accordion-content>
+        </p-accordion-panel>
+      </p-accordion>
+    </div>
+    <div class="w-full lg:w-1/4 px-5">
+      <span>Author placeholder</span>
+      <!-- <app-author-card [author]="article.author"></app-author-card> -->
+    </div>
+  </div>
+}
