@@ -53,9 +53,10 @@
         </p-accordion-panel>
       </p-accordion>
     </div>
-    <div class="w-full lg:w-1/4 px-5">
-      <span>Author placeholder</span>
-      <!-- <app-author-card [author]="article.author"></app-author-card> -->
-    </div>
+    @if (glossaryItem()?.author) {
+      <div class="w-full lg:w-1/4 px-5">
+        <app-author-card [author]="glossaryItem()!.author!"></app-author-card>
+      </div>
+    }
   </div>
 }

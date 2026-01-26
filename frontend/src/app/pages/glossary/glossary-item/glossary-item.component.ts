@@ -11,6 +11,7 @@ import { YoutubeEmbedComponent } from '@/app/components/content/youtube-embed/yo
 import { KnowledgeCheckComponent } from '@/app/components/content/knowledge-check/knowledge-check.component';
 import { JsonPipe } from '@angular/common';
 import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion';
+import { AuthorCardComponent } from '@/app/components/authors/author-card/author-card.component';
 
 @Component({
   selector: 'app-glossary-item',
@@ -27,6 +28,7 @@ import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'pr
     AccordionPanel,
     AccordionHeader,
     AccordionContent,
+    AuthorCardComponent,
   ],
   templateUrl: './glossary-item.component.html',
   styleUrl: './glossary-item.component.scss',

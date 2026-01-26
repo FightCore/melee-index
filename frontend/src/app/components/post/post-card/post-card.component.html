@@ -1,25 +1,25 @@
 <p-card [pt]="cardPtOptions">
   <ng-template #header>
     @if (displayPost().cover && !compact()) {
-    <img
-      alt="Card"
-      class="w-full h-full object-cover rounded-t-md"
-      src="{{ displayPost().cover!.url }}"
-    />
+      <img
+        alt="Card"
+        class="w-full h-full object-cover rounded-t-md"
+        src="{{ displayPost().cover!.url }}"
+      />
     }
   </ng-template>
   <ng-template #title> {{ displayPost().title }} </ng-template>
-  @if(displayPost().author) {
-  <ng-template #subtitle>
-    <div class="flex items-center gap-2">
-      <p-avatar
-        image="{{ displayPost().author.avatar.url }}"
-        shape="circle"
-        size="normal"
-      ></p-avatar>
-      <span>Created by {{ displayPost().author.name }}</span>
-    </div>
-  </ng-template>
+  @if (displayPost().author) {
+    <ng-template #subtitle>
+      <div class="flex items-center gap-2">
+        <p-avatar
+          image="{{ displayPost().author.avatar.url }}"
+          shape="circle"
+          size="normal"
+        ></p-avatar>
+        <span>Created by {{ displayPost().author.name }}</span>
+      </div>
+    </ng-template>
   }
 
   <div>
@@ -31,23 +31,22 @@
   <ng-template #footer>
     <div class="mb-2 text-sm">
       @if (displayPost().category) {
-      <p-chip label="#{{ displayPost().category.slug }}"></p-chip>
-      } @if (displayPost().characters && displayPost().characters!.length > 0) {
-      <div class="float-right mt-2">
-        @for (character of displayPost().characters; track $index){
-        <app-character-icon
-          [characterName]="character.name"
-          class="w-6 h-6 inline-block mr-1"
-        ></app-character-icon>
-        }
-      </div>
+        <p-chip label="#{{ displayPost().category.slug }}"></p-chip>
+      }
+      @if (displayPost().characters && displayPost().characters!.length > 0) {
+        <div class="float-right mt-2">
+          @for (character of displayPost().characters; track $index) {
+            <app-character-icon
+              [characterName]="character.name"
+              class="w-6 h-6 inline-block mr-1"
+            ></app-character-icon>
+          }
+        </div>
       }
     </div>
     <div class="flex gap-2">
       <a
-        [routerLink]="
-          '/posts/' + displayPost().documentId + '/' + displayPost().slug
-        "
+        [routerLink]="'/posts/' + displayPost().documentId + '/' + displayPost().slug"
         class="w-full"
         styleClass="w-full"
         size="small"

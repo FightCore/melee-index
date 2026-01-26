@@ -7,6 +7,9 @@ export const GET_LATEST_GLOSSARY_ITEMS = gql`
       slug
       name
       description
+      cover {
+        url
+      }
     }
   }
 `;

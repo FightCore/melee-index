@@ -15,7 +15,7 @@ export class ListGlossaryItemsComponent {
   private readonly glossaryService = inject(GlossaryService);
 
   constructor() {
-    this.glossaryService.getLatest().subscribe((glossaryItems) => {
+    this.glossaryService.getLatest(false).subscribe((glossaryItems) => {
       this.glossaryItems.set(glossaryItems);
     });
   }

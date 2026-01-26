@@ -1,4 +1,6 @@
 import { ComponentType } from '@/models/post/component-type';
+import { Author } from '@/models/post/blocks/author';
+import { MediaFile } from '@/models/post/blocks/media-file';
 
 export interface GlossaryItem {
   name: string;
@@ -6,4 +8,6 @@ export interface GlossaryItem {
   description: string;
   documentId: string;
   blocks: ComponentType[];
+  author?: Author;
+  cover?: MediaFile;
 }
