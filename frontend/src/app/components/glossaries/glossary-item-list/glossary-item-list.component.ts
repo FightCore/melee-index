@@ -3,6 +3,7 @@ import { Component, input } from '@angular/core';
 import { Card } from 'primeng/card';
 import { ButtonDirective, Button } from 'primeng/button';
 import { RouterModule } from '@angular/router';
+import { ALIGN_FOOTER_CARD_WITH_HEADER_PT } from '@/app/utilities/passthroughs/card-passthroughs';
 
 @Component({
   selector: 'app-glossary-item-list',
@@ -12,4 +13,5 @@ import { RouterModule } from '@angular/router';
 })
 export class GlossaryItemListComponent {
   glossaryItems = input.required<GlossaryItem[]>();
+  cardPtOptions = ALIGN_FOOTER_CARD_WITH_HEADER_PT;
 }

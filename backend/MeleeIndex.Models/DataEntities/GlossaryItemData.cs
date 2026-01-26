@@ -27,5 +27,5 @@ public class GlossaryItemData : JsonExtendableData
     public DateTime? PublishedAt { get; set; }
     
     [JsonPropertyName("cover")]
-    public ImageData Cover { get; set; }
+    public ImageData? Cover { get; set; }
 }

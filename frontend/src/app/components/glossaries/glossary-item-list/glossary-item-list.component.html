@@ -1,7 +1,7 @@
 @if (glossaryItems()) {
-  <div class="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+  <div class="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
     @for (glossaryItem of glossaryItems(); track $index) {
-      <p-card>
+      <p-card [pt]="cardPtOptions">
         <ng-template #header>
           @if (glossaryItem.cover) {
             <img
@@ -12,7 +12,7 @@
           }
         </ng-template>
         <ng-template #title> {{ glossaryItem.name }} </ng-template>
-        <p class="m-0">
+        <p>
           {{ glossaryItem.description }}
         </p>
 
