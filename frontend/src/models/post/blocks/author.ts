@@ -8,4 +8,9 @@ export interface Author {
   bio: string | null;
   mains: Character[];
   createdAt: Date;
+  x: string;
+  website: string;
+  twitch: string;
+  bluesky: string;
+  youtube: string;
 }
