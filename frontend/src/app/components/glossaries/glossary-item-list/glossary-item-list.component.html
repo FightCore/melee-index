@@ -17,19 +17,38 @@
         </p>
 
         <ng-template #footer>
-          <div class="flex gap-4 mt-1">
-            <a
-              class="w-full"
-              pButton
-              routerLink="/glossary/{{ glossaryItem.documentId }}/{{ glossaryItem.name }}"
-              >Read</a
-            >
-            <p-button
-              icon="pi pi-bookmark"
-              size="small"
-              [severity]="false ? 'primary' : 'secondary'"
-            />
-            <p-button icon="pi pi-clone" size="small" severity="secondary" />
+          <div class="mt-1">
+            <div class="mb-4 text-sm w-full h-6">
+              @if (glossaryItem.categories) {
+                @for (category of glossaryItem.categories; track $index) {
+                  <p-chip label="#{{ category.slug }}"></p-chip>
+                }
+              }
+              @if (glossaryItem.characters && glossaryItem.characters!.length > 0) {
+                <div class="float-right pt-2">
+                  @for (character of glossaryItem.characters; track $index) {
+                    <app-character-icon
+                      [characterName]="character.name"
+                      class="w-6 h-6 inline-block mr-1"
+                    ></app-character-icon>
+                  }
+                </div>
+              }
+            </div>
+            <div class="flex gap-4 mt-1">
+              <a
+                class="w-full"
+                pButton
+                routerLink="/glossary/{{ glossaryItem.documentId }}/{{ glossaryItem.name }}"
+                >Read</a
+              >
+              <p-button
+                icon="pi pi-bookmark"
+                size="small"
+                [severity]="false ? 'primary' : 'secondary'"
+              />
+              <p-button icon="pi pi-clone" size="small" severity="secondary" />
+            </div>
           </div>
         </ng-template>
       </p-card>

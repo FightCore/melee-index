@@ -28,4 +28,10 @@ public class GlossaryItemData : JsonExtendableData
     
     [JsonPropertyName("cover")]
     public ImageData? Cover { get; set; }
+    
+    [JsonPropertyName("characters")]
+    public List<CharacterData>? Characters { get; set; }
+    
+    [JsonPropertyName("categories")]
+    public List<CategoryData>? Categories { get; set; }
 }

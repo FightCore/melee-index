@@ -4,10 +4,12 @@ import { Card } from 'primeng/card';
 import { ButtonDirective, Button } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { ALIGN_FOOTER_CARD_WITH_HEADER_PT } from '@/app/utilities/passthroughs/card-passthroughs';
+import { Chip } from 'primeng/chip';
+import { CharacterIconComponent } from '@/app/components/generic/character-icon/character-icon.component';
 
 @Component({
   selector: 'app-glossary-item-list',
-  imports: [Card, ButtonDirective, RouterModule, Button],
+  imports: [Card, ButtonDirective, RouterModule, Button, Chip, CharacterIconComponent],
   templateUrl: './glossary-item-list.component.html',
   styleUrl: './glossary-item-list.component.scss',
 })

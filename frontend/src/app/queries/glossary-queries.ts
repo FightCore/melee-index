@@ -10,6 +10,14 @@ export const GET_LATEST_GLOSSARY_ITEMS = gql`
       cover {
         url
       }
+      categories {
+        name
+        slug
+      }
+      characters {
+        name
+        slug
+      }
     }
   }
 `;
