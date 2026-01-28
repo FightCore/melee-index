@@ -9,6 +9,14 @@
               class="w-full h-full object-cover rounded-t-md"
               src="{{ glossaryItem.cover!.url }}"
             />
+          } @else {
+            <div
+              class="w-full h-full rounded-t-md bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center p-4"
+            >
+              <span class="text-xl font-bold text-center text-primary-contrast">
+                {{ glossaryItem.name }}
+              </span>
+            </div>
           }
         </ng-template>
         <ng-template #title> {{ glossaryItem.name }} </ng-template>
