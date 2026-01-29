@@ -33,7 +33,7 @@
     "@ngrx/effects": "^21.0.1",
     "@ngrx/store": "^21.0.1",
     "@ngrx/store-devtools": "^21.0.1",
-    "@primeng/themes": "^20.3.0",
+    "@primeng/themes": "^21.0.4",
     "@tailwindcss/postcss": "^4.1.17",
     "@wizpanda/super-gif": "^0.0.6",
     "apng-js": "^1.1.5",
