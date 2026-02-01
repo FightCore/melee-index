@@ -6,7 +6,7 @@ namespace MeleeIndex.GraphQL.Types;
 [QueryType]
 public class Query
 {
-    [UseOffsetPaging]
+    [UsePaging]
     [UseFiltering]
     [UseSorting]
     public IQueryable<PostData> GetPosts(IndexDbContext dbContext)
