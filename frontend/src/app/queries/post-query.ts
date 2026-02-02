@@ -2,8 +2,8 @@ import { gql } from 'apollo-angular';
 
 export const GET_LATEST_POSTS = gql`
   {
-    data: posts(order: [{ publishedAt: DESC }], take: 4) {
-      items {
+    data: posts(order: [{ publishedAt: DESC }], first: 4) {
+      nodes {
         id
         documentId
         bookmarked
@@ -35,8 +35,8 @@ export const GET_LATEST_POSTS = gql`
 
 export const GET_POSTS_WITH_FILTERS = gql`
   query GetPosts($filter: PostDataFilterInput) {
-    data: posts(order: [{ publishedAt: DESC }], where: $filter) {
-      items {
+    data: posts(order: [{ publishedAt: DESC }], first: $filter) {
+      nodes {
         id
         documentId
         bookmarked

@@ -21,7 +21,7 @@ export class PostService {
       })
       .pipe(
         map((result) => {
-          return (result.data as { data: { items: Article[] } }).data.items;
+          return (result.data as { data: { nodes: Article[] } }).data.nodes;
         })
       );
   }
@@ -35,7 +35,7 @@ export class PostService {
       })
       .pipe(
         map((result) => {
-          return (result.data as { data: { items: Article[] } }).data.items;
+          return (result.data as { data: { nodes: Article[] } }).data.nodes;
         })
       );
   }
