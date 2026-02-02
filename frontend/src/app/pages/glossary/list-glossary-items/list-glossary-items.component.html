@@ -1,1 +1,37 @@
-<app-glossary-item-list [glossaryItems]="glossaryItems()"></app-glossary-item-list>
+<div class="p-6">
+  <header class="mb-6">
+    <div class="flex justify-between">
+      <div>
+        <h1 class="text-3xl font-extrabold mb-2"><i class="pi pi-book mr-2"></i>Glossary</h1>
+        <p class="text-lg text-surface-500 max-w-2xl leading-relaxed">
+          Browse common Melee terms, techniques, and concepts.
+        </p>
+      </div>
+
+      <div class="flex items-center">
+        <p-iconfield class="w-80">
+          <p-inputicon class="pi pi-search" />
+          <input
+            type="text"
+            pInputText
+            placeholder="Search items"
+            class="w-full pl-10"
+            [(ngModel)]="searchQuery"
+          />
+        </p-iconfield>
+      </div>
+    </div>
+  </header>
+
+  @if (glossaryItems().length === 0) {
+    <div class="text-center text-surface-500 py-12">
+      @if (searchQuery()) {
+        No results found for "{{ searchQuery() }}"
+      } @else {
+        Loading glossary items...
+      }
+    </div>
+  } @else {
+    <app-glossary-item-list [glossaryItems]="glossaryItems()"></app-glossary-item-list>
+  }
+</div>
