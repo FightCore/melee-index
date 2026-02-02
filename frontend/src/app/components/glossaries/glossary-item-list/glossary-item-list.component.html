@@ -1,65 +1,46 @@
 @if (glossaryItems()) {
-  <div class="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+  <div class="w-full flex flex-col px-4 md:px-10 py-4">
     @for (glossaryItem of glossaryItems(); track $index) {
-      <p-card [pt]="cardPtOptions">
-        <ng-template #header>
-          @if (glossaryItem.cover) {
-            <img
-              alt="Card"
-              class="w-full h-full object-cover rounded-t-md"
-              src="{{ glossaryItem.cover!.url }}"
-            />
-          } @else {
-            <div
-              class="w-full h-full rounded-t-md bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center p-4"
-            >
-              <span class="text-xl font-bold text-center text-primary-contrast">
+      <a
+        routerLink="/glossary/{{ glossaryItem.documentId }}/{{ glossaryItem.name }}"
+        class="group block relative border-b border-surface-200 dark:border-surface-700 py-4 no-underline text-inherit"
+      >
+        <span
+          class="absolute bottom-0 left-0 h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300"
+        ></span>
+        <div class="flex items-center gap-3">
+          <span class="inline-block w-1.5 h-12 rounded-full bg-primary/70 shrink-0"></span>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-4">
+              <h2
+                class="text-lg font-bold text-surface-900 dark:text-surface-0 m-0 group-hover:text-primary transition-colors"
+              >
                 {{ glossaryItem.name }}
-              </span>
-            </div>
-          }
-        </ng-template>
-        <ng-template #title> {{ glossaryItem.name }} </ng-template>
-        <p>
-          {{ glossaryItem.description }}
-        </p>
-
-        <ng-template #footer>
-          <div class="mb-4 text-sm">
-            <div class="w-full h-6">
-              @if (glossaryItem.categories) {
-                @for (category of glossaryItem.categories; track $index) {
-                  <p-chip label="#{{ category.slug }}"></p-chip>
-                }
-              }
+              </h2>
               @if (glossaryItem.characters && glossaryItem.characters!.length > 0) {
-                <div class="float-right pt-2">
+                <div class="flex shrink-0 gap-1">
                   @for (character of glossaryItem.characters; track $index) {
                     <app-character-icon
                       [characterName]="character.name"
-                      class="w-6 h-6 inline-block mr-1"
+                      class="w-5 h-5 inline-block"
                     ></app-character-icon>
                   }
                 </div>
               }
             </div>
+            <p class="text-surface-600 dark:text-surface-300 m-0 mt-1 leading-relaxed">
+              {{ glossaryItem.description }}
+            </p>
+            @if (glossaryItem.categories) {
+              <div class="flex flex-wrap gap-1 mt-2">
+                @for (category of glossaryItem.categories; track $index) {
+                  <p-chip label="#{{ category.slug }}"></p-chip>
+                }
+              </div>
+            }
           </div>
-          <div class="flex gap-4">
-            <a
-              class="w-full"
-              pButton
-              routerLink="/glossary/{{ glossaryItem.documentId }}/{{ glossaryItem.name }}"
-              >Read</a
-            >
-            <p-button
-              icon="pi pi-bookmark"
-              size="small"
-              [severity]="false ? 'primary' : 'secondary'"
-            />
-            <p-button icon="pi pi-clone" size="small" severity="secondary" />
-          </div>
-        </ng-template>
-      </p-card>
+        </div>
+      </a>
     }
   </div>
 }
