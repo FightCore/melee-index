@@ -23,7 +23,7 @@
     <p class="text-sm pt-2 text-gray-400">Joined: {{ author().createdAt | date: 'mediumDate' }}</p>
   </ng-template>
   <hr class="my-1" />
-  <p class="text-sm">
+  <p class="">
     {{ author().bio?.substring(0, 200)
     }}{{ author().bio && author().bio!.length > 200 ? '...' : '' }}
   </p>

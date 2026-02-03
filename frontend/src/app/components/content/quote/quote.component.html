@@ -1,4 +1,6 @@
-<p-message [severity]="block().type">
-  <h2 class="text-xl font-semibold">{{ block().title }}</h2>
-  <p>{{ block().body }}</p>
-</p-message>
+@if (block()) {
+  <p-message [icon]="icon()" [severity]="block().type">
+    <h2 class="text-xl font-semibold">{{ block().title }}</h2>
+    <p>{{ block().body }}</p>
+  </p-message>
+}

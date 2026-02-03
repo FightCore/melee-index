@@ -1,5 +1,6 @@
 import { QuoteBlock } from '@/models/post/blocks/quote-block';
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { PrimeIcons } from 'primeng/api';
 import { MessageModule } from 'primeng/message';
 
 @Component({
@@ -10,4 +11,14 @@ import { MessageModule } from 'primeng/message';
 })
 export class QuoteComponent {
   readonly block = input.required<QuoteBlock>();
+  readonly icon = computed(() => {
+    const severity = this.block().type;
+    switch (severity) {
+      case 'info': {
+        return PrimeIcons.INFO_CIRCLE;
+      }
+    }
+
+    return undefined;
+  });
 }
