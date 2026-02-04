@@ -7,10 +7,16 @@ import { ResourceService } from '@/app/services/resources/resource.service';
 import { Resource } from '@/models/resources/resource';
 import { ResourceCardComponent } from '@/app/components/resources/resource-card/resource-card.component';
 import { Character } from '@/models/post/character';
+import { TitleBarComponent } from '@/app/components/layout/title-bar/title-bar.component';
 
 @Component({
   selector: 'app-characters',
-  imports: [CharacterSelectionBarComponent, PostCardComponent, ResourceCardComponent],
+  imports: [
+    CharacterSelectionBarComponent,
+    PostCardComponent,
+    ResourceCardComponent,
+    TitleBarComponent,
+  ],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
 })
@@ -38,7 +44,9 @@ export class CharactersComponent implements OnInit {
       return;
     } else {
       this.resourceService.getAll().subscribe((resources) => {
-        this.resources = resources.filter((resource) => resource.characters.some((c) => c.slug === character.slug));
+        this.resources = resources.filter((resource) =>
+          resource.characters.some((c) => c.slug === character.slug)
+        );
       });
     }
   }

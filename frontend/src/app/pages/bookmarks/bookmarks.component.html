@@ -1,12 +1,10 @@
-<div class="p-6">
-  <h2 class="text-2xl font-bold mb-4">Bookmarks</h2>
-  @if (!bookmarkedPosts || bookmarkedPosts.length === 0) {
+<app-title-bar icon="pi-bookmark" title="Bookmarks"> </app-title-bar>
+@if (!bookmarkedPosts || bookmarkedPosts.length === 0) {
   <div class="text-center text-gray-500">No bookmarked posts found.</div>
-  } @else {
+} @else {
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @for (post of bookmarkedPosts; track $index) {
-    <app-post-card [post]="post"></app-post-card>
+      <app-post-card [post]="post"></app-post-card>
     }
   </div>
-  }
-</div>
+}

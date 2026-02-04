@@ -1,18 +1,15 @@
+<app-title-bar icon="pi-book" title="Posts"> </app-title-bar>
 <div class="py-1 px-6">
   <p-toolbar>
     <ng-template #start>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <app-select-author
-          (selectedAuthor)="onSelectedAuthor($event)"
-        ></app-select-author>
+        <app-select-author (selectedAuthor)="onSelectedAuthor($event)"></app-select-author>
 
         <app-select-character
           (selectedCharacter)="onSelectedCharacter($event)"
         ></app-select-character>
 
-        <app-select-category
-          (selectedCategory)="onSelectedCategory($event)"
-        ></app-select-category>
+        <app-select-category (selectedCategory)="onSelectedCategory($event)"></app-select-category>
       </div>
     </ng-template>
     <ng-template #end>
@@ -22,9 +19,9 @@
 
   <div class="pt-2 grid lg:grid-cols-4 gap-4 md:grid-cols-2 grid-cols-1">
     @for (post of posts; track $index) {
-    <div>
-      <app-post-card [post]="post"></app-post-card>
-    </div>
+      <div>
+        <app-post-card [post]="post"></app-post-card>
+      </div>
     }
   </div>
 </div>

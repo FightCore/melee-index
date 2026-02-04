@@ -3,10 +3,11 @@ import { BookmarkService } from '@/app/services/bookmarks/bookmark.service';
 import { Article } from '@/models/post/article';
 import { Component, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { TitleBarComponent } from '@/app/components/layout/title-bar/title-bar.component';
 
 @Component({
   selector: 'app-bookmarks',
-  imports: [PostCardComponent],
+  imports: [PostCardComponent, TitleBarComponent],
   templateUrl: './bookmarks.component.html',
   styleUrl: './bookmarks.component.scss',
 })
@@ -24,7 +25,10 @@ export class BookmarksComponent implements OnInit {
   constructor() {
     this.titleService.setTitle('Bookmarks - Melee Index');
     this.metaService.addTags([
-      { name: 'description', content: 'View and manage your bookmarked articles about Super Smash Bros. Melee.' },
+      {
+        name: 'description',
+        content: 'View and manage your bookmarked articles about Super Smash Bros. Melee.',
+      },
       { name: 'keywords', content: 'Super Smash Bros. Melee, Melee, Bookmarks, Articles' },
     ]);
   }

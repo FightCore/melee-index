@@ -13,6 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FilterState } from '@/app/queries/filters/filter-state';
 import { FilterBuilder } from '@/app/queries/filters/filter-builder';
 import { Meta, Title } from '@angular/platform-browser';
+import { TitleBarComponent } from '@/app/components/layout/title-bar/title-bar.component';
 
 @Component({
   selector: 'app-posts',
@@ -23,6 +24,7 @@ import { Meta, Title } from '@angular/platform-browser';
     PostCardComponent,
     ToolbarModule,
     InputTextModule,
+    TitleBarComponent,
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
@@ -39,11 +41,13 @@ export class PostsComponent implements OnInit {
     this.metaService.addTags([
       {
         name: 'description',
-        content: 'Browse and filter articles about Super Smash Bros. Melee by author, character, and category.',
+        content:
+          'Browse and filter articles about Super Smash Bros. Melee by author, character, and category.',
       },
       {
         name: 'keywords',
-        content: 'Super Smash Bros. Melee, Melee, Articles, Posts, Filter, Author, Character, Category',
+        content:
+          'Super Smash Bros. Melee, Melee, Articles, Posts, Filter, Author, Character, Category',
       },
     ]);
   }

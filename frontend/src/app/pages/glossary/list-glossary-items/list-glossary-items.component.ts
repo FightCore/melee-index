@@ -6,10 +6,18 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { IconField } from 'primeng/iconfield';
 import { InputIcon } from 'primeng/inputicon';
+import { TitleBarComponent } from '@/app/components/layout/title-bar/title-bar.component';
 
 @Component({
   selector: 'app-list-glossary-items',
-  imports: [GlossaryItemListComponent, InputTextModule, FormsModule, IconField, InputIcon],
+  imports: [
+    GlossaryItemListComponent,
+    InputTextModule,
+    FormsModule,
+    IconField,
+    InputIcon,
+    TitleBarComponent,
+  ],
   templateUrl: './list-glossary-items.component.html',
   styleUrl: './list-glossary-items.component.scss',
 })
