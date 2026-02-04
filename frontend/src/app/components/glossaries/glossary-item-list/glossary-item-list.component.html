@@ -1,8 +1,8 @@
-@if (glossaryItems()) {
+@if (displayItems()) {
   <div class="w-full flex flex-col px-4 md:px-10 py-4">
-    @for (glossaryItem of glossaryItems(); track $index) {
+    @for (glossaryItem of displayItems(); track $index) {
       <a
-        routerLink="/glossary/{{ glossaryItem.documentId }}/{{ glossaryItem.name }}"
+        routerLink="/glossary/{{ glossaryItem.documentId }}/{{ glossaryItem.slug }}"
         class="group block relative border-b border-surface-200 dark:border-surface-700 py-4 no-underline text-inherit"
       >
         <span
