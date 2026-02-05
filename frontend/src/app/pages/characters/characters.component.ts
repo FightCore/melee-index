@@ -41,7 +41,6 @@ export class CharactersComponent implements OnInit {
       this.resourceService.getAll().subscribe((resources) => {
         this.resources = resources;
       });
-      return;
     } else {
       this.resourceService.getAll().subscribe((resources) => {
         this.resources = resources.filter((resource) =>

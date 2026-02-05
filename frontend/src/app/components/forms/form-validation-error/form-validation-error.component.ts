@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { ValidatorErrorCodes } from '@/models/errors/validator-error-codes';
 import { JsonPipe } from '@angular/common';
@@ -10,6 +10,6 @@ import { JsonPipe } from '@angular/common';
   styleUrl: './form-validation-error.component.scss',
 })
 export class FormValidationErrorComponent {
-  @Input({ required: true }) control!: AbstractControl<unknown, unknown>;
+  control = input.required<AbstractControl<unknown, unknown>>();
   validatorErrorCodes = ValidatorErrorCodes;
 }

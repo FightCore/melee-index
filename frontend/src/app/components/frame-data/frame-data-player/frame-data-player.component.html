@@ -1,17 +1,18 @@
-@if(isApple) {
-<span>UseGif</span>
+@if (isApple) {
+  <span>UseGif</span>
 } @else {
-<app-png-animation-player
-  [(frame)]="frame"
-  [move]="move()"
-></app-png-animation-player>
+  <app-png-animation-player
+    #animationPlayer
+    [(frame)]="frame"
+    [move]="move()"
+  ></app-png-animation-player>
 }
 <p-card>
   <div class="md:flex justify-evenly">
     <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-2">
       <p-button (onClick)="togglePlay()" fluid>
         <span class="pi {{ isPlaying ? 'pi-pause' : 'pi-play' }}"> </span
-        >{{ isPlaying ? "Pause" : "Play" }}</p-button
+        >{{ isPlaying ? 'Pause' : 'Play' }}</p-button
       >
       <p-button fluid>Frame: {{ frame() }}</p-button>
       <p-button (onClick)="previousFrame()" fluid
@@ -26,9 +27,7 @@
     </div>
     <div class="flex flex-col gap-2">
       <p-button fluid><span class="pi pi-download"></span>Download</p-button>
-      <p-button fluid
-        ><span class="pi pi-window-maximize"></span>Full screen</p-button
-      >
+      <p-button fluid><span class="pi pi-window-maximize"></span>Full screen</p-button>
     </div>
   </div>
 </p-card>

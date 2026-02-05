@@ -1,9 +1,7 @@
-@if(control.hasError(validatorErrorCodes.INVALID_URL)) {
+@if (control().hasError(validatorErrorCodes.INVALID_URL)) {
   <small class="text-red-500">The provided URL is invalid</small>
-}
-@else if(control.dirty && control.hasError(validatorErrorCodes.REQUIRED)) {
+} @else if (control().dirty && control().hasError(validatorErrorCodes.REQUIRED)) {
   <small class="text-red-500">This field is required</small>
-}
-@else if (control.dirty && control.invalid) {
-  <small class="text-red-500">The field has unknown errors {{control.errors | json}}</small>
+} @else if (control().dirty && control().invalid) {
+  <small class="text-red-500">The field has unknown errors {{ control().errors | json }}</small>
 }

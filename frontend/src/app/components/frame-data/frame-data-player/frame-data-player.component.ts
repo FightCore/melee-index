@@ -1,4 +1,4 @@
-import { Component, input, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, input, OnInit, signal, viewChild } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { Divider } from 'primeng/divider';
@@ -14,7 +14,7 @@ import { Move } from '@/models/frame-data/move';
 })
 export class FrameDataPlayerComponent implements OnInit {
   readonly move = input.required<Move>();
-  @ViewChild(PngAnimationPlayerComponent) pngPlayer!: PngAnimationPlayerComponent;
+  pngPlayer = viewChild<PngAnimationPlayerComponent>('animationPlayer');
   isApple = false;
   isPlaying = true;
   frame = signal(0);
@@ -28,7 +28,7 @@ export class FrameDataPlayerComponent implements OnInit {
     if (this.isApple) {
       // Toggle the GIF player
     } else {
-      this.pngPlayer.togglePlay();
+      this.pngPlayer()?.togglePlay();
       this.isPlaying = !this.isPlaying;
     }
   }
@@ -37,7 +37,7 @@ export class FrameDataPlayerComponent implements OnInit {
     if (this.isApple) {
       // Toggle the GIF player
     } else {
-      this.pngPlayer.nextFrame();
+      this.pngPlayer()?.nextFrame();
     }
   }
 
@@ -45,7 +45,7 @@ export class FrameDataPlayerComponent implements OnInit {
     if (this.isApple) {
       // Toggle the GIF player
     } else {
-      this.pngPlayer.previousFrame();
+      this.pngPlayer()?.previousFrame();
     }
   }
 
@@ -53,32 +53,32 @@ export class FrameDataPlayerComponent implements OnInit {
     if (this.isApple) {
       // Toggle the GIF player
     } else {
-      this.pngPlayer.setFrame(frame);
+      this.pngPlayer()?.setFrame(frame);
     }
   }
 
   getBrowserName(): string {
     const ua = window.navigator.userAgent.toLowerCase();
 
-    if (ua.indexOf('edg/') > -1) {
+    if (ua.includes('edg/')) {
       return 'Edge (Chromium)';
     }
-    if (ua.indexOf('edge/') > -1) {
+    if (ua.includes('edge/')) {
       return 'Edge (Legacy)';
     }
-    if (ua.indexOf('opr/') > -1) {
+    if (ua.includes('opr/')) {
       return 'Opera';
     }
-    if (ua.indexOf('chrome/') > -1) {
+    if (ua.includes('chrome/')) {
       return 'Chrome';
     }
-    if (ua.indexOf('trident/') > -1) {
+    if (ua.includes('trident/')) {
       return 'Internet Explorer';
     }
-    if (ua.indexOf('firefox/') > -1) {
+    if (ua.includes('firefox/')) {
       return 'Firefox';
     }
-    if (ua.indexOf('safari/') > -1) {
+    if (ua.includes('safari/')) {
       return 'Safari';
     }
 
