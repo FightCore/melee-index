@@ -1,0 +1,28 @@
+<div class="overflow-x-auto">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Tags</th>
+        <th>Characters</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (link of links(); track $index) {
+        <tr class="cursor-pointer hover:bg-base-200">
+          <td>{{ link.title }}</td>
+          <td>{{ link.description }}</td>
+          <td>
+            <div>
+              @for (tag of link.tags; track tag) {
+                <app-badge [text]="tag"></app-badge>
+              }
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
