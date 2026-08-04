@@ -28,7 +28,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Keep components small and focused on a single responsibility
 - Use `input()` and `output()` functions instead of decorators
 - Use `computed()` for derived state
-- Prefer inline templates for small components
+- Always use external `templateUrl`/`styleUrl` files, even for small components. This repo overrides the generic Angular guidance to prefer inline templates, to stay consistent with every existing component and with the `ng generate component` default.
 - Prefer Signal Forms (`@angular/forms/signals`) for new forms. They are stable in Angular v22+ and provide signal-based state, type-safe field access, and schema-based validation
 - When not using Signal Forms, prefer Reactive forms instead of Template-driven ones
 - Do NOT use `ngClass`, use `class` bindings instead
@@ -55,3 +55,23 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use the `providedIn: 'root'` option for singleton services
 - Prefer the `@Service` decorator over `@Injectable({providedIn: 'root'})` for new singleton services (Angular v22+)
 - Use the `inject()` function instead of constructor injection
+
+## Project Conventions
+
+### Folder structure
+
+Place new code by responsibility, not by feature:
+
+- `src/app/ui/` — small, presentational primitives with no business logic and no dependencies on app state (e.g. `badge`, `region`). Reusable anywhere.
+- `src/app/components/` — feature-specific components that compose `ui/` primitives and carry some logic (e.g. `link-table`, `link-table-item`, `featured-links`).
+- `src/app/layout/` — structural/chrome components shared across pages, wired into the app shell (e.g. `navbar`).
+- `src/app/pages/` — routed, top-level containers registered in `app.routes.ts`. Pages compose `components/`, `layout/`, and `ui/`; they should not be imported by other components.
+- `src/app/models/` — plain TypeScript interfaces/types only. No classes, no logic.
+
+### Generating components
+
+Always scaffold new components with `ng generate component <path>` rather than hand-writing the files. The CLI defaults already match this repo's conventions (no `Component` suffix on the class name, external `templateUrl`/`styleUrl`, no explicit `standalone`/`changeDetection`) — do not pass flags that change this. Pick `<path>` using the folder structure above, e.g. `ng generate component ui/badge` or `ng generate component pages/home`.
+
+### Naming
+
+- Lambda/callback parameters use full descriptive words, never single letters or abbreviations — e.g. `character => character.name`, not `c => c.name`.
