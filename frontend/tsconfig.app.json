@@ -10,6 +10,9 @@
   "include": [
     "src/**/*.ts"
   ],
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  },
   "exclude": [
     "src/**/*.spec.ts"
   ]
